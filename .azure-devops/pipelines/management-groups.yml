@@ -1,0 +1,159 @@
+---
+trigger:
+  paths:
+    include:
+      - .azure-devops/pipelines/management-groups.yml
+      - components/management-groups/*
+      - environments/*/management-groups*
+  branches:
+    include:
+      - main
+
+parameters:
+  - name: deployTest
+    displayName: Deploy Test Environment
+    type: boolean
+    default: false
+
+variables:
+  component: management-groups
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Build
+    displayName: Build and Test
+    variables:
+      - template: /environments/test/management-groups.yml
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - task: AzureCLI@2
+            displayName: Build Bicep Templates
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az bicep build --file $(Build.SourcesDirectory)/components/$(component)/resources.bicep
+          - task: CopyFiles@2
+            displayName: Copy Files
+            inputs:
+              Contents: |
+                $(Build.SourcesDirectory)/components/$(component)/**
+                $(Build.SourcesDirectory)/environments/**
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Pipeline Artifact
+            inputs:
+              artifactName: drop
+              targetPath: $(Build.ArtifactStagingDirectory)
+
+  - stage: Validate
+    displayName: Validate Deployment
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - job: ValidateTest
+        displayName: Validate Deployment Test
+        variables:
+          - template: /environments/test/management-groups.yml
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - checkout: none
+          - download: current
+          - task: AzureCLI@2
+            displayName: Validate Deployment Test
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptLocation: inlineScript
+              inlineScript: |
+                az deployment tenant what-if `
+                --template-file $(Pipeline.Workspace)/drop/components/$(component)/resources.json `
+                --parameters $(Pipeline.Workspace)/drop/environments/$(environmentShortName)/$(component).parameters.json `
+                --location '$(location)'
+              scriptType: pscore
+              failOnStandardError: true
+
+      - job: ValidateProd
+        displayName: Validate Deployment Production
+        variables:
+          - template: /environments/prod/management-groups.yml
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - checkout: none
+          - download: current
+          - task: AzureCLI@2
+            displayName: Validate Deployment Production
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptLocation: inlineScript
+              inlineScript: |
+                az deployment tenant what-if `
+                --template-file $(Pipeline.Workspace)/drop/components/$(component)/resources.json `
+                --parameters $(Pipeline.Workspace)/drop/environments/$(environmentShortName)/$(component).parameters.json `
+                --location '$(location)'
+              scriptType: pscore
+              failOnStandardError: true
+
+  - stage: DeployTest
+    displayName: Deploy Test
+    dependsOn: Validate
+    condition: and(succeeded(), or(eq(variables['Build.Reason'], 'PullRequest'), ${{ parameters.deployTest }}))
+    variables:
+      - template: /environments/test/management-groups.yml
+    jobs:
+      - deployment: DeployTest
+        displayName: Deploy Test
+        pool:
+          vmImage: $(vmImage)
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Deploy Test
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az deployment tenant create `
+                      --template-file $(Pipeline.Workspace)/drop/components/$(component)/resources.json `
+                      --parameters $(Pipeline.Workspace)/drop/environments/$(environmentShortName)/$(component).parameters.json `
+                      --location '$(location)'
+                    scriptType: pscore
+                    failOnStandardError: true
+
+  - stage: DeployProd
+    displayName: Deploy Production
+    dependsOn: Validate
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    variables:
+      - template: /environments/prod/management-groups.yml
+    jobs:
+      - deployment: DeployProd
+        displayName: Deploy Production
+        pool:
+          vmImage: $(vmImage)
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Deploy Production
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az deployment tenant create `
+                      --template-file $(Pipeline.Workspace)/drop/components/$(component)/resources.json `
+                      --parameters $(Pipeline.Workspace)/drop/environments/$(environmentShortName)/$(component).parameters.json `
+                      --location '$(location)'
+                    scriptType: pscore
+                    failOnStandardError: true
