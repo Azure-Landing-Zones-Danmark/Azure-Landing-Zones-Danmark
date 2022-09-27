@@ -4,4 +4,4 @@ This component deploys the management group structure.
 
 
 - Decisions
-    - Do we want to introduce Soverign Management Groups?
+    - Do we want to introduce Sovereign Management Groups?
