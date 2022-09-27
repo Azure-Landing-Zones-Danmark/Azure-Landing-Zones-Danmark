@@ -102,3 +102,5 @@ foreach($artifact in $bicepArtifacts){
         write-host " "
     }   
 }
+
+pop-location
