@@ -9,5 +9,7 @@ Repo for the Danish Public Sector Azure Landing Zone accelerator
     - Github Organisation?
     - Github Repo (DenmarkPubSecALS) - Canada is called CanadaPubSecALZ https://github.com/Azure/CanadaPubSecALZ
 
+- Language
+    - Would it be best to write the readme's and .md files in Danish?
 ## Scripts
 - sync-alz.ps1 : Syncs Custom Policy Defintions and Policy Definition sets from the ALZ repo
