@@ -1,0 +1,76 @@
+---
+trigger:
+  paths:
+    include:
+      - .azure-devops/pipelines/management-groups.yml
+      - src/resources/infra-as-code/bicep/modules/managementGroups/*
+      - src/resources/infra-as-code/bicep/modules/managementGroups/parameters/*
+
+  branches:
+    include:
+      - main
+
+name: Deploy Management Groups
+
+variables:
+  vmImageName: ubuntu-latest
+  # azureServiceConnection: '<your-connection-name>'
+  azureServiceConnection: 'MgmtGroupSC'
+  template: src/resources/infra-as-code/bicep/modules/managementGroups/managementGroups.bicep
+
+stages:
+
+  - stage: Lint
+    jobs:
+      - job: LintCode
+        displayName: LintCode
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - script: |
+              az bicep build --file $(template)
+            name: LintBicepCode
+            displayName: Run Bicep linter
+
+  - stage: Validate
+    displayName: Validate
+    jobs:
+    - job: ValidateBicepCode
+      displayName: ValidateBicepCode
+      steps:
+      - task: AzureCLI@2
+        displayName: Validate Bicep Test
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptLocation: inlineScript
+          inlineScript: |
+            az deployment tenant what-if `
+            --template-file $(template) `
+            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/managementGroups.parameters.all.json `
+            --location '$(location)'
+          scriptType: pscore
+          failOnStandardError: true
+          #overrideParameters: >
+          #  -environmentType $(EnvironmentType)
+
+  - stage: Deploy
+    displayName: Deploy
+    jobs:
+    - job: DeployBicepCode
+      displayName: DeployBicepCode
+      steps:
+      - task: AzureCLI@2
+        name: DeployBicep
+        displayName: Deploy to Azure
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptLocation: inlineScript
+          inlineScript: |
+            az deployment tenant what-if `
+            --template-file $(template) `
+            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/managementGroups.parameters.all.json `
+            --location '$(location)'
+          scriptType: pscore
+          failOnStandardError: true
+          #overrideParameters: >
+          #  -environmentType $(EnvironmentType)
