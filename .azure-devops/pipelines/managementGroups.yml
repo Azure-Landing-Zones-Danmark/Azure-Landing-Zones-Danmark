@@ -46,8 +46,7 @@ stages:
           inlineScript: |
             az deployment tenant what-if `
             --template-file $(template) `
-            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/managementGroups.parameters.all.json `
-            --location '$(location)'
+            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json `
           scriptType: pscore
           failOnStandardError: true
           #overrideParameters: >
@@ -68,8 +67,7 @@ stages:
           inlineScript: |
             az deployment tenant what-if `
             --template-file $(template) `
-            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/managementGroups.parameters.all.json `
-            --location '$(location)'
+            --parameters src/resources/infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json `
           scriptType: pscore
           failOnStandardError: true
           #overrideParameters: >
