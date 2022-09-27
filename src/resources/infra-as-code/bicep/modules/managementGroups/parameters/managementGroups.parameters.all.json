@@ -15,7 +15,7 @@
       "value": true
     },
     "parLandingZoneMgConfidentialEnable": {
-      "value": false
+      "value": true
     },
     "parLandingZoneMgChildren": {
       "value": {}

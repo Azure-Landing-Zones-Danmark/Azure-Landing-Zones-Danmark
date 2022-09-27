@@ -22,7 +22,7 @@ param parLandingZoneMgConfidentialEnable bool = false
 param parLandingZoneMgChildren object = {}
 
 @description('Set Parameter to true to Opt-out of deployment telemetry')
-param parTelemetryOptOut bool = false
+ param parTelemetryOptOut bool = false
 
 // Platform and Child Management Groups
 var varPlatformMg = {
@@ -204,11 +204,11 @@ resource resLandingZonesChildMgs 'Microsoft.Management/managementGroups@2021-04-
 }]
 
 // Optional Deployment for Customer Usage Attribution
-module modCustomerUsageAttribution '../../CRML/customerUsageAttribution/cuaIdTenant.bicep' = if (!parTelemetryOptOut) {
+ module modCustomerUsageAttribution '../../CRML/customerUsageAttribution/cuaIdTenant.bicep' = if (!parTelemetryOptOut) {
   #disable-next-line no-loc-expr-outside-params //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information
   name: 'pid-${varCuaid}-${uniqueString(deployment().location)}'
   params: {}
-}
+ }
 
 // Output Management Group IDs
 output outTopLevelManagementGroupId string = resTopLevelMg.id
