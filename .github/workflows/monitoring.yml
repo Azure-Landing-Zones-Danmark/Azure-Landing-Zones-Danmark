@@ -18,6 +18,10 @@ on:  # yamllint disable-line rule:truthy
       - environments/*/monitoring*
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   MODULE_NAME: monitoring
   RESOURCE_GROUP_NAME: Monitoring
