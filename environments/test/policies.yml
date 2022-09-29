@@ -1,0 +1,7 @@
+---
+variables:
+  environment: Test
+  environmentShortName: test
+  azureConnection: Tenant Root Group - TEST - ondfisk
+  location: northeurope
+  managementGroupId: root
