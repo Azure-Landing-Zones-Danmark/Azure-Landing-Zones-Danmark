@@ -3,7 +3,7 @@ targetScope = 'managementGroup'
 param managementGroupId string = 'landing-zones'
 param location string = deployment().location
 
-module AzureLandingZoneConfiguration '../../../initiative-and-role-assignment.bicep' = {
+module AzureLandingZoneConfiguration '../../../modules/initiative-and-role-assignment.bicep' = {
   name: 'AzureLandingZoneConfiguration'
   scope: managementGroup(managementGroupId)
   params: {
