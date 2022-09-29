@@ -1,0 +1,39 @@
+---
+rules:
+  braces:
+    level: error
+  brackets:
+    level: error
+  colons:
+    level: error
+  commas:
+    level: error
+  comments:
+    level: error
+  comments-indentation:
+    level: error
+  document-end: disable
+  document-start:
+    level: error
+  empty-lines:
+    level: error
+  empty-values: disable
+  hyphens:
+    level: error
+  indentation:
+    level: error
+  key-duplicates:
+    level: error
+  key-ordering: disable
+  line-length: disable
+  new-line-at-end-of-file:
+    level: error
+  new-lines:
+    type: unix
+    level: error
+  octal-values: disable
+  quoted-strings: disable
+  trailing-spaces:
+    level: error
+  truthy:
+    level: error

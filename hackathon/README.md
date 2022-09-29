@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- An Azure tenant to test the repo and pipelines - tenant wide permisson are required to deploy the Management Group Structure
+- An Azure tenant to test the repository and pipelines - tenant wide permisson are required to deploy the Management Group Structure
 - An Azure DevOps project with the ability to create Service Connections into your tenant
 - Visual Studio Code
 
@@ -10,7 +10,7 @@
 
 1. Create Management Groups
 
-    - Clone this repo into your Azure DevOps project and run the pipeline to create the Management Group structure
+    - Clone this repository into your Azure DevOps project and run the pipeline to create the Management Group structure
     - Make sure the naming convention of the Management Groups (especially the psuedo-root group) matches your organisation name
 
 1. Deploy ESLZ custom policy

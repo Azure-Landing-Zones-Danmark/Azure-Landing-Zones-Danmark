@@ -55,7 +55,7 @@ resource AksEnableMonitoring 'Microsoft.Authorization/policyDefinitions@2021-06-
             properties: {
               mode: 'Incremental'
               template: {
-                '$schema': 'https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#'
+                '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
                 contentVersion: '1.0.0.0'
                 parameters: {
                   clusterName: {
@@ -79,7 +79,7 @@ resource AksEnableMonitoring 'Microsoft.Authorization/policyDefinitions@2021-06-
                     properties: {
                       mode: 'Incremental'
                       template: {
-                        '$schema': 'https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#'
+                        '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
                         contentVersion: '1.0.0.0'
                         parameters: {}
                         variables: {}
@@ -88,7 +88,7 @@ resource AksEnableMonitoring 'Microsoft.Authorization/policyDefinitions@2021-06-
                             name: '[parameters(\'clusterName\')]'
                             type: 'Microsoft.ContainerService/managedClusters'
                             location: '[parameters(\'clusterLocation\')]'
-                            apiVersion: '2021-10-01'
+                            apiVersion: '2022-07-01'
                             properties: {
                               mode: 'Incremental'
                               id: '[resourceId(parameters(\'clusterResourceGroupName\'), \'Microsoft.ContainerService/managedClusters\', parameters(\'clusterName\'))]'
