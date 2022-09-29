@@ -1,0 +1,173 @@
+---
+trigger:
+  paths:
+    include:
+      - .azure-devops/pipelines/policies.yml
+      - components/policies/*
+      - environments/*/policies*
+  branches:
+    include:
+      - main
+
+parameters:
+  - name: deployTest
+    displayName: Deploy Test Environment
+    type: boolean
+    default: false
+
+variables:
+  component: policies
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Build
+    displayName: Build and Test
+    jobs:
+      - job: Build
+        displayName: Build
+        variables:
+          - template: /environments/test/policies.yml
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - task: CopyFiles@2
+            displayName: Copy Files
+            inputs:
+              Contents: |
+                $(Build.SourcesDirectory)/components/$(component)/**
+                $(Build.SourcesDirectory)/modules/**
+                $(Build.SourcesDirectory)/environments/**
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Pipeline Artifact
+            inputs:
+              artifactName: drop
+              targetPath: $(Build.ArtifactStagingDirectory)
+
+  - stage: Validate
+    displayName: Validate Deployment
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - job: ValidateTest
+        displayName: Validate Deployment Test
+        variables:
+          - template: /environments/test/policies.yml
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - checkout: none
+          - download: current
+          - task: AzureCLI@2
+            displayName: Compare policies, initiatives, and assignments
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptType: pscore
+              scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Compare-Policy.ps1
+              arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -ManagementGroupId $(managementGroupId)
+              failOnStandardError: true
+          - task: PowerShell@2
+            displayName: Fail on delete detected if build reason is pull request
+            condition: and(eq(variables['deleteDetected'], 'true'), eq(variables['Build.Reason'], 'PullRequest'))
+            inputs:
+              targetType: inline
+              script: |
+                Write-Output "##[error]Delete detected. Manual intervention required."
+                exit 1
+              failOnStderr: true
+              pwsh: true
+          - task: AzureCLI@2
+            displayName: What if deploy policies, initiatives, and assignments
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptType: pscore
+              scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Deploy-Policy.ps1
+              arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -Location $(location) -ManagementGroupId $(managementGroupId) -Environment $(environmentShortName) -Verbose -WhatIf
+              failOnStandardError: true
+      - job: ValidateProduction
+        displayName: Validate Deployment Production
+        variables:
+          - template: /environments/prod/policies.yml
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - checkout: none
+          - download: current
+          - task: AzureCLI@2
+            displayName: Compare policies, initiatives, and assignments
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptType: pscore
+              scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Compare-Policy.ps1
+              arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -ManagementGroupId $(managementGroupId)
+              failOnStandardError: true
+          - task: PowerShell@2
+            displayName: Fail on delete detected if source branch is main
+            condition: and(eq(variables['deleteDetected'], 'true'), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            inputs:
+              targetType: inline
+              script: |
+                Write-Output "##[error]Delete detected. Manual intervention required."
+                exit 1
+              failOnStderr: true
+              pwsh: true
+          - task: AzureCLI@2
+            displayName: What if deploy policies, initiatives, and assignments
+            inputs:
+              azureSubscription: ${{ variables.azureConnection }}
+              scriptType: pscore
+              scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Deploy-Policy.ps1
+              arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -Location $(location) -ManagementGroupId $(managementGroupId) -Environment $(environmentShortName) -Verbose -WhatIf
+              failOnStandardError: true
+
+  - stage: DeployTest
+    displayName: Deploy Test
+    dependsOn: Validate
+    condition: and(succeeded(), or(eq(variables['Build.Reason'], 'PullRequest'), ${{ parameters.deployTest }}))
+    variables:
+      - template: /environments/test/policies.yml
+    jobs:
+      - deployment: DeployTest
+        displayName: Deploy Resources
+        pool:
+          vmImage: $(vmImage)
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Deploy policies, initiatives, and assignments
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptType: pscore
+                    scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Deploy-Policy.ps1
+                    arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -Location $(location) -ManagementGroupId $(managementGroupId) -Environment $(environmentShortName) -Verbose
+                    failOnStandardError: true
+
+  - stage: DeployProd
+    displayName: Deploy Production
+    dependsOn: Validate
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    variables:
+      - template: /environments/prod/policies.yml
+    jobs:
+      - deployment: DeployProd
+        displayName: Deploy Resources
+        pool:
+          vmImage: $(vmImage)
+        workspace:
+          clean: all
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Deploy policies, initiatives, and assignments
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptType: pscore
+                    scriptPath: $(Pipeline.Workspace)/drop/components/$(component)/scripts/Deploy-Policy.ps1
+                    arguments: -Path "$(Pipeline.Workspace)/drop/components/$(component)" -Location $(location) -ManagementGroupId $(managementGroupId) -Environment $(environmentShortName) -Verbose
+                    failOnStandardError: true

@@ -1,0 +1,7 @@
+---
+variables:
+  environment: Production
+  environmentShortName: prod
+  azureConnection: Tenant Root Group - PROD - lystroem
+  location: northeurope
+  managementGroupId: root

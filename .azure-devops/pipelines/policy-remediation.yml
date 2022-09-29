@@ -1,0 +1,63 @@
+---
+trigger: none
+
+schedules:
+  - cron: "0 */2 * * *"
+    displayName: Run policy remediation every two hours
+    branches:
+      include:
+        - main
+    always: true
+
+variables:
+  component: policies
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: RemediateTest
+    displayName: Remediate Test Environment
+    jobs:
+      - deployment: Remediate
+        displayName: Remediate Policies
+        variables:
+          - template: /environments/test/policies.yml
+        pool:
+          vmImage: $(vmImage)
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: Remediate policies
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptPath: $(Build.SourcesDirectory)/components/$(component)/scripts/Start-PolicyRemediation.ps1
+                    arguments: -Path "$(Build.SourcesDirectory)/components/$(component)/assignments" -Verbose
+                    scriptType: pscore
+  - stage: RemediateProd
+    displayName: Remediate Production Environment
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+    jobs:
+      - deployment: Remediate
+        displayName: Remediate Policies
+        variables:
+          - template: /environments/prod/policies.yml
+        pool:
+          vmImage: $(vmImage)
+        workspace:
+          clean: all
+        environment: ${{ variables.environment }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: Remediate policies
+                  inputs:
+                    azureSubscription: ${{ variables.azureConnection }}
+                    scriptPath: $(Build.SourcesDirectory)/components/$(component)/scripts/Start-PolicyRemediation.ps1
+                    arguments: -Path "$(Build.SourcesDirectory)/components/$(component)/assignments" -Verbose
+                    scriptType: pscore
