@@ -1,3 +1,4 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification="False positive")]
 param (
     [String[]]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true)]

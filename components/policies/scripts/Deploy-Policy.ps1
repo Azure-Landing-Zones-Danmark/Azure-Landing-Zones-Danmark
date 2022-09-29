@@ -28,6 +28,7 @@ else {
 
 function Join-Template {
     [CmdletBinding()]
+    [OutputType([String])]
     param ([Parameter(ValueFromPipeline = $true)][String[]]$Path)
     begin {
         "targetScope = 'managementGroup'"
