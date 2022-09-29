@@ -1,5 +1,5 @@
 ---
-name: Lint Code Base
+name: Lint and Test Code Base
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -10,11 +10,11 @@ on:  # yamllint disable-line rule:truthy
       - main
 
 jobs:
-  build:
+  lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Lint Code Base
@@ -23,3 +23,16 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JSCPD: false  # Need to fix duplication in workflows to enable
+
+  test:
+    name: Test Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Pester tests
+        run: |
+          Invoke-Pester
+        shell: pwsh

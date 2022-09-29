@@ -1,9 +1,8 @@
 param location string = resourceGroup().location
 param storageAccountName string
 param logAnalyticsWorkspaceName string
-param automationAccountName string
 
-module storageAccount '../../modules/storage/storage-account.bicep' = {
+module storageAccount '../shared/storage-account.bicep' = {
   name: 'storage-account-${uniqueString(resourceGroup().name, storageAccountName)}'
   params: {
     location: location
@@ -12,7 +11,7 @@ module storageAccount '../../modules/storage/storage-account.bicep' = {
   }
 }
 
-module logAnalyticsWorkspace '../../modules/monitoring/log-analytics-workspace.bicep' = {
+module logAnalyticsWorkspace '../shared/log-analytics-workspace.bicep' = {
   name: 'log-analytics-${uniqueString(resourceGroup().name, logAnalyticsWorkspaceName)}'
   params: {
     location: location
@@ -27,7 +26,7 @@ var solutions = [
   'SQLVulnerabilityAssessment'
 ]
 
-module solution '../../modules/monitoring/solution.bicep' = [for solution in solutions: {
+module solution '../shared/log-analytics-workspace-solution.bicep' = [for solution in solutions: {
   name: 'solution-${solution}'
   dependsOn: [
     logAnalyticsWorkspace
@@ -38,11 +37,3 @@ module solution '../../modules/monitoring/solution.bicep' = [for solution in sol
     solutionName: solution
   }
 }]
-
-module automationAccount '../../modules/monitoring/automation-account.bicep' = {
-  name: 'automation-account-${automationAccountName}'
-  params: {
-    location: location
-    automationAccountName: automationAccountName
-  }
-}

@@ -31,7 +31,7 @@ resource policyAssignment 'Microsoft.Authorization/policyAssignments@2020-09-01'
   }
 }
 
-module policyRoleAssignment './internal/role-assignment-multiple.bicep' = {
+module policyRoleAssignment './role-assignment-multiple.bicep' = {
   name: 'policy-role-assignment-${uniqueString(policySetDefinitionId)}'
   params: {
     roleDefinitionIds: roleDefinitionIds

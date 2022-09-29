@@ -4,7 +4,7 @@ param managementGroupId string = 'root'
 param location string = deployment().location
 param logAnalyticsWorkspace string
 
-module AzurePlatformConfiguration '../../../../modules/policies/initiative-and-role-assignment.bicep' = {
+module AzurePlatformConfiguration '../../initiative-and-role-assignment.bicep' = {
   name: 'AzurePlatformConfigurationAssignment'
   scope: managementGroup(managementGroupId)
   params: {

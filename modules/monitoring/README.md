@@ -1,6 +1,6 @@
 # Monitoring Component
 
-This component deploys the *shared* monitoring components to the `Management` subscription.
+This module deploys the *shared* monitoring modules to the `Management` subscription.
 
 It currently consists of:
 

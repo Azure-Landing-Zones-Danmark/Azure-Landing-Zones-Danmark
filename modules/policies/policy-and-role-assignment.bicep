@@ -30,7 +30,7 @@ resource policyAssignment 'Microsoft.Authorization/policyAssignments@2020-09-01'
   }
 }
 
-module roleAssignment './internal/role-assignment-multiple.bicep' = {
+module roleAssignment './role-assignment-multiple.bicep' = {
   name: 'role-assignment-${uniqueString(policyDefinitionId)}'
   params: {
     roleDefinitionIds: reference(policyDefinitionId, '2020-09-01', 'Full').properties.policyRule.then.details.roleDefinitionIds

@@ -4,7 +4,7 @@ param managementGroupId string = 'landing-zones'
 param location string = deployment().location
 param logAnalyticsWorkspace string
 
-module KubernetesConfiguration '../../../../../modules/policies/initiative-and-role-assignment.bicep' = {
+module KubernetesConfiguration '../../../initiative-and-role-assignment.bicep' = {
   name: 'KubernetesConfiguration'
   scope: managementGroup(managementGroupId)
   params: {
@@ -26,7 +26,7 @@ module KubernetesConfiguration '../../../../../modules/policies/initiative-and-r
   }
 }
 
-module KubernetesConfigurationRoleAssignment '../../../../../modules/monitoring/log-analytics-workspace-role-assignment.bicep' = {
+module KubernetesConfigurationRoleAssignment '../../../../shared/log-analytics-workspace-role-assignment.bicep' = {
   name: 'KubernetesConfiguration'
   scope: resourceGroup(split(logAnalyticsWorkspace, '/')[2], split(logAnalyticsWorkspace, '/')[4])
   params: {

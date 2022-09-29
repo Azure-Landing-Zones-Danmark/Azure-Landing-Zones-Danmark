@@ -4,7 +4,7 @@ param managementGroupId string = 'root'
 param location string = deployment().location
 param logAnalyticsWorkspace string
 
-module AzureDefenderConfiguration '../../../../modules/policies/initiative-and-role-assignment.bicep' = {
+module AzureDefenderConfiguration '../../initiative-and-role-assignment.bicep' = {
   name: 'AzureDefenderConfigurationAssignment'
   scope: managementGroup(managementGroupId)
   params: {
