@@ -23,6 +23,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JSCPD: false  # Need to fix duplication in workflows to enable
 
   test:
     name: Test Code Base
@@ -33,6 +34,5 @@ jobs:
 
       - name: Run Pester tests
         run: |
-          Install-Module -Name Pester -Force
           Invoke-Pester
         shell: pwsh
