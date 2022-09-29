@@ -4,7 +4,7 @@ param managementGroupId string = 'landing-zones'
 param location string = deployment().location
 param logAnalyticsWorkspace string
 
-module AzureDiagnosticsConfiguration '../../../../../modules/policies/initiative-and-role-assignment.bicep' = {
+module AzureDiagnosticsConfiguration '../../../initiative-and-role-assignment.bicep' = {
   name: 'AzureDiagnosticsConfiguration'
   scope: managementGroup(managementGroupId)
   params: {
@@ -23,7 +23,7 @@ module AzureDiagnosticsConfiguration '../../../../../modules/policies/initiative
   }
 }
 
-module AzureDiagnosticsConfigurationRoleAssignment '../../../../../modules/monitoring/log-analytics-workspace-role-assignment.bicep' = {
+module AzureDiagnosticsConfigurationRoleAssignment '../../../../shared/log-analytics-workspace-role-assignment.bicep' = {
   name: 'AzureDiagnosticsConfigurationRoleAssignment'
   scope: resourceGroup(split(logAnalyticsWorkspace, '/')[2], split(logAnalyticsWorkspace, '/')[4])
   params: {

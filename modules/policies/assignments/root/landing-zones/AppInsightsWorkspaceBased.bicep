@@ -3,7 +3,7 @@ targetScope = 'managementGroup'
 param managementGroupId string = 'landing-zones'
 param logAnalyticsWorkspace string
 
-module AppInsightsWorkspaceBased '../../../../../modules/policies/policy-assignment.bicep' = {
+module AppInsightsWorkspaceBased '../../../policy-assignment.bicep' = {
   name: 'AppInsightsWorkspaceBased'
   scope: managementGroup(managementGroupId)
   params: {

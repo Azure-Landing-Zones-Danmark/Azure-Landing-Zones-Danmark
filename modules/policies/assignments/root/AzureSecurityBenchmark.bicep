@@ -2,7 +2,7 @@ targetScope = 'managementGroup'
 
 param managementGroupId string = 'root'
 
-module AzureSecurityBenchmark '../../../../modules/policies/policy-assignment.bicep' = {
+module AzureSecurityBenchmark '../../policy-assignment.bicep' = {
   name: 'AzureSecurityBenchmarkAssignment'
   scope: managementGroup(managementGroupId)
   params: {

@@ -36,11 +36,11 @@ resource AppInsightsWorkspaceBased 'Microsoft.Authorization/policyDefinitions@20
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.Insights/components'
+            equals: 'Microsoft.Insights/modules'
           }
           {
             not: {
-              field: 'Microsoft.Insights/components/WorkspaceResourceId'
+              field: 'Microsoft.Insights/modules/WorkspaceResourceId'
               equals: '[parameters(\'logAnalyticsWorkspace\')]'
             }
           }

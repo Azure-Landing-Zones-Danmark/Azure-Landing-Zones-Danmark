@@ -3,13 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "ondfiskstorage"
+            "value": "ondfiskstoragetest"
         },
         "logAnalyticsWorkspaceName": {
-            "value": "ondfisklogs"
-        },
-        "automationAccountName": {
-            "value": "ondfiskautomation"
+            "value": "ondfisklogstest"
         }
     }
 }
