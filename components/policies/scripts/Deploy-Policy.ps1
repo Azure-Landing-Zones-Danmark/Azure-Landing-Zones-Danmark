@@ -1,5 +1,4 @@
 [CmdletBinding(SupportsShouldProcess = $true)]
-[OutputType([String])]
 param (
     [Parameter(Mandatory = $true)]
     [String]
