@@ -4,7 +4,7 @@ param managementGroupId string = 'landing-zones'
 param location string = deployment().location
 param logAnalyticsWorkspace string
 
-module KubernetesConfiguration '../../../initiative-and-role-assignment.bicep' = {
+module KubernetesConfiguration '../../../modules/initiative-and-role-assignment.bicep' = {
   name: 'KubernetesConfiguration'
   scope: managementGroup(managementGroupId)
   params: {
