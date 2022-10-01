@@ -1,7 +1,0 @@
----
-variables:
-  environment: Production
-  environmentShortName: prod
-  azureConnection: Tenant Root Group - PROD - lystroem
-  location: northeurope
-  tenantId: b461d90e-0c15-44ec-adc2-51d14f9f5731

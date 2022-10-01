@@ -1,21 +1,21 @@
 ---
-name: Deploy Monitoring module
+name: Deploy Management Groups Module
 
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
     paths:
-      - .github/workflows/monitoring.yml
-      - modules/monitoring/*
-      - environments/*/monitoring*
+      - .github/workflows/management-groups.yml
+      - modules/management-groups/*
+      - environments/*/management-groups*
   pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/monitoring.yml
-      - modules/monitoring/*
-      - environments/*/monitoring*
+      - .github/workflows/management-groups.yml
+      - modules/management-groups/*
+      - environments/*/management-groups*
   workflow_dispatch:
 
 permissions:
@@ -23,8 +23,7 @@ permissions:
   contents: read
 
 env:
-  MODULE_NAME: monitoring
-  RESOURCE_GROUP_NAME: Monitoring
+  MODULE_NAME: management-groups
   LOCATION: westeurope
 
 jobs:
@@ -68,17 +67,21 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Create Resource Group
-        run: |
-          az group create --name ${{ env.RESOURCE_GROUP_NAME }} --location ${{ env.LOCATION }}
-
       - name: Validate
-        run: |
-          az deployment group validate --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+        run: >
+          az deployment tenant validate
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
-      - name: What-if
-        run: |
-          az deployment group what-if --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+      - name: What-If
+        run: >
+          az deployment tenant what-if
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   validate_prod:
     name: Validate Production
@@ -100,17 +103,21 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Create Resource Group
-        run: |
-          az group create --name ${{ env.RESOURCE_GROUP_NAME }} --location ${{ env.LOCATION }}
-
       - name: Validate
-        run: |
-          az deployment group validate --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+        run: >
+          az deployment tenant validate
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
-      - name: What-if
-        run: |
-          az deployment group what-if --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+      - name: What-If
+        run: >
+          az deployment tenant what-if
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   deploy_test:
     name: Deploy Test
@@ -136,8 +143,12 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
-          az deployment group create --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+        run: >
+          az deployment tenant create
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   deploy_prod:
     name: Deploy Production
@@ -163,5 +174,9 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
-          az deployment group create --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+        run: >
+          az deployment tenant create
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
