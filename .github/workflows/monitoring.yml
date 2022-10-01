@@ -1,5 +1,5 @@
 ---
-name: Deploy monitoring module
+name: Deploy Monitoring module
 
 on:  # yamllint disable-line rule:truthy
   push:
