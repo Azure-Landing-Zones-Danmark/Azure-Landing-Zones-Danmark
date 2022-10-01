@@ -70,14 +70,14 @@ jobs:
       - name: Validate
         run: |
           az deployment tenant validate --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
 
       - name: What-If
         run: |
           az deployment tenant what-if --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
 
@@ -104,14 +104,14 @@ jobs:
       - name: Validate
         run: |
           az deployment tenant validate --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
 
       - name: What-If
         run: |
           az deployment tenant what-if --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
 
@@ -141,7 +141,7 @@ jobs:
       - name: Deploy
         run: |
           az deployment tenant create --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
 
@@ -171,6 +171,6 @@ jobs:
       - name: Deploy
         run: |
           az deployment tenant create --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.json \
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
           --location '${{ env.location }}'
