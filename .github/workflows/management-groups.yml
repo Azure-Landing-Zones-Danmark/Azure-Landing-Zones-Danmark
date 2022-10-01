@@ -68,18 +68,20 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Validate
-        run: |
-          az deployment tenant validate --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant validate
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
       - name: What-If
-        run: |
-          az deployment tenant what-if --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant what-if
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   validate_prod:
     name: Validate Production
@@ -102,18 +104,20 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Validate
-        run: |
-          az deployment tenant validate --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant validate
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
       - name: What-If
-        run: |
-          az deployment tenant what-if --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant what-if
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   deploy_test:
     name: Deploy Test
@@ -139,11 +143,12 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
-          az deployment tenant create --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant create
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
 
   deploy_prod:
     name: Deploy Production
@@ -169,8 +174,9 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
-          az deployment tenant create --name management-groups \
-          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep \
-          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
-          --location '${{ env.location }}'
+        run: >
+          az deployment tenant create
+          --name management-groups
+          --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          --location ${{ env.LOCATION }}
