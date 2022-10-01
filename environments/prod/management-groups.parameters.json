@@ -9,9 +9,7 @@
             "value": "lz"
         },
         "enableConfidential": {
-            "value": [
-                false
-            ]
+            "value": false
         }
     }
 }

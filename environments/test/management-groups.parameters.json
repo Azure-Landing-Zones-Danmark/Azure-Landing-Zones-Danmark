@@ -9,9 +9,7 @@
             "value": "lz-canary"
         },
         "enableConfidential": {
-            "value": [
-                false
-            ]
+            "value": false
         }
     }
 }
