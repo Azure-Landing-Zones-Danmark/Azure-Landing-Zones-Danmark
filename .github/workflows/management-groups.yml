@@ -1,0 +1,176 @@
+---
+name: Deploy monitoring module
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/management-groups.yml
+      - modules/management-groups/*
+      - environments/*/management-groups*
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/management-groups.yml
+      - modules/management-groups/*
+      - environments/*/management-groups*
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  MODULE_NAME: management-groups
+  LOCATION: westeurope
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build Bicep Templates
+        run: |
+          az bicep build --file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.bicep
+
+  validate_test:
+    name: Validate Test
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: success()
+    env:
+      ENVIRONMENT_SHORT_NAME: test
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Validate
+        run: |
+          az deployment tenant validate \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'
+
+      - name: What-If
+        run: |
+          az deployment tenant what-if \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'
+
+  validate_prod:
+    name: Validate Production
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: success()
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Validate
+        run: |
+          az deployment tenant validate \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'
+
+      - name: What-If
+        run: |
+          az deployment tenant what-if \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'
+
+  deploy_test:
+    name: Deploy Test
+    runs-on: ubuntu-latest
+    needs:
+      - validate_test
+      - validate_prod
+    if: success() && github.event_name == 'pull_request'
+    environment:
+      name: Test
+    env:
+      ENVIRONMENT_SHORT_NAME: test
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy
+        run: |
+          az deployment tenant create \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'
+
+  deploy_prod:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs:
+      - validate_test
+      - validate_prod
+    if: success() && github.ref == 'refs/heads/main'
+    environment:
+      name: Production
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy
+        run: |
+          az deployment tenant create \
+          --template-file ${{ github.workspace }}/components/${{ env.MODULE_NAME }}/resources.json \
+          --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json \
+          --location '${{ env.location }}'

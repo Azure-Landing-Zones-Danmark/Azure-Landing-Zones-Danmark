@@ -1,7 +1,0 @@
----
-variables:
-  environment: Test
-  environmentShortName: test
-  azureConnection: Tenant Root Group - TEST - ondfisk
-  location: northeurope
-  tenantId: a76e1df9-dd85-4672-8bb0-a7025ddd4d86
