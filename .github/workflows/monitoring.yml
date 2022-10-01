@@ -74,11 +74,11 @@ jobs:
 
       - name: Validate
         run: |
-          az deployment group validate --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group validate --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: |
-          az deployment group what-if --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group what-if --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   validate_prod:
     name: Validate Production
@@ -106,11 +106,11 @@ jobs:
 
       - name: Validate
         run: |
-          az deployment group validate --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group validate --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: |
-          az deployment group what-if --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group what-if --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   deploy_test:
     name: Deploy Test
@@ -137,7 +137,7 @@ jobs:
 
       - name: Deploy
         run: |
-          az deployment group create --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group create --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   deploy_prod:
     name: Deploy Production
@@ -164,4 +164,4 @@ jobs:
 
       - name: Deploy
         run: |
-          az deployment group create --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment group create --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
