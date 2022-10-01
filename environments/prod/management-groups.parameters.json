@@ -6,9 +6,7 @@
             "value": "Azure Landing Zones"
         },
         "prefix": {
-            "value": [
-                "lz"
-            ]
+            "value": "lz"
         },
         "enableConfidential": {
             "value": [

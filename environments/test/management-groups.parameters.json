@@ -6,9 +6,7 @@
             "value": "Azure Landing Zones - Canary"
         },
         "prefix": {
-            "value": [
-                "lz-canary"
-            ]
+            "value": "lz-canary"
         },
         "enableConfidential": {
             "value": [
