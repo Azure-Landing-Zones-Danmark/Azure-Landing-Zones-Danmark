@@ -1,6 +1,10 @@
-# Policy Framework Component
+# Policies Module
 
-This contains a folder structure which mimics how policy definitions and assignments are deployed to the management group structure.
+This folder contains policy definitions, initiatives, and assignments imported from the [Azure Landing Zones (ALZ) - Bicep](https://github.com/Azure/ALZ-Bicep).
+
+TODO: Automate policy import using a GitHub Action.
+
+## Notes
 
 All definitions and initiatives are deployed to the root management group.
 
@@ -8,9 +12,9 @@ All definitions, initiatives, and assignments are built using atomic management 
 
 ## Phased Rollout Strategy - Continuous Deployment
 
-A policy change in a PR will be deployed and validated in the *TEST* tenant.
+A policy change in a PR will be deployed and validated in the *CANARY* management group structure.
 
-If approved it will be deployed to the *PRODUCTION* tenant.
+If approved it will be deployed to the *PRODUCTION* management group structure.
 
 ## How To
 
