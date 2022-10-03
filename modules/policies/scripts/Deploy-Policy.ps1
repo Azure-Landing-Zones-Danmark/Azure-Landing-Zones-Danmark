@@ -10,7 +10,7 @@ param (
 
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupId,
+    $ManagementGroupRoot,
 
     [Parameter(Mandatory = $true)]
     [ValidateSet("canary", "prod")]
@@ -44,8 +44,8 @@ function Join-Template {
 }
 
 function Get-Parameter ($Path, $Environment) {
-    if (Test-Path -Path "$Path/$Environment.params.json") {
-        $parameters = Resolve-Path -Path "$Path/$Environment.params.json" -Relative
+    if (Test-Path -Path "$Path/.$Environment.params.json") {
+        $parameters = Resolve-Path -Path "$Path/.$Environment.params.json" -Relative
         "@$parameters"
     }
 }
@@ -53,12 +53,15 @@ function Get-Parameter ($Path, $Environment) {
 function Deploy-Template ($Path, $ManagementGroupId, $Location, $DeploymentName, $Environment) {
     $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath "deploy.bicep"
     Get-ChildItem -Path $Path/*.bicep -Exclude deploy.bicep | Join-Template | Set-Content -Path $template
-    if ($parameters = Get-Parameter -Path $Path -Environment $Environment) {
+    if ($parameters = Get-Parameter -Path $Path -Environment $Environment -or $DeploymentName -eq "policy-assignments") {
+        if ($DeploymentName -eq "policy-assignments") {
+            $managementGroupParameter = "managementGroupId=$ManagementGroupId"
+        }
         if ($action -eq "create") {
-            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters --only-show-errors)
+            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters $managementGroupParameter --only-show-errors)
         }
         elseif ($action -eq "what-if") {
-            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters --result-format ResourceIdOnly --only-show-errors)
+            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters $managementGroupParameter --result-format ResourceIdOnly --only-show-errors)
         }
     }
     else {
@@ -72,17 +75,21 @@ function Deploy-Template ($Path, $ManagementGroupId, $Location, $DeploymentName,
     Remove-Item -Path $template
 }
 
-function Deploy-TemplateRecursive ($Path, $ManagementGroupId, $Location, $Environment) {
+function Deploy-TemplateRecursive ($Path, $ManagementGroupRoot, $Location, $Environment) {
+    Write-Verbose -Message "Deploying policy assignments to '$ManagementGroupRoot'"
+    Deploy-Template -Path $Path -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-assignments"
+
     Get-ChildItem -Path $Path -Recurse -Directory | Sort-Object -Property FullName | ForEach-Object {
-        Write-Verbose -Message "Deploying policy assignments to '$($PSItem.BaseName)'"
-        Deploy-Template -Path $PSItem -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "policy-assignments"
+        $managementGroupId = "$ManagementGroupRoot-$($PSItem.BaseName)"
+        Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"
+        Deploy-Template -Path $PSItem -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments"
     }
 }
 
-Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupId'"
-Deploy-Template -Path $Path/definitions -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
+Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupRoot'"
+Deploy-Template -Path $Path/definitions -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
 
-Write-Verbose -Message "Deploying initiatives to '$ManagementGroupId'"
-Deploy-Template -Path $Path/initiatives -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "initiatives" -Environment $Environment
+Write-Verbose -Message "Deploying initiatives to '$ManagementGroupRoot'"
+Deploy-Template -Path $Path/initiatives -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
 
-Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupId $ManagementGroupId -Location $Location -Environment $Environment
+Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupRoot $ManagementGroupRoot -Location $Location -Environment $Environment
