@@ -6,7 +6,7 @@ param (
 
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupId
+    $ManagementGroupRoot
 )
 
 function Write-Compare ($Label, $Object, $SideIndicator, $Color, $Prefix) {
@@ -16,8 +16,8 @@ function Write-Compare ($Label, $Object, $SideIndicator, $Color, $Prefix) {
         Write-Output $compare -Separator ([Environment]::NewLine) -ForegroundColor $Color
     }
     if ($compare -and $Prefix -eq "-") {
-        Write-Output "##[warning]Delete detected. Manual intervention required."
-        Write-Output "##vso[task.setvariable variable=deleteDetected]true"
+        Write-Output "Warning: Delete detected. Manual intervention required."
+        $env:DELETE_DETECTED = "true"
     }
 }
 
@@ -29,17 +29,15 @@ function Get-ResourceNameFromTemplate ($Path, $Pattern) {
 }
 
 function Compare-Item ($Label, $Path, $Pattern, $ManagementGroupId, $Command) {
-    Write-Output "##[group]Comparing $($Label.ToLower()) under '$ManagementGroupId'..."
+    Write-Output "Comparing $($Label.ToLower()) under '$ManagementGroupId'..."
 
     $toBeDeployed = Get-ResourceNameFromTemplate -Path $Path -Pattern $Pattern
     $existing = & $Command | ConvertFrom-Json
     $compare = Compare-Object -ReferenceObject ($toBeDeployed ?? @()) -DifferenceObject ($existing ?? @()) -IncludeEqual
 
-    Write-Compare -Label "##[section]$Label to be deleted:" -Object $compare -SideIndicator "=>" -Prefix "-" -Color Red
-    Write-Compare -Label "##[section]$Label to be created:" -Object $compare -SideIndicator "<=" -Prefix "+" -Color Green
-    Write-Compare -Label "##[section]$Label to be updated:" -Object $compare -SideIndicator "==" -Prefix "*" -Color Blue
-
-    Write-Output "##[endgroup]"
+    Write-Compare -Label "$Label to be deleted:" -Object $compare -SideIndicator "=>" -Prefix "-" -Color Red
+    Write-Compare -Label "$Label to be created:" -Object $compare -SideIndicator "<=" -Prefix "+" -Color Green
+    Write-Compare -Label "$Label to be updated:" -Object $compare -SideIndicator "==" -Prefix "*" -Color Blue
 }
 
 Compare-Item -Label "Definitions" `
@@ -54,8 +52,14 @@ Compare-Item -Label "Initiatives" `
     -Pattern "=\s+\{\s+name:\s+'(.+)\'" `
     -Command "az policy set-definition list --management-group $ManagementGroupId --query `"[?policyType=='Custom'].name`""
 
+Compare-Item -Label "Assignments" `
+    -Path $Path/assignments `
+    -ManagementGroupId $ManagementGroupRoot `
+    -Pattern "policyAssignmentName:\s+'(.+)\'" `
+    -Command "az policy assignment list --scope '/providers/Microsoft.Management/managementGroups/$ManagementGroupRoot' --query '[].name'"
+
 Get-ChildItem -Path $Path/assignments -Directory -Recurse | Sort-Object -Property FullName | ForEach-Object {
-    $managementGroupId = $PSItem.BaseName
+    $managementGroupId = "$ManagementGroupRoot-$($PSItem.BaseName)"
     Compare-Item -Label "Assignments" `
         -Path $PSItem `
         -ManagementGroupId $managementGroupId `

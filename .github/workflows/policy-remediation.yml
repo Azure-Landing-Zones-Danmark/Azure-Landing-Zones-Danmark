@@ -1,0 +1,65 @@
+---
+name: Policy Remediation
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - none
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+env:
+  component: policies
+
+jobs:
+  remediate_canary:
+    name: Remediate Policies Canary
+    runs-on: ubuntu-latest
+    environment:
+      name: canary
+    env:
+      ENVIRONMENT_SHORT_NAME: canary
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+      MANAGEMENT_GROUP_ROOT: canary
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Remediate policies
+        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Verbose
+        shell: pwsh
+
+  remediate_prod:
+    name: Remediate Policies Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: prod
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
+      MANAGEMENT_GROUP_ROOT: alz
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Remediate policies
+        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Verbose
+        shell: pwsh

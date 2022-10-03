@@ -13,7 +13,7 @@ param (
     $ManagementGroupId,
 
     [Parameter(Mandatory = $true)]
-    [ValidateSet("test", "prod")]
+    [ValidateSet("canary", "prod")]
     [String]
     $Environment
 )

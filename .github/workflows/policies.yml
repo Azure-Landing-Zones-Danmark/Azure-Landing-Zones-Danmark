@@ -1,0 +1,151 @@
+---
+name: Policies
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/policies.yml
+      - modules/policies/*
+      - environments/*/policies*
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/policies.yml
+      - modules/policies/*
+      - environments/*/policies*
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  MODULE_NAME: policies
+  LOCATION: westeurope
+
+jobs:
+  validate_canary:
+    name: Validate Canary
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT_SHORT_NAME: canary
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+      MANAGEMENT_GROUP_ROOT: canary
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Compare policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+        shell: pwsh
+
+      - name: Fail on delete detected if build reason is pull request
+        run: |
+          Write-Output "##[error]Delete detected. Manual intervention required."
+          exit 1
+        shell: pwsh
+        if: env.DELETE_DETECTED && github.event_name == 'pull_request'
+
+      - name: What if deploy policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+        shell: pwsh
+
+  validate_prod:
+    name: Validate Deployment Production
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
+      MANAGEMENT_GROUP_ROOT: alz
+    steps:
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Compare policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+        shell: pwsh
+
+      - name: Fail on delete detected if build reason is pull request
+        run: |
+          Write-Output "##[error]Delete detected. Manual intervention required."
+          exit 1
+        shell: pwsh
+        if: env.DELETE_DETECTED && github.ref == 'refs/heads/main'
+
+      - name: What if deploy policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+        shell: pwsh
+
+  deploy_canary:
+    name: Deploy Canary
+    runs-on: ubuntu-latest
+    needs:
+      - validate_canary
+      - validate_prod
+    if: success() && github.event_name == 'pull_request'
+    environment:
+      name: Canary
+    env:
+      ENVIRONMENT_SHORT_NAME: canary
+      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
+      MANAGEMENT_GROUP_ROOT: canary
+    steps:
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Deploy policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+        shell: pwsh
+
+  deploy_prod:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs:
+      - validate_canary
+      - validate_prod
+    if: success() && github.ref == 'refs/heads/main'
+    environment:
+      name: Production
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
+      MANAGEMENT_GROUP_ROOT: alz
+    steps:
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Deploy policies, initiatives, and assignments
+        run: |
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+        shell: pwsh
