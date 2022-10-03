@@ -1,4 +1,4 @@
-# Monitoring Component
+# Monitoring Module
 
 This module deploys the *shared* monitoring modules to the `Management` subscription.
 
