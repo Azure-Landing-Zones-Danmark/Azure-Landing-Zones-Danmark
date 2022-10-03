@@ -76,46 +76,46 @@ resource Deploy_Sql_Security 'Microsoft.Authorization/policySetDefinitions@2021-
     policyDefinitions: [
       {
         policyDefinitionReferenceId: 'SqlDbTdeDeploySqlSecurity'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-Tde')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-Tde')
         parameters: {
           effect: {
-            value: '[[parameters(\'SqlDbTdeDeploySqlSecurityEffect\')]'
+            value: '[parameters(\'SqlDbTdeDeploySqlSecurityEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SqlDbSecurityAlertPoliciesDeploySqlSecurity'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-SecurityAlertPolicies')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-SecurityAlertPolicies')
         parameters: {
           effect: {
-            value: '[[parameters(\'SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect\')]'
+            value: '[parameters(\'SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SqlDbAuditingSettingsDeploySqlSecurity'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-AuditingSettings')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-AuditingSettings')
         parameters: {
           effect: {
-            value: '[[parameters(\'SqlDbAuditingSettingsDeploySqlSecurityEffect\')]'
+            value: '[parameters(\'SqlDbAuditingSettingsDeploySqlSecurityEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SqlDbVulnerabilityAssessmentsDeploySqlSecurity'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-vulnerabilityAssessments')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Sql-vulnerabilityAssessments')
         parameters: {
           effect: {
-            value: '[[parameters(\'SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect\')]'
+            value: '[parameters(\'SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect\')]'
           }
           vulnerabilityAssessmentsEmail: {
-            value: '[[parameters(\'vulnerabilityAssessmentsEmail\')]'
+            value: '[parameters(\'vulnerabilityAssessmentsEmail\')]'
           }
           vulnerabilityAssessmentsStorageID: {
-            value: '[[parameters(\'vulnerabilityAssessmentsStorageID\')]'
+            value: '[parameters(\'vulnerabilityAssessmentsStorageID\')]'
           }
         }
         groupNames: []

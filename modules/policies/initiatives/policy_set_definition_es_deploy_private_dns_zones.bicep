@@ -201,10 +201,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '06695360-db88-47f6-b976-7500d4297475')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureFileprivateDnsZoneId\')]'
+            value: '[parameters(\'azureFileprivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -214,10 +214,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '0b026355-49cb-467b-8ac4-f777874e175a')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureWebPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureWebPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -227,10 +227,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '4ec38ebc-381f-45ee-81a4-acbc4be878f8')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureBatchPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureBatchPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -240,10 +240,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '7a860e27-9ca2-4fc6-822d-c2d248c300df')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureAppPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureAppPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -253,10 +253,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '942bd215-1a66-44be-af65-6a1c0318dbe2')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureAsrPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureAsrPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -266,10 +266,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'aaa64d2d-2fa3-45e5-b332-0b031b9b30e8')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureIotPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureIotPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -279,10 +279,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ac673a9a-f77d-4846-b2d8-a57f8e1c01d4')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureKeyVaultPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureKeyVaultPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -292,10 +292,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b0e86710-7fb7-4a6c-a064-32e9b829509e')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureSignalRPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureSignalRPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -305,10 +305,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b318f84a-b872-429b-ac6d-a01b96814452')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureAppServicesPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureAppServicesPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -318,10 +318,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'baf19753-7502-405f-8745-370519b20483')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureEventGridTopicsPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureEventGridTopicsPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect1\')]'
+            value: '[parameters(\'effect1\')]'
           }
         }
         groupNames: []
@@ -331,10 +331,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'bc05b96c-0b36-4ca9-82f0-5c53f96ce05a')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureDiskAccessPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureDiskAccessPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -344,10 +344,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c4bc6f10-cb41-49eb-b000-d5ab82e2a091')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureCognitiveServicesPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureCognitiveServicesPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -357,10 +357,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c99ce9c1-ced7-4c3e-aca0-10e69ce0cb02')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureIotHubsPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureIotHubsPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect1\')]'
+            value: '[parameters(\'effect1\')]'
           }
         }
         groupNames: []
@@ -370,10 +370,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'd389df0a-e0d7-4607-833c-75a6fdac2c2d')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureEventGridDomainsPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureEventGridDomainsPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect1\')]'
+            value: '[parameters(\'effect1\')]'
           }
         }
         groupNames: []
@@ -383,10 +383,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'e016b22b-e0eb-436d-8fd7-160c4eaed6e2')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureRedisCachePrivateDnsZoneId\')]'
+            value: '[parameters(\'azureRedisCachePrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -396,10 +396,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'e9585a95-5b8c-4d03-b193-dc7eb5ac4c32')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureAcrPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureAcrPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -409,10 +409,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ed66d4f5-8220-45dc-ab4a-20d1749c74e6')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureEventHubNamespacePrivateDnsZoneId\')]'
+            value: '[parameters(\'azureEventHubNamespacePrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -422,10 +422,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ee40564d-486e-4f68-a5ca-7a621edae0fb')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureMachineLearningWorkspacePrivateDnsZoneId\')]'
+            value: '[parameters(\'azureMachineLearningWorkspacePrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -435,10 +435,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'f0fcf93c-c063-4071-9668-c47474bd3564')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureServiceBusNamespacePrivateDnsZoneId\')]'
+            value: '[parameters(\'azureServiceBusNamespacePrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []
@@ -448,10 +448,10 @@ resource Deploy_Private_DNS_Zones 'Microsoft.Authorization/policySetDefinitions@
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'fbc14a67-53e4-4932-abcc-2049c6706009')
         parameters: {
           privateDnsZoneId: {
-            value: '[[parameters(\'azureCognitiveSearchPrivateDnsZoneId\')]'
+            value: '[parameters(\'azureCognitiveSearchPrivateDnsZoneId\')]'
           }
           effect: {
-            value: '[[parameters(\'effect\')]'
+            value: '[parameters(\'effect\')]'
           }
         }
         groupNames: []

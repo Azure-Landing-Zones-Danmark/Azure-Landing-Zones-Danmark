@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "resourceGroupName": {
-      "value": "Monitoring"
+      "value": "Management"
     },
     "workspaceName": {
-      "value": ""
+      "value": "azure-landing-zones"
     },
     "automationAccountName": {
-      "value": ""
+      "value": "azure-landing-zones"
     },
     "dataRetention": {
       "value": 365

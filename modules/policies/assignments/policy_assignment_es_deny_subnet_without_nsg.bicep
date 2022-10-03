@@ -7,7 +7,7 @@ module Deny_Subnet_Without_Nsg '../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-Subnet-Without-Nsg'
-    policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-Subnet-Without-Nsg')
+    policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-Subnet-Without-Nsg')
     parameters: {
       effect: {
         value: 'Deny'

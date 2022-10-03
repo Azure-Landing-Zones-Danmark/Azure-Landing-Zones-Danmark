@@ -52,7 +52,7 @@ function Get-Parameter ($Path, $Environment) {
 
 function Deploy-Template ($Path, $ManagementGroupId, $Location, $DeploymentName, $Environment) {
     $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath "deploy.bicep"
-    Get-ChildItem -Path $Path/*.bicep -Exclude deploy.bicep | Join-Template | Set-Content -Path $template
+    Get-ChildItem -Path $Path/*.bicep -Exclude "deploy.bicep" | Join-Template | Set-Content -Path $template
     if ($parameters = Get-Parameter -Path $Path -Environment $Environment -or $DeploymentName -eq "policy-assignments") {
         if ($DeploymentName -eq "policy-assignments") {
             $managementGroupParameter = "managementGroupId=$ManagementGroupId"

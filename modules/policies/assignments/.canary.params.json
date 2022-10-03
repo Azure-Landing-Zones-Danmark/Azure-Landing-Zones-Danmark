@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logAnalytics": {
-      "value": ""
+      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourcegroups/Management/providers/microsoft.operationalinsights/workspaces/azure-landing-zones"
     },
     "emailSecurityContact": {
-      "value": ""
+      "value": "management@azurelandingzones.com"
     },
     "exportResourceGroupName": {
-      "value": ""
+      "value": "AzurePlatform"
     },
     "ddosPlan": {
-      "value": ""
+      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourcegroups/Management/providers/Microsoft.Network/ddosProtectionPlans/azure-landing-zones"
     }
   }
 }

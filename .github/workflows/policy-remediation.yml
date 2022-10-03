@@ -21,7 +21,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
-      MANAGEMENT_GROUP_ROOT: canary
+      MANAGEMENT_GROUP_ROOT: lz-canary
     steps:
       - name: Checkout
         uses: actions/checkout@v3

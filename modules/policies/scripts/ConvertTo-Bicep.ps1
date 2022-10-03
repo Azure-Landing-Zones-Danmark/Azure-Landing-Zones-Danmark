@@ -36,7 +36,7 @@ process {
             "`"policyDefinitionId`": `"[tenantResourceId('Microsoft.Authorization/`${1}', '`${2}')]`""
         $definition = $definition -replace
             "`"policyDefinitionId`": `"\$\{.+\}/providers/Microsoft.Authorization/(.+)/(.+)`"",
-            "`"policyDefinitionId`": `"[resourceId('Microsoft.Authorization/`${1}', '`${2}')]`""
+            "`"policyDefinitionId`": `"[extensionResourceId(managementGroup().id, 'Microsoft.Authorization/`${1}', '`${2}')]`""
         $definition = $template -replace "`"resources`": \[\]", "`"resources`": [$definition]"
         $definition | Set-Content $outputFile
 
