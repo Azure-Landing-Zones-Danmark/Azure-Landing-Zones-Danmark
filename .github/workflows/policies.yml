@@ -133,7 +133,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            {{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
 
   deploy_prod:
@@ -162,5 +162,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            {{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
