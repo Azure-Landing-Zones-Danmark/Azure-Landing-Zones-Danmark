@@ -1,3 +1,4 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Required for AZ CLI. Consider switching to Azure PowerShell")]
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
     [Parameter(Mandatory = $true)]
@@ -29,60 +30,105 @@ else {
 function Join-Template {
     [CmdletBinding()]
     [OutputType([String])]
-    param ([Parameter(ValueFromPipeline = $true)][String[]]$Path)
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [String[]]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupId
+    )
+
     begin {
         "targetScope = 'managementGroup'"
         $params = @()
     }
+
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
+
     end {
         $params | Select-Object -Unique
     }
 }
 
-function Get-Parameter ($Path, $Environment) {
+function Get-Parameter {
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
     if (Test-Path -Path "$Path/.$Environment.params.json") {
         $parameters = Resolve-Path -Path "$Path/.$Environment.params.json" -Relative
-        "@$parameters"
+        "--parameters @$parameters"
     }
 }
 
-function Deploy-Template ($Path, $ManagementGroupId, $Location, $DeploymentName, $Environment) {
+function Deploy-Template {
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupId,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Location,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $DeploymentName,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
     $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath "deploy.bicep"
-    Get-ChildItem -Path $Path/*.bicep -Exclude "deploy.bicep" | Join-Template | Set-Content -Path $template
-    if ($parameters = Get-Parameter -Path $Path -Environment $Environment -or $DeploymentName -eq "policy-assignments") {
-        if ($DeploymentName -eq "policy-assignments") {
-            $managementGroupParameter = "managementGroupId=$ManagementGroupId"
-        }
-        if ($action -eq "create") {
-            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters $managementGroupParameter --only-show-errors)
-        }
-        elseif ($action -eq "what-if") {
-            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters $managementGroupParameter --result-format ResourceIdOnly --only-show-errors)
-        }
-    }
-    else {
-        if ($action -eq "create") {
-            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --only-show-errors)
-        }
-        elseif ($action -eq "what-if") {
-            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --result-format ResourceIdOnly --only-show-errors)
-        }
-    }
+    Get-ChildItem -Path $Path/*.bicep -Exclude "deploy.bicep" | Join-Template -ManagementGroupId $ManagementGroupId | Set-Content -Path $template
+    $parameters = Get-Parameter -Path $Path -Environment $Environment
+    Write-Host "az deployment mg $action --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template $parameters"
+    Invoke-Expression -Command "az deployment mg $action --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template $parameters"
     Remove-Item -Path $template
 }
 
-function Deploy-TemplateRecursive ($Path, $ManagementGroupRoot, $Location, $Environment) {
+function Deploy-TemplateRecursive {
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupRoot,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Location,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
     Write-Verbose -Message "Deploying policy assignments to '$ManagementGroupRoot'"
-    Deploy-Template -Path $Path -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-assignments"
+    Deploy-Template -Path $Path -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
 
     Get-ChildItem -Path $Path -Recurse -Directory | Sort-Object -Property FullName | ForEach-Object {
         $managementGroupId = "$ManagementGroupRoot-$($PSItem.BaseName)"
         Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"
-        Deploy-Template -Path $PSItem -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments"
+        Deploy-Template -Path $PSItem -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
     }
 }
 
