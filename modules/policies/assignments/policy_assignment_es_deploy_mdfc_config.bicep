@@ -12,7 +12,7 @@ module Deploy_MDFC_Config '../modules/initiative-and-role-assignment.bicep' = {
   params: {
     location: location
     policyAssignmentName: 'Deploy-MDFC-Config'
-    policySetDefinitionId: '/providers/Microsoft.Management/managementGroups/root/providers/Microsoft.Authorization/policySetDefinitions/KubernetesConfiguration'
+    policySetDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policySetDefinitions', 'Deploy-MDFC-Config')
     roleDefinitionIds: [
       '/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd'
       '/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c'

@@ -9,7 +9,7 @@ module Enforce_TLS_SSL '../modules/initiative-and-role-assignment.bicep' = {
   params: {
     location: location
     policyAssignmentName: 'Enforce-TLS-SSL'
-    policySetDefinitionId: resourceId('Microsoft.Authorization/policySetDefinitions', 'Enforce-EncryptTransit')
+    policySetDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policySetDefinitions', 'Enforce-EncryptTransit')
     roleDefinitionIds: [
       '/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635'
     ]

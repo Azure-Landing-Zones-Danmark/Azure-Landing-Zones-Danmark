@@ -33,12 +33,14 @@ function Join-Template {
     )
 
     begin {
+        $root = $ManagementGroupId -split "-" | Select-Object -First 1
+
         "targetScope = 'managementGroup'"
         $params = @()
     }
 
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = '$root'" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
 
