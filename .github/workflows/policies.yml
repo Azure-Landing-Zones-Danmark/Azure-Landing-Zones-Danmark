@@ -46,15 +46,12 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Install PowerShell modules
-        run: |
-          Install-Module -Name Az.Resources -Force
-        shell: pwsh
-
       - name: Compare policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+          azPSVersion: latest
 
       - name: Fail on delete detected if build reason is pull request
         run: |
@@ -64,9 +61,11 @@ jobs:
         if: env.DELETE_DETECTED && github.event_name == 'pull_request'
 
       - name: What if deploy policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+          azPSVersion: latest
 
   validate_prod:
     name: Validate Deployment Production
@@ -84,27 +83,26 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Install PowerShell modules
-        run: |
-          Install-Module -Name Az.Resources -Force
-        shell: pwsh
-
       - name: Compare policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+          azPSVersion: latest
 
       - name: Fail on delete detected if build reason is pull request
         run: |
           Write-Output "##[error]Delete detected. Manual intervention required."
           exit 1
         shell: pwsh
-        if: env.DELETE_DETECTED && github.ref == 'refs/heads/main'
+        if: env.DELETE_DETECTED && github.event_name == 'pull_request'
 
       - name: What if deploy policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+          azPSVersion: latest
 
   deploy_canary:
     name: Deploy Canary
@@ -128,15 +126,12 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Install PowerShell modules
-        run: |
-          Install-Module -Name Az.Resources -Force
-        shell: pwsh
-
       - name: Deploy policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            {{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+          azPSVersion: latest
 
   deploy_prod:
     name: Deploy Production
@@ -160,12 +155,9 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Install PowerShell modules
-        run: |
-          Install-Module -Name Az.Resources -Force
-        shell: pwsh
-
       - name: Deploy policies, initiatives, and assignments
-        run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            {{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+          azPSVersion: latest

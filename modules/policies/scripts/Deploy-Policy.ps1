@@ -93,7 +93,6 @@ function Deploy-Template {
     Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
     $parameters = Get-Parameter -Path $Path -Environment $Environment
     New-AzManagementGroupDeployment -Name $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters
-    Remove-Item -Path $template -WhatIf:$false
 }
 
 function Get-AssignmentGroup {
