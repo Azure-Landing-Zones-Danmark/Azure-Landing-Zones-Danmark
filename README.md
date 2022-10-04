@@ -31,7 +31,7 @@ Tis project ser
 
 ## Guiding principles
 
-1. Stakeholder mapping: Security Control Mapping is a continous process and requires clear organisational ownership fo Compliance Domains, Policy application, Copliance reporting and remeifiation 
+1. Stakeholder mapping: Security Control Mapping is a continous process and requires clear organisational ownership fo Compliance Domains, Policy application, Compliance reporting and remeidiation 
 
 2. All Policies mus be mapped to a requirement in the form of a Compliance domain and Control
 
