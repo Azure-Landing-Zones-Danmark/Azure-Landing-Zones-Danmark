@@ -4,7 +4,19 @@
 
 ## Repository for the Danish Azure Landing Zone accelerator. 
 
-This is a landing pagea and is still work in progress!
+This is a landing page and is still work in progress!
+
+&nbsp;
+&nbsp;
+
+This project will provide 
+- a repository of Azure Policies to create the foundation for a compliant Azure Landing Zone in a Danish context using the principles of [Policy-Driven-Governance](https://learn.microsoft.com/en-gb/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance)  
+- A [Security Control Mapping Process](docs/SecurityControlMapping.md) to map every deployable Azure Policy back to a regulatory or organisational requirement and to ensure the mapping process has a owner
+
+&nbsp;
+&nbsp;
+
+Tis project ser
 
 ---
 
