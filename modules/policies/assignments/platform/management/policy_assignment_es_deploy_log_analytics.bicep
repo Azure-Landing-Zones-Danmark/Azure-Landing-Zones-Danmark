@@ -11,9 +11,9 @@ module Deploy_Log_Analytics '../../../modules/policy-and-role-assignment.bicep' 
   name: 'Deploy-Log-Analytics-Assignment'
   scope: managementGroup(managementGroupId)
   params: {
+    location: location
     policyAssignmentName: 'Deploy-Log-Analytics'
     policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8e3e61b3-0b32-22d5-4edf-55f87fdb5955')
-    location: location
     parameters: {
       effect: {
         value: 'DeployIfNotExists'
