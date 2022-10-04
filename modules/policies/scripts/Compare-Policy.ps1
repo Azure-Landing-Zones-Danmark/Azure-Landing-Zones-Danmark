@@ -1,4 +1,3 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Required for AZ CLI. Consider switching to Azure PowerShell")]
 [CmdletBinding()]
 param (
     [Parameter(Mandatory = $true)]
@@ -23,19 +22,16 @@ function Write-Compare ([Parameter(Mandatory = $true)][String]$Label, $Object, $
 }
 
 function Get-ResourceNameFromTemplate ($Path, $Pattern) {
-    Get-ChildItem -Path $Path/*.bicep -Exclude deploy.bicep | ForEach-Object {
+    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | ForEach-Object {
         $definition = $PSItem | Get-Content -Raw | Select-String -Pattern $Pattern
         $definition.Matches[0].Groups[1].Value
     }
 }
 
-function Compare-Item ($Label, $Path, $Pattern, $ManagementGroupId, $Command) {
+function Compare-Item ($Item, $Label, $Path, $Pattern, $ManagementGroupId) {
     Write-Output "Comparing $($Label.ToLower()) under '$ManagementGroupId'..."
-
     $toBeDeployed = Get-ResourceNameFromTemplate -Path $Path -Pattern $Pattern
-    $existing = Invoke-Expression -Command $Command | ConvertFrom-Json
-    $compare = Compare-Object -ReferenceObject ($toBeDeployed ?? @()) -DifferenceObject ($existing ?? @()) -IncludeEqual
-
+    $compare = Compare-Object -ReferenceObject ($toBeDeployed ?? @()) -DifferenceObject ($Item ?? @()) -IncludeEqual
     Write-Compare -Label "$Label to be deleted:" -Object $compare -SideIndicator "=>" -Prefix "-"
     Write-Compare -Label "$Label to be created:" -Object $compare -SideIndicator "<=" -Prefix "+"
     Write-Compare -Label "$Label to be updated:" -Object $compare -SideIndicator "==" -Prefix "*"
@@ -64,25 +60,28 @@ function Get-AssignmentGroup {
     }
 }
 
+$definitions = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
 Compare-Item -Label "Definitions" `
+    -Item $definitions `
     -Path "$Path/definitions" `
     -ManagementGroupId $ManagementGroupRoot `
-    -Pattern "=\s+\{\s+name:\s+'(.+)\'" `
-    -Command "az policy definition list --management-group $ManagementGroupRoot --query `"[?policyType=='Custom'].name`""
+    -Pattern "=\s+\{\s+name:\s+'(.+)\'"
 
+$initiatives = Get-AzPolicySetDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
 Compare-Item -Label "Initiatives" `
+    -Item $initiatives `
     -Path "$Path/initiatives" `
     -ManagementGroupId $ManagementGroupRoot `
-    -Pattern "=\s+\{\s+name:\s+'(.+)\'" `
-    -Command "az policy set-definition list --management-group $ManagementGroupRoot --query `"[?policyType=='Custom'].name`""
+    -Pattern "=\s+\{\s+name:\s+'(.+)\'"
 
 Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
     $path = $PSItem.Path
     $managementGroupId = $PSItem.ManagementGroupId
-
+    $managementGroup = Get-AzManagementGroup -GroupName $managementGroupId
+    $assignments = Get-AzPolicyAssignment -Scope $managementGroup.Id | Select-Object -ExpandProperty Name
     Compare-Item -Label "Assignments" `
+        -Item $assignments `
         -Path $path `
         -ManagementGroupId $managementGroupId `
-        -Pattern "policyAssignmentName:\s+'(.+)\'" `
-        -Command "az policy assignment list --scope '/providers/Microsoft.Management/managementGroups/$managementGroupId' --query '[].name'"
+        -Pattern "policyAssignmentName:\s+'(.+)\'"
 }
