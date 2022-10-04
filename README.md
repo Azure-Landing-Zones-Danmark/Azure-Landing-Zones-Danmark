@@ -4,6 +4,15 @@
 
 ## Repository for the Danish Azure Landing Zone accelerator. 
 
+```powershell
+ _____                                   _               _      ______
+|  __ \                                 | |        /\   | |    |___  /
+| |  | | __ _ _ __  _ __ ___   __ _ _ __| | __    /  \  | |       / / 
+| |  | |/ _` | '_ \| '_ ` _ \ / _` | '__| |/ /   / /\ \ | |      / /  
+| |__| | (_| | | | | | | | | | (_| | |  |   <   / ____ \| |____ / /__ 
+|_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
+
+```
 This is a landing page and is still work in progress!
 
 &nbsp;
