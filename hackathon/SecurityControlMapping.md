@@ -43,6 +43,8 @@ For the documented controls in your assigned Complaince Domain:
 
 - Document methods to convert each policy under the Azure Security Baseline v3 (ASB) from "Audit" or "AuditIfNotExists" modes to something with an enforcement in Azure. 
 
+- Consider the environment a specific control is suitable for Corp (network connections to the corporate datacentre), Online (Internet connected workloads), Confidential (Cryptographich and Enrcyption requirements for data at rest)
+
 - identity any gaps in the documented policies that could be candidates for creating [custom azure policies](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/create-custom-policy-definition)
 
 - There is limited time to perform this excersise, so if you get stuck on an individual control or are spending too much time on it, move on to the next one
