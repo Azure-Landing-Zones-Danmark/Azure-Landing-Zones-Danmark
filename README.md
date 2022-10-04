@@ -25,7 +25,6 @@ This project will provide
 &nbsp;
 &nbsp;
 
-Tis project ser
 
 ---
 
