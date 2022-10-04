@@ -58,11 +58,11 @@ function Get-Parameter {
         $Environment
     )
 
-    if (Test-Path -Path "$Path/.$Environment.params.json") {
-        Resolve-Path -Path "$Path/.$Environment.params.json"
+    if (Test-Path -Path "$Path/.$Environment.parameters.json") {
+        Resolve-Path -Path "$Path/.$Environment.parameters.json"
     }
     else {
-        Resolve-Path -Path "$PSScriptRoot/template.params.json"
+        Resolve-Path -Path "$PSScriptRoot/template.parameters.json"
     }
 }
 
