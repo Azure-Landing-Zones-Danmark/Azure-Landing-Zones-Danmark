@@ -17,12 +17,19 @@ Security Control Mapping can greatly expedite onboarding of new services into Az
 
 The best practice recommendation is to map the required compliance controls to Azure Security Benchmark (ASB) and identify the custom set of the controls that are not covered by ASB. Azure Security Benchmark provides a canonical set of cloud-centric technical security controls based on widely used compliance control frameworks such as NIST, CIS, PCI. There are built-in regulatory compliance initiatives already available. 
 
+---
 
-![securitycontrolmapping](/images/asb.securitycontrolmapping.coverage.png)
+![securitycontrolmapping](images/asb.securitycontrolmapping.coverage.png)
+
+---
 
 The best practice recommendation is to map the required compliance controls to Azure Security Benchmark (ASB) and identify the custom set of the controls that are not covered by ASB. Performing the Security Control Benchmark process will help customers identify a gap or delta of controls that are not included in ASB.  
 
-![security control mapping process](/images/securitycontrolmapping.process.png)
+---
+
+![security control mapping process](images/securitycontrolmapping.process.png)
+
+---
 
 ## How to perform Security Control Mapping   
 
@@ -42,4 +49,8 @@ Compliance regulations are identified by compliance domain and controls respecti
 
 5) Implement guardrails with policy initiatives using Azure landing zone tooling, native tooling, or third-party tooling. 
 
-![security control mapping e2e process](/images/securitycontrolmapping.e2eprocess.png)
+---
+
+![security control mapping e2e process](images/securitycontrolmapping.e2eprocess.png)
+
+---
