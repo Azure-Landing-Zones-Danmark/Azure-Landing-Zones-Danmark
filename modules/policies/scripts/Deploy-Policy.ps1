@@ -19,6 +19,7 @@ param (
 )
 
 function Join-Template {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     [CmdletBinding()]
     [OutputType([String])]
     param (
@@ -95,7 +96,8 @@ function Deploy-Template {
     Remove-Item -Path $template -WhatIf:$false
 }
 
-function Get-AssignmentGroups {
+function Get-AssignmentGroup {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     param (
         [Parameter(Mandatory = $true)]
         [String]
@@ -118,6 +120,7 @@ function Get-AssignmentGroups {
 }
 
 function Deploy-TemplateRecursive {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     param (
         [Parameter(Mandatory = $true)]
         [String]
@@ -136,7 +139,7 @@ function Deploy-TemplateRecursive {
         $Environment
     )
 
-    Get-AssignmentGroups -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
+    Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
         $path = $PSItem.Path
         $managementGroupId = $PSItem.ManagementGroupId
         Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"

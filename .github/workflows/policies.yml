@@ -60,7 +60,7 @@ jobs:
 
       - name: What if deploy policies, initiatives, and assignments
         run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
         shell: pwsh
 
   validate_prod:
@@ -93,7 +93,7 @@ jobs:
 
       - name: What if deploy policies, initiatives, and assignments
         run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
         shell: pwsh
 
   deploy_canary:
@@ -120,7 +120,7 @@ jobs:
 
       - name: Deploy policies, initiatives, and assignments
         run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location "${{ env.LOCATION }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
         shell: pwsh
 
   deploy_prod:
@@ -147,5 +147,5 @@ jobs:
 
       - name: Deploy policies, initiatives, and assignments
         run: |
-          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.location }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+          ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
         shell: pwsh

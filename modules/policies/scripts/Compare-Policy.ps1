@@ -41,7 +41,8 @@ function Compare-Item ($Label, $Path, $Pattern, $ManagementGroupId, $Command) {
     Write-Compare -Label "$Label to be updated:" -Object $compare -SideIndicator "==" -Prefix "*"
 }
 
-function Get-AssignmentGroups {
+function Get-AssignmentGroup {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     param (
         [Parameter(Mandatory = $true)]
         [String]
@@ -75,7 +76,7 @@ Compare-Item -Label "Initiatives" `
     -Pattern "=\s+\{\s+name:\s+'(.+)\'" `
     -Command "az policy set-definition list --management-group $ManagementGroupRoot --query `"[?policyType=='Custom'].name`""
 
-Get-AssignmentGroups -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
+Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
     $path = $PSItem.Path
     $managementGroupId = $PSItem.ManagementGroupId
 
