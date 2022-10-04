@@ -49,6 +49,7 @@ jobs:
       - name: Install PowerShell modules
         run: |
           Install-Module -Name Az.Resources -Force
+        shell: pwsh
 
       - name: Compare policies, initiatives, and assignments
         run: |
@@ -86,6 +87,7 @@ jobs:
       - name: Install PowerShell modules
         run: |
           Install-Module -Name Az.Resources -Force
+        shell: pwsh
 
       - name: Compare policies, initiatives, and assignments
         run: |
@@ -129,6 +131,7 @@ jobs:
       - name: Install PowerShell modules
         run: |
           Install-Module -Name Az.Resources -Force
+        shell: pwsh
 
       - name: Deploy policies, initiatives, and assignments
         run: |
@@ -160,6 +163,7 @@ jobs:
       - name: Install PowerShell modules
         run: |
           Install-Module -Name Az.Resources -Force
+        shell: pwsh
 
       - name: Deploy policies, initiatives, and assignments
         run: |
