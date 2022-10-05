@@ -1,38 +1,36 @@
 <#
 .DESCRIPTION
-Script will remove all management groups in tenant(!)
+Remove all management groups in hierarchy up to and including prefix
 #>
-[CmdletBinding()]
-param ()
+[CmdletBinding(SupportsShouldProcess)]
+param (
+    [Parameter(Mandatory = $true)]
+    [String]
+    $Prefix
+)
 
 $tenantId = (Get-AzContext).Tenant.Id
 
-Get-AzManagementGroup | Where-Object Name -ne $tenantId | ForEach-Object {
-    $group = $PSItem
+Get-AzManagementGroup | Where-Object Name -match "^$Prefix" | Sort-Object -Descending | ForEach-Object {
+    Write-Verbose "Removing policy assignments from management group '$displayName'..."
+
+    Get-AzPolicyAssignment -Scope $PSItem.Id | Remove-AzPolicyAssignment
+
+    Write-Verbose "Removing initiatives from management group '$displayName'..."
+
+    Get-AzPolicySetDefinition -ManagementGroupName $PSItem.Name | Remove-AzPolicySetDefinition
+
+    Write-Verbose "Removing policy definitions from management group '$displayName'..."
+
+    Get-AzPolicyDefinition -ManagementGroupName $PSItem.Name | Remove-AzPolicyDefinition
+
     Get-AzManagementGroupSubscription -GroupName $group.Name | ForEach-Object {
         $subscriptionId = $PSItem.Id -split "/" | Select-Object -Last 1
         Write-Verbose "Moving subscription $($PSItem.DisplayName) to /"
-        New-AzManagementGroupSubscription -GroupName $group.TenantId -SubscriptionId $subscriptionId
+        New-AzManagementGroupSubscription -GroupName $tenantId -SubscriptionId $subscriptionId
     }
-}
 
-$queue = New-Object -TypeName "System.Collections.Queue"
+    Write-Verbose "Removing management group '$displayName'..."
 
-Get-AzManagementGroup | Where-Object Name -ne $tenantId | ForEach-Object {
-    $queue.Enqueue($PSItem.Name)
-}
-
-while ($queue.Count) {
-    Write-Verbose "Queue: $($queue.Count)..."
-    $name = $queue.Dequeue()
-    $group = Get-AzManagementGroup -GroupName $name -Expand
-    $displayName = $group.DisplayName
-    Write-Verbose "Checking management group $displayName..."
-    if ($group.Children) {
-        $queue.Enqueue($name)
-    }
-    else {
-        Write-Verbose "Removing management group $displayName..."
-        Remove-AzManagementGroup -GroupName $name
-    }
+    Remove-AzManagementGroup -GroupName $name
 }

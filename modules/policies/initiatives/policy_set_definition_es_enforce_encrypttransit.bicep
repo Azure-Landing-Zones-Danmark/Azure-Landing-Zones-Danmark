@@ -369,23 +369,23 @@ resource Enforce_EncryptTransit 'Microsoft.Authorization/policySetDefinitions@20
     policyDefinitions: [
       {
         policyDefinitionReferenceId: 'AppServiceHttpEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Append-AppService-httpsonly')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Append-AppService-httpsonly')
         parameters: {
           effect: {
-            value: '[[parameters(\'AppServiceHttpEffect\')]'
+            value: '[parameters(\'AppServiceHttpEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AppServiceminTlsVersion'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Append-AppService-latestTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Append-AppService-latestTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'AppServiceTlsVersionEffect\')]'
+            value: '[parameters(\'AppServiceTlsVersionEffect\')]'
           }
           minTlsVersion: {
-            value: '[[parameters(\'AppServiceminTlsVersion\')]'
+            value: '[parameters(\'AppServiceminTlsVersion\')]'
           }
         }
         groupNames: []
@@ -395,7 +395,7 @@ resource Enforce_EncryptTransit 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8cb6aa8b-9e41-4f4e-aa25-089a7ac2581e')
         parameters: {
           effect: {
-            value: '[[parameters(\'APIAppServiceLatestTlsEffect\')]'
+            value: '[parameters(\'APIAppServiceLatestTlsEffect\')]'
           }
         }
         groupNames: []
@@ -405,7 +405,7 @@ resource Enforce_EncryptTransit 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'f9d614c5-c173-4d56-95a7-b4437057d193')
         parameters: {
           effect: {
-            value: '[[parameters(\'FunctionLatestTlsEffect\')]'
+            value: '[parameters(\'FunctionLatestTlsEffect\')]'
           }
         }
         groupNames: []
@@ -415,37 +415,37 @@ resource Enforce_EncryptTransit 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'f0e6e85b-9b9f-4a4b-b67b-f730d42f1b0b')
         parameters: {
           effect: {
-            value: '[[parameters(\'WebAppServiceLatestTlsEffect\')]'
+            value: '[parameters(\'WebAppServiceLatestTlsEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'APIAppServiceHttpsEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceApiApp-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceApiApp-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'APIAppServiceHttpsEffect\')]'
+            value: '[parameters(\'APIAppServiceHttpsEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'FunctionServiceHttpsEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceFunctionApp-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceFunctionApp-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'FunctionServiceHttpsEffect\')]'
+            value: '[parameters(\'FunctionServiceHttpsEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'WebAppServiceHttpsEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceWebApp-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-AppServiceWebApp-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'WebAppServiceHttpsEffect\')]'
+            value: '[parameters(\'WebAppServiceHttpsEffect\')]'
           }
         }
         groupNames: []
@@ -455,173 +455,173 @@ resource Enforce_EncryptTransit 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d')
         parameters: {
           effect: {
-            value: '[[parameters(\'AKSIngressHttpsOnlyEffect\')]'
+            value: '[parameters(\'AKSIngressHttpsOnlyEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MySQLEnableSSLDeployEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-MySQL-sslEnforcement')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-MySQL-sslEnforcement')
         parameters: {
           effect: {
-            value: '[[parameters(\'MySQLEnableSSLDeployEffect\')]'
+            value: '[parameters(\'MySQLEnableSSLDeployEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'MySQLminimalTlsVersion\')]'
+            value: '[parameters(\'MySQLminimalTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MySQLEnableSSLEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-MySql-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-MySql-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'MySQLEnableSSLEffect\')]'
+            value: '[parameters(\'MySQLEnableSSLEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'MySQLminimalTlsVersion\')]'
+            value: '[parameters(\'MySQLminimalTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'PostgreSQLEnableSSLDeployEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-PostgreSQL-sslEnforcement')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-PostgreSQL-sslEnforcement')
         parameters: {
           effect: {
-            value: '[[parameters(\'PostgreSQLEnableSSLDeployEffect\')]'
+            value: '[parameters(\'PostgreSQLEnableSSLDeployEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'PostgreSQLminimalTlsVersion\')]'
+            value: '[parameters(\'PostgreSQLminimalTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'PostgreSQLEnableSSLEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-PostgreSql-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-PostgreSql-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'PostgreSQLEnableSSLEffect\')]'
+            value: '[parameters(\'PostgreSQLEnableSSLEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'PostgreSQLminimalTlsVersion\')]'
+            value: '[parameters(\'PostgreSQLminimalTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'RedisTLSDeployEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Append-Redis-sslEnforcement')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Append-Redis-sslEnforcement')
         parameters: {
           effect: {
-            value: '[[parameters(\'RedisTLSDeployEffect\')]'
+            value: '[parameters(\'RedisTLSDeployEffect\')]'
           }
           minimumTlsVersion: {
-            value: '[[parameters(\'RedisMinTlsVersion\')]'
+            value: '[parameters(\'RedisMinTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'RedisdisableNonSslPort'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Append-Redis-disableNonSslPort')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Append-Redis-disableNonSslPort')
         parameters: {
           effect: {
-            value: '[[parameters(\'RedisTLSDeployEffect\')]'
+            value: '[parameters(\'RedisTLSDeployEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'RedisDenyhttps'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-Redis-http')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-Redis-http')
         parameters: {
           effect: {
-            value: '[[parameters(\'RedisTLSEffect\')]'
+            value: '[parameters(\'RedisTLSEffect\')]'
           }
           minimumTlsVersion: {
-            value: '[[parameters(\'RedisMinTlsVersion\')]'
+            value: '[parameters(\'RedisMinTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLManagedInstanceTLSDeployEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-SqlMi-minTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-SqlMi-minTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'SQLManagedInstanceTLSDeployEffect\')]'
+            value: '[parameters(\'SQLManagedInstanceTLSDeployEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'SQLManagedInstanceMinTlsVersion\')]'
+            value: '[parameters(\'SQLManagedInstanceMinTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLManagedInstanceTLSEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-SqlMi-minTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-SqlMi-minTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'SQLManagedInstanceTLSEffect\')]'
+            value: '[parameters(\'SQLManagedInstanceTLSEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'SQLManagedInstanceMinTlsVersion\')]'
+            value: '[parameters(\'SQLManagedInstanceMinTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLServerTLSDeployEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-SQL-minTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-SQL-minTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'SQLServerTLSDeployEffect\')]'
+            value: '[parameters(\'SQLServerTLSDeployEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'SQLServerminTlsVersion\')]'
+            value: '[parameters(\'SQLServerminTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLServerTLSEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-Sql-minTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-Sql-minTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'SQLServerTLSEffect\')]'
+            value: '[parameters(\'SQLServerTLSEffect\')]'
           }
           minimalTlsVersion: {
-            value: '[[parameters(\'SQLServerminTlsVersion\')]'
+            value: '[parameters(\'SQLServerminTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'StorageHttpsEnabledEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deny-Storage-minTLS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-Storage-minTLS')
         parameters: {
           effect: {
-            value: '[[parameters(\'StorageHttpsEnabledEffect\')]'
+            value: '[parameters(\'StorageHttpsEnabledEffect\')]'
           }
           minimumTlsVersion: {
-            value: '[[parameters(\'StorageMinimumTlsVersion\')]'
+            value: '[parameters(\'StorageMinimumTlsVersion\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'StorageDeployHttpsEnabledEffect'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Storage-sslEnforcement')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Storage-sslEnforcement')
         parameters: {
           effect: {
-            value: '[[parameters(\'StorageDeployHttpsEnabledEffect\')]'
+            value: '[parameters(\'StorageDeployHttpsEnabledEffect\')]'
           }
           minimumTlsVersion: {
-            value: '[[parameters(\'StorageMinimumTlsVersion\')]'
+            value: '[parameters(\'StorageMinimumTlsVersion\')]'
           }
         }
         groupNames: []

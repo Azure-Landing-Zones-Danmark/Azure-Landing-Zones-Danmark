@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logAnalytics": {
+      "value": "/subscriptions/8228ddb9-d118-47b4-b4e7-1f1de7667d4d/resourcegroups/Management/providers/microsoft.operationalinsights/workspaces/azure-landing-zones"
+    },
+    "emailSecurityContact": {
+      "value": "management@azurelandingzones.com"
+    },
+    "exportResourceGroupName": {
+      "value": "AzurePlatform"
+    },
+    "ddosPlan": {
+      "value": "/subscriptions/8228ddb9-d118-47b4-b4e7-1f1de7667d4d/resourcegroups/Management/providers/Microsoft.Network/ddosProtectionPlans/azure-landing-zones"
+    }
+  }
+}

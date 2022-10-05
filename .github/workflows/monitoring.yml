@@ -1,5 +1,5 @@
 ---
-name: Deploy Monitoring module
+name: Monitoring
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -48,14 +48,14 @@ jobs:
         run: |
           az bicep build --file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
 
-  validate_test:
-    name: Validate Test
+  validate_canary:
+    name: Validate Canary
     runs-on: ubuntu-latest
     needs:
       - build
     if: success()
     env:
-      ENVIRONMENT_SHORT_NAME: test
+      ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
     steps:
       - name: Checkout
@@ -112,17 +112,17 @@ jobs:
         run: |
           az deployment group what-if --name monitoring --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
-  deploy_test:
-    name: Deploy Test
+  deploy_canary:
+    name: Deploy Canary
     runs-on: ubuntu-latest
     needs:
-      - validate_test
+      - validate_canary
       - validate_prod
     if: success() && github.event_name == 'pull_request'
     environment:
-      name: Test
+      name: Canary
     env:
-      ENVIRONMENT_SHORT_NAME: test
+      ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
     steps:
       - name: Checkout
@@ -143,7 +143,7 @@ jobs:
     name: Deploy Production
     runs-on: ubuntu-latest
     needs:
-      - validate_test
+      - validate_canary
       - validate_prod
     if: success() && github.ref == 'refs/heads/main'
     environment:

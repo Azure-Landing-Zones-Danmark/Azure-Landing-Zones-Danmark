@@ -1,4 +1,4 @@
-param logAnalyticsWorkspaceName string
+param workspaceName string
 @allowed([
   'Log Analytics Contributor'
   'Log Analytics Reader'
@@ -21,7 +21,7 @@ var roles = {
 var roleDefinitionId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', roles[roleName])
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' existing = {
-  name: logAnalyticsWorkspaceName
+  name: workspaceName
 }
 
 resource logAnalyticsWorkspaceRoleAssignments 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {

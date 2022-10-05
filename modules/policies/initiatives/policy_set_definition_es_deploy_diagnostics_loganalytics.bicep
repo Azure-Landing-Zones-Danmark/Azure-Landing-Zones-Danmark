@@ -789,106 +789,106 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6f8f98a4-f108-47cb-8e98-91a0d85cd474')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'StorageAccountsLogAnalyticsEffect\')]'
+            value: '[parameters(\'StorageAccountsLogAnalyticsEffect\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AVDScalingPlansDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AVDScalingPlans')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AVDScalingPlans')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AVDScalingPlansLogAnalyticsEffect\')]'
+            value: '[parameters(\'AVDScalingPlansLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'WVDAppGroupDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDAppGroup')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDAppGroup')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'WVDAppGroupsLogAnalyticsEffect\')]'
+            value: '[parameters(\'WVDAppGroupsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'WVDWorkspaceDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDWorkspace')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDWorkspace')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'WVDWorkspaceLogAnalyticsEffect\')]'
+            value: '[parameters(\'WVDWorkspaceLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'WVDHostPoolsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDHostPools')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WVDHostPools')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'WVDHostPoolsLogAnalyticsEffect\')]'
+            value: '[parameters(\'WVDHostPoolsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'ACIDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ACI')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ACI')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'ACILogAnalyticsEffect\')]'
+            value: '[parameters(\'ACILogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'ACRDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ACR')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ACR')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'ACRLogAnalyticsEffect\')]'
+            value: '[parameters(\'ACRLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -898,109 +898,109 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6c66c325-74c8-42fd-a286-a74b0e2939d8')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AKSLogAnalyticsEffect\')]'
+            value: '[parameters(\'AKSLogAnalyticsEffect\')]'
           }
           diagnosticsSettingNameToUse: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AnalysisServiceDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AnalysisService')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AnalysisService')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AnalysisServiceLogAnalyticsEffect\')]'
+            value: '[parameters(\'AnalysisServiceLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'APIforFHIRDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ApiForFHIR')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ApiForFHIR')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'APIforFHIRLogAnalyticsEffect\')]'
+            value: '[parameters(\'APIforFHIRLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'APIMgmtDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-APIMgmt')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-APIMgmt')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'APIMgmtLogAnalyticsEffect\')]'
+            value: '[parameters(\'APIMgmtLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'ApplicationGatewayDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ApplicationGateway')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ApplicationGateway')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'ApplicationGatewayLogAnalyticsEffect\')]'
+            value: '[parameters(\'ApplicationGatewayLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AutomationDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AA')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-AA')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AutomationLogAnalyticsEffect\')]'
+            value: '[parameters(\'AutomationLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'BastionDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Bastion')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Bastion')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'BastionLogAnalyticsEffect\')]'
+            value: '[parameters(\'BastionLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1010,109 +1010,109 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c84e5349-db6d-4769-805e-e14037dab9b5')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'BatchLogAnalyticsEffect\')]'
+            value: '[parameters(\'BatchLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'CDNEndpointsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CDNEndpoints')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CDNEndpoints')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'CDNEndpointsLogAnalyticsEffect\')]'
+            value: '[parameters(\'CDNEndpointsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'CognitiveServicesDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CognitiveServices')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CognitiveServices')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'CognitiveServicesLogAnalyticsEffect\')]'
+            value: '[parameters(\'CognitiveServicesLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'CosmosDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CosmosDB')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-CosmosDB')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'CosmosLogAnalyticsEffect\')]'
+            value: '[parameters(\'CosmosLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'DatabricksDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Databricks')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Databricks')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'DatabricksLogAnalyticsEffect\')]'
+            value: '[parameters(\'DatabricksLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'DataExplorerClusterDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DataExplorerCluster')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DataExplorerCluster')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'DataExplorerClusterLogAnalyticsEffect\')]'
+            value: '[parameters(\'DataExplorerClusterLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'DataFactoryDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DataFactory')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DataFactory')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'DataFactoryLogAnalyticsEffect\')]'
+            value: '[parameters(\'DataFactoryLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1122,61 +1122,61 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'd56a5a7c-72d7-42bc-8ceb-3baf4c0eae03')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'DataLakeStoreLogAnalyticsEffect\')]'
+            value: '[parameters(\'DataLakeStoreLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'DataLakeAnalyticsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DLAnalytics')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-DLAnalytics')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'DataLakeAnalyticsLogAnalyticsEffect\')]'
+            value: '[parameters(\'DataLakeAnalyticsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'EventGridSubDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridSub')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridSub')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'EventGridSubLogAnalyticsEffect\')]'
+            value: '[parameters(\'EventGridSubLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'EventGridTopicDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridTopic')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridTopic')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'EventGridTopicLogAnalyticsEffect\')]'
+            value: '[parameters(\'EventGridTopicLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1186,125 +1186,125 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1f6e93e8-6b31-41b1-83f6-36e449a42579')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'EventHubLogAnalyticsEffect\')]'
+            value: '[parameters(\'EventHubLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'EventSystemTopicDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridSystemTopic')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-EventGridSystemTopic')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'EventSystemTopicLogAnalyticsEffect\')]'
+            value: '[parameters(\'EventSystemTopicLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'ExpressRouteDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ExpressRoute')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-ExpressRoute')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'ExpressRouteLogAnalyticsEffect\')]'
+            value: '[parameters(\'ExpressRouteLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'FirewallDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Firewall')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Firewall')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'FirewallLogAnalyticsEffect\')]'
+            value: '[parameters(\'FirewallLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'FrontDoorDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-FrontDoor')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-FrontDoor')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'FrontDoorLogAnalyticsEffect\')]'
+            value: '[parameters(\'FrontDoorLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'FunctionAppDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Function')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Function')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'FunctionAppLogAnalyticsEffect\')]'
+            value: '[parameters(\'FunctionAppLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'HDInsightDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-HDInsight')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-HDInsight')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'HDInsightLogAnalyticsEffect\')]'
+            value: '[parameters(\'HDInsightLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'IotHubDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-iotHub')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-iotHub')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'IotHubLogAnalyticsEffect\')]'
+            value: '[parameters(\'IotHubLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1314,45 +1314,45 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'bef3f64c-5290-43b7-85b0-9b254eef4c47')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'KeyVaultLogAnalyticsEffect\')]'
+            value: '[parameters(\'KeyVaultLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'LoadBalancerDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-LoadBalancer')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-LoadBalancer')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'LoadBalancerLogAnalyticsEffect\')]'
+            value: '[parameters(\'LoadBalancerLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'LogicAppsISEDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-LogicAppsISE')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-LogicAppsISE')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'LogicAppsISELogAnalyticsEffect\')]'
+            value: '[parameters(\'LogicAppsISELogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1362,141 +1362,141 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b889a06c-ec72-4b03-910a-cb169ee18721')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'LogicAppsWFLogAnalyticsEffect\')]'
+            value: '[parameters(\'LogicAppsWFLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MariaDBDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MariaDB')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MariaDB')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'MariaDBLogAnalyticsEffect\')]'
+            value: '[parameters(\'MariaDBLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MediaServiceDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MediaService')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MediaService')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'MediaServiceLogAnalyticsEffect\')]'
+            value: '[parameters(\'MediaServiceLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MlWorkspaceDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MlWorkspace')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MlWorkspace')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'MlWorkspaceLogAnalyticsEffect\')]'
+            value: '[parameters(\'MlWorkspaceLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'MySQLDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MySQL')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-MySQL')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'MySQLLogAnalyticsEffect\')]'
+            value: '[parameters(\'MySQLLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'NetworkSecurityGroupsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-NetworkSecurityGroups')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-NetworkSecurityGroups')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'NetworkSecurityGroupsLogAnalyticsEffect\')]'
+            value: '[parameters(\'NetworkSecurityGroupsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'NetworkNICDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-NIC')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-NIC')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'NetworkNICLogAnalyticsEffect\')]'
+            value: '[parameters(\'NetworkNICLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'PostgreSQLDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-PostgreSQL')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-PostgreSQL')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'PostgreSQLLogAnalyticsEffect\')]'
+            value: '[parameters(\'PostgreSQLLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'PowerBIEmbeddedDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-PowerBIEmbedded')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-PowerBIEmbedded')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'PowerBIEmbeddedLogAnalyticsEffect\')]'
+            value: '[parameters(\'PowerBIEmbeddedLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1506,13 +1506,13 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '752154a7-1e0f-45c6-a880-ac75a7e4f648')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'NetworkPublicIPNicLogAnalyticsEffect\')]'
+            value: '[parameters(\'NetworkPublicIPNicLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
           metricsEnabled: {
             value: 'True'
@@ -1525,42 +1525,42 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c717fb0c-d118-4c43-ab3d-ece30ac81fb3')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'RedisCacheDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-RedisCache')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-RedisCache')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'RedisCacheLogAnalyticsEffect\')]'
+            value: '[parameters(\'RedisCacheLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'RelayDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Relay')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Relay')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'RelayLogAnalyticsEffect\')]'
+            value: '[parameters(\'RelayLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1570,13 +1570,13 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '08ba64b8-738f-4918-9686-730d2ed79c7d')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'SearchServicesLogAnalyticsEffect\')]'
+            value: '[parameters(\'SearchServicesLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1586,29 +1586,29 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '04d53d87-841c-4f23-8a5b-21564380b55e')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'ServiceBusLogAnalyticsEffect\')]'
+            value: '[parameters(\'ServiceBusLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SignalRDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SignalR')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SignalR')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'SignalRLogAnalyticsEffect\')]'
+            value: '[parameters(\'SignalRLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1618,45 +1618,45 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b79fa14e-238a-4c2d-b376-442ce508fc84')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'SQLDBsLogAnalyticsEffect\')]'
+            value: '[parameters(\'SQLDBsLogAnalyticsEffect\')]'
           }
           diagnosticsSettingNameToUse: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLElasticPoolsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SQLElasticPools')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SQLElasticPools')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'SQLElasticPoolsLogAnalyticsEffect\')]'
+            value: '[parameters(\'SQLElasticPoolsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'SQLMDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SQLMI')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-SQLMI')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'SQLMLogAnalyticsEffect\')]'
+            value: '[parameters(\'SQLMLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
@@ -1666,141 +1666,141 @@ resource Deploy_Diagnostics_LogAnalytics 'Microsoft.Authorization/policySetDefin
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '237e0f7e-b0e8-4ec4-ad46-8c12cb66d673')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'StreamAnalyticsLogAnalyticsEffect\')]'
+            value: '[parameters(\'StreamAnalyticsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'TimeSeriesInsightsDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-TimeSeriesInsights')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-TimeSeriesInsights')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'TimeSeriesInsightsLogAnalyticsEffect\')]'
+            value: '[parameters(\'TimeSeriesInsightsLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'TrafficManagerDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-TrafficManager')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-TrafficManager')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'TrafficManagerLogAnalyticsEffect\')]'
+            value: '[parameters(\'TrafficManagerLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'VirtualNetworkDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VirtualNetwork')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VirtualNetwork')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'VirtualNetworkLogAnalyticsEffect\')]'
+            value: '[parameters(\'VirtualNetworkLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'VirtualMachinesDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VM')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VM')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'VirtualMachinesLogAnalyticsEffect\')]'
+            value: '[parameters(\'VirtualMachinesLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'VMSSDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VMSS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VMSS')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'VMSSLogAnalyticsEffect\')]'
+            value: '[parameters(\'VMSSLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'VNetGWDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VNetGW')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-VNetGW')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'VNetGWLogAnalyticsEffect\')]'
+            value: '[parameters(\'VNetGWLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AppServiceDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WebServerFarm')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-WebServerFarm')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AppServiceLogAnalyticsEffect\')]'
+            value: '[parameters(\'AppServiceLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'AppServiceWebappDeployDiagnosticLogDeployLogAnalytics'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Website')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Diagnostics-Website')
         parameters: {
           logAnalytics: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
           effect: {
-            value: '[[parameters(\'AppServiceWebappLogAnalyticsEffect\')]'
+            value: '[parameters(\'AppServiceWebappLogAnalyticsEffect\')]'
           }
           profileName: {
-            value: '[[parameters(\'profileName\')]'
+            value: '[parameters(\'profileName\')]'
           }
         }
         groupNames: []

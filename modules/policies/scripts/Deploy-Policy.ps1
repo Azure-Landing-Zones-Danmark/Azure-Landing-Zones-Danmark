@@ -10,79 +10,154 @@ param (
 
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupId,
+    $ManagementGroupRoot,
 
     [Parameter(Mandatory = $true)]
-    [ValidateSet("test", "prod")]
+    [ValidateSet("canary", "prod")]
     [String]
     $Environment
 )
 
-if ($WhatIfPreference) {
-    $action = "what-if"
-    $WhatIfPreference = $false
-}
-else {
-    $action = "create"
-}
-
 function Join-Template {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     [CmdletBinding()]
     [OutputType([String])]
-    param ([Parameter(ValueFromPipeline = $true)][String[]]$Path)
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [String[]]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupRoot,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupId
+    )
+
     begin {
         "targetScope = 'managementGroup'"
         $params = @()
     }
+
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = '$ManagementGroupRoot'" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
+
     end {
         $params | Select-Object -Unique
     }
 }
 
-function Get-Parameter ($Path, $Environment) {
-    if (Test-Path -Path "$Path/$Environment.params.json") {
-        $parameters = Resolve-Path -Path "$Path/$Environment.params.json" -Relative
-        "@$parameters"
-    }
-}
+function Get-Parameter {
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
 
-function Deploy-Template ($Path, $ManagementGroupId, $Location, $DeploymentName, $Environment) {
-    $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath "deploy.bicep"
-    Get-ChildItem -Path $Path/*.bicep -Exclude deploy.bicep | Join-Template | Set-Content -Path $template
-    if ($parameters = Get-Parameter -Path $Path -Environment $Environment) {
-        if ($action -eq "create") {
-            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters --only-show-errors)
-        }
-        elseif ($action -eq "what-if") {
-            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --parameters $parameters --result-format ResourceIdOnly --only-show-errors)
-        }
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
+    if (Test-Path -Path "$Path/.$Environment.parameters.json") {
+        Resolve-Path -Path "$Path/.$Environment.parameters.json"
     }
     else {
-        if ($action -eq "create") {
-            (az deployment mg create --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --only-show-errors)
-        }
-        elseif ($action -eq "what-if") {
-            (az deployment mg what-if --name $DeploymentName --management-group-id $ManagementGroupId --location $location --template-file $template --result-format ResourceIdOnly --only-show-errors)
-        }
-    }
-    Remove-Item -Path $template
-}
-
-function Deploy-TemplateRecursive ($Path, $ManagementGroupId, $Location, $Environment) {
-    Get-ChildItem -Path $Path -Recurse -Directory | Sort-Object -Property FullName | ForEach-Object {
-        Write-Verbose -Message "Deploying policy assignments to '$($PSItem.BaseName)'"
-        Deploy-Template -Path $PSItem -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "policy-assignments"
+        Resolve-Path -Path "$PSScriptRoot/template.parameters.json"
     }
 }
 
-Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupId'"
-Deploy-Template -Path $Path/definitions -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
+function Deploy-Template {
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
 
-Write-Verbose -Message "Deploying initiatives to '$ManagementGroupId'"
-Deploy-Template -Path $Path/initiatives -ManagementGroupId $ManagementGroupId -Location $Location -DeploymentName "initiatives" -Environment $Environment
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupRoot,
 
-Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupId $ManagementGroupId -Location $Location -Environment $Environment
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupId,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Location,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $DeploymentName,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
+    $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
+    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
+    $parameters = Get-Parameter -Path $Path -Environment $Environment
+    New-AzManagementGroupDeployment -Name $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters
+}
+
+function Get-AssignmentGroup {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupRoot
+    )
+
+    $assignments = Get-ChildItem -Path $Path -Directory -Recurse | Sort-Object -Property FullName
+    $root = Get-Item -Path $Path
+    $assignments = $assignments += $root
+    $assignments | Sort-Object FullName | ForEach-Object {
+        @{
+            Path              = $PSItem.FullName
+            ManagementGroupId = $PSItem.FullName.Replace($root.FullName, $ManagementGroupRoot) -replace "[\\/]", "-"
+        }
+    }
+}
+
+function Deploy-TemplateRecursive {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
+    param (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupRoot,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Location,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $Environment
+    )
+
+    Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
+        $path = $PSItem.Path
+        $managementGroupId = $PSItem.ManagementGroupId
+        Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"
+        Deploy-Template -Path $path -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
+    }
+}
+
+Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupRoot'"
+Deploy-Template -Path $Path/definitions -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
+
+Write-Verbose -Message "Deploying initiatives to '$ManagementGroupRoot'"
+Deploy-Template -Path $Path/initiatives -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
+
+Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupRoot $ManagementGroupRoot -Location $Location -Environment $Environment

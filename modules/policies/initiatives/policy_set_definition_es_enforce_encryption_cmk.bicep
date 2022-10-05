@@ -206,7 +206,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '5b9159ae-1701-4a6f-9a7a-aa9c8ddd0580')
         parameters: {
           effect: {
-            value: '[[parameters(\'ACRCmkEffect\')]'
+            value: '[parameters(\'ACRCmkEffect\')]'
           }
         }
         groupNames: []
@@ -216,7 +216,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '7d7be79c-23ba-4033-84dd-45e2a5ccdd67')
         parameters: {
           effect: {
-            value: '[[parameters(\'AksCmkEffect\')]'
+            value: '[parameters(\'AksCmkEffect\')]'
           }
         }
         groupNames: []
@@ -226,7 +226,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ba769a63-b8cc-4b2d-abf6-ac33c7204be8')
         parameters: {
           effect: {
-            value: '[[parameters(\'WorkspaceCMKEffect\')]'
+            value: '[parameters(\'WorkspaceCMKEffect\')]'
           }
         }
         groupNames: []
@@ -236,7 +236,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '67121cc7-ff39-4ab8-b7e3-95b84dab487d')
         parameters: {
           effect: {
-            value: '[[parameters(\'CognitiveServicesCMKEffect\')]'
+            value: '[parameters(\'CognitiveServicesCMKEffect\')]'
           }
         }
         groupNames: []
@@ -246,7 +246,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1f905d99-2ab7-462c-a6b0-f709acca6c8f')
         parameters: {
           effect: {
-            value: '[[parameters(\'CosmosCMKEffect\')]'
+            value: '[parameters(\'CosmosCMKEffect\')]'
           }
         }
         groupNames: []
@@ -256,7 +256,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '86efb160-8de7-451d-bc08-5d475b0aadae')
         parameters: {
           effect: {
-            value: '[[parameters(\'DataBoxCMKEffect\')]'
+            value: '[parameters(\'DataBoxCMKEffect\')]'
           }
         }
         groupNames: []
@@ -266,7 +266,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '87ba29ef-1ab3-4d82-b763-87fcd4f531f7')
         parameters: {
           effect: {
-            value: '[[parameters(\'StreamAnalyticsCMKEffect\')]'
+            value: '[parameters(\'StreamAnalyticsCMKEffect\')]'
           }
         }
         groupNames: []
@@ -276,7 +276,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'f7d52b2d-e161-4dfa-a82b-55e564167385')
         parameters: {
           effect: {
-            value: '[[parameters(\'SynapseWorkspaceCMKEffect\')]'
+            value: '[parameters(\'SynapseWorkspaceCMKEffect\')]'
           }
         }
         groupNames: []
@@ -286,7 +286,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6fac406b-40ca-413b-bf8e-0bf964659c25')
         parameters: {
           effect: {
-            value: '[[parameters(\'StorageCMKEffect\')]'
+            value: '[parameters(\'StorageCMKEffect\')]'
           }
         }
         groupNames: []
@@ -296,7 +296,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '83cef61d-dbd1-4b20-a4fc-5fbc7da10833')
         parameters: {
           effect: {
-            value: '[[parameters(\'MySQLCMKEffect\')]'
+            value: '[parameters(\'MySQLCMKEffect\')]'
           }
         }
         groupNames: []
@@ -306,7 +306,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '18adea5e-f416-4d0f-8aa8-d24321e3e274')
         parameters: {
           effect: {
-            value: '[[parameters(\'PostgreSQLCMKEffect\')]'
+            value: '[parameters(\'PostgreSQLCMKEffect\')]'
           }
         }
         groupNames: []
@@ -316,7 +316,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '0d134df8-db83-46fb-ad72-fe0c9428c8dd')
         parameters: {
           effect: {
-            value: '[[parameters(\'SqlServerTDECMKEffect\')]'
+            value: '[parameters(\'SqlServerTDECMKEffect\')]'
           }
         }
         groupNames: []
@@ -326,7 +326,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '051cba44-2429-45b9-9649-46cec11c7119')
         parameters: {
           effect: {
-            value: '[[parameters(\'HealthcareAPIsCMKEffect\')]'
+            value: '[parameters(\'HealthcareAPIsCMKEffect\')]'
           }
         }
         groupNames: []
@@ -336,7 +336,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '99e9ccd8-3db9-4592-b0d1-14b1715a4d8a')
         parameters: {
           effect: {
-            value: '[[parameters(\'AzureBatchCMKEffect\')]'
+            value: '[parameters(\'AzureBatchCMKEffect\')]'
           }
         }
         groupNames: []
@@ -346,7 +346,7 @@ resource Enforce_Encryption_CMK 'Microsoft.Authorization/policySetDefinitions@20
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '0961003e-5a0a-4549-abde-af6a37f2724d')
         parameters: {
           effect: {
-            value: '[[parameters(\'EncryptedVMDisksEffect\')]'
+            value: '[parameters(\'EncryptedVMDisksEffect\')]'
           }
         }
         groupNames: []

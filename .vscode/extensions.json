@@ -5,6 +5,7 @@
         "msazurermtools.azurerm-vscode-tools",
         "ms-azure-devops.azure-pipelines",
         "ms-azuretools.vscode-bicep",
-        "ms-vscode.powershell"
+        "ms-vscode.powershell",
+        "streetsidesoftware.code-spell-checker"
     ]
 }

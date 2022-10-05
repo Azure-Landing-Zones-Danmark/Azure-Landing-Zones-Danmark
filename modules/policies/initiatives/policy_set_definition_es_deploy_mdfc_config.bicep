@@ -116,7 +116,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '44433aa3-7ec2-4002-93ea-65c65ff0310a')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForOssDb\')]'
+            value: '[parameters(\'enableAscForOssDb\')]'
           }
         }
         groupNames: []
@@ -126,7 +126,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8e86a5b6-b9bd-49d1-8e21-4bb8a0862222')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForServers\')]'
+            value: '[parameters(\'enableAscForServers\')]'
           }
         }
         groupNames: []
@@ -136,7 +136,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '50ea7265-7d8c-429e-9a7d-ca1f410191c3')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForSqlOnVm\')]'
+            value: '[parameters(\'enableAscForSqlOnVm\')]'
           }
         }
         groupNames: []
@@ -146,7 +146,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b40e7bcd-a1e5-47fe-b9cf-2f534d0bfb7d')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForAppServices\')]'
+            value: '[parameters(\'enableAscForAppServices\')]'
           }
         }
         groupNames: []
@@ -156,7 +156,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '74c30959-af11-47b3-9ed2-a26e03f427a3')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForStorage\')]'
+            value: '[parameters(\'enableAscForStorage\')]'
           }
         }
         groupNames: []
@@ -166,7 +166,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c9ddb292-b203-4738-aead-18e2716e858f')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForContainers\')]'
+            value: '[parameters(\'enableAscForContainers\')]'
           }
         }
         groupNames: []
@@ -176,7 +176,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1f725891-01c0-420a-9059-4fa46cb770b7')
         parameters: {
           Effect: {
-            value: '[[parameters(\'enableAscForKeyVault\')]'
+            value: '[parameters(\'enableAscForKeyVault\')]'
           }
         }
         groupNames: []
@@ -186,7 +186,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '2370a3c1-4a25-4283-a91a-c9c1a145fb2f')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForDns\')]'
+            value: '[parameters(\'enableAscForDns\')]'
           }
         }
         groupNames: []
@@ -196,7 +196,7 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b7021b2b-08fd-4dc0-9de7-3c6ece09faf9')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForArm\')]'
+            value: '[parameters(\'enableAscForArm\')]'
           }
         }
         groupNames: []
@@ -206,17 +206,17 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b99b73e7-074b-4089-9395-b7236f094491')
         parameters: {
           effect: {
-            value: '[[parameters(\'enableAscForSql\')]'
+            value: '[parameters(\'enableAscForSql\')]'
           }
         }
         groupNames: []
       }
       {
         policyDefinitionReferenceId: 'securityEmailContact'
-        policyDefinitionId: resourceId('Microsoft.Authorization/policyDefinitions', 'Deploy-ASC-SecurityContacts')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-ASC-SecurityContacts')
         parameters: {
           emailSecurityContact: {
-            value: '[[parameters(\'emailSecurityContact\')]'
+            value: '[parameters(\'emailSecurityContact\')]'
           }
         }
         groupNames: []
@@ -226,13 +226,13 @@ resource Deploy_MDFC_Config 'Microsoft.Authorization/policySetDefinitions@2021-0
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ffb6f416-7bd2-4488-8828-56585fef2be9')
         parameters: {
           resourceGroupName: {
-            value: '[[parameters(\'ascExportResourceGroupName\')]'
+            value: '[parameters(\'ascExportResourceGroupName\')]'
           }
           resourceGroupLocation: {
-            value: '[[parameters(\'ascExportResourceGroupLocation\')]'
+            value: '[parameters(\'ascExportResourceGroupLocation\')]'
           }
           workspaceResourceId: {
-            value: '[[parameters(\'logAnalytics\')]'
+            value: '[parameters(\'logAnalytics\')]'
           }
         }
         groupNames: []
