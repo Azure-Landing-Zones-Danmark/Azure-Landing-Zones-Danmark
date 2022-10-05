@@ -39,8 +39,11 @@ jobs:
           enable-AzPSSession: true
 
       - name: Remediate policies
-        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+          azPSVersion: latest
 
   remediate_prod:
     name: Remediate Policies Production
@@ -65,5 +68,8 @@ jobs:
           enable-AzPSSession: true
 
       - name: Remediate policies
-        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+          azPSVersion: latest

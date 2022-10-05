@@ -24,7 +24,7 @@ param isNfsV3Enabled bool = false
 ])
 param largeFileSharesState string = 'Disabled'
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-08-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: storageAccountName
   location: location
   kind: 'StorageV2'

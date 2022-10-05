@@ -1,11 +1,11 @@
 param location string = resourceGroup().location
-param logAnalyticsWorkspaceName string
+param workspaceName string
 @minValue(0)
 @maxValue(730)
-param retentionInDays int = 31
+param retentionInDays int = 30
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
-  name: logAnalyticsWorkspaceName
+resource workspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
+  name: workspaceName
   location: location
   properties: {
     sku: {
@@ -20,4 +20,4 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06
   }
 }
 
-output id string = logAnalyticsWorkspace.id
+output id string = workspace.id
