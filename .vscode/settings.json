@@ -21,5 +21,11 @@
         "bicep",
         "powershell",
         "xml"
-    ]
+    ],
+    "cSpell.userWords": [
+        "-notcontains",
+        "-notin",
+        "-notlike",
+        "-notmatch"
+    ],
 }
