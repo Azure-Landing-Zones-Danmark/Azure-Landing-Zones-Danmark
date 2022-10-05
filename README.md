@@ -2,6 +2,9 @@
 
 [![GitHub Super-Linter](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
+[![en](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
+
 ## Repository for the Danish Azure Landing Zone accelerator
 
 ```txt
@@ -25,11 +28,11 @@ This project will provide:
 
 1. Stakeholder mapping: Security Control Mapping is a continuous process and requires clear organizational ownership fo Compliance Domains, Policy application, Compliance reporting and remediation.
 
-2. All Policies mus be mapped to a requirement in the form of a Compliance domain and Control
+1. All Policies mus be mapped to a requirement in the form of a Compliance domain and Control
 
-3. Azure Policy must be under source control, managed using DevOps principals and deployed via a CI/CD process
+1. Azure Policy must be under source control, managed using DevOps principals and deployed via a CI/CD process
 
-4. This project builds on and is aligned to [Azure Landing Zones](https://github.com/Azure/Enterprise-Scale). The aim of this project is to provide solution accelerator for Danish Customers in regulated Industries
+1. This project builds on and is aligned to [Azure Landing Zones](https://github.com/Azure/Enterprise-Scale). The aim of this project is to provide solution accelerator for Danish Customers in regulated Industries
 
 ## Implementation options
 
