@@ -29,17 +29,20 @@ function Join-Template {
 
         [Parameter(Mandatory = $true)]
         [String]
+        $ManagementGroupRoot,
+
+        [Parameter(Mandatory = $true)]
+        [String]
         $ManagementGroupId
     )
 
     begin {
-        $root = $ManagementGroupId -split "-" | Select-Object -First 1
         "targetScope = 'managementGroup'"
         $params = @()
     }
 
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = $root" })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = $ManagementGroupRoot" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
 
@@ -75,6 +78,10 @@ function Deploy-Template {
 
         [Parameter(Mandatory = $true)]
         [String]
+        $ManagementGroupRoot,
+
+        [Parameter(Mandatory = $true)]
+        [String]
         $ManagementGroupId,
 
         [Parameter(Mandatory = $true)]
@@ -91,7 +98,7 @@ function Deploy-Template {
     )
 
     $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
+    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
     $parameters = Get-Parameter -Path $Path -Environment $Environment
     New-AzManagementGroupDeployment -Name $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters
 }
@@ -143,7 +150,7 @@ function Deploy-TemplateRecursive {
         $path = $PSItem.Path
         $managementGroupId = $PSItem.ManagementGroupId
         Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"
-        Deploy-Template -Path $path -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
+        Deploy-Template -Path $path -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
     }
 }
 
@@ -151,6 +158,6 @@ Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupRoot'"
 Deploy-Template -Path $Path/definitions -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
 
 Write-Verbose -Message "Deploying initiatives to '$ManagementGroupRoot'"
-Deploy-Template -Path $Path/initiatives -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
+Deploy-Template -Path $Path/initiatives -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
 
 Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupRoot $ManagementGroupRoot -Location $Location -Environment $Environment

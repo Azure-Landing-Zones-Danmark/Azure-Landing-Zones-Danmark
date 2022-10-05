@@ -12,5 +12,14 @@
     "editor.trimAutoWhitespace": true,
     "files.autoSave": "afterDelay",
     "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "cSpell.language": "en",
+    "cSpell.enabled": true,
+    "cSpell.enableFiletypes": [
+        "arm-template",
+        "azure-pipelines",
+        "bicep",
+        "powershell",
+        "xml"
+    ]
 }
