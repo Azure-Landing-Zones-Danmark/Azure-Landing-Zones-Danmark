@@ -15,26 +15,25 @@ function Write-Compare ([Parameter(Mandatory = $true)][String]$Label, $Object, $
         Write-Output $Label
         Write-Output $compare
     }
-    if ($compare -and $Prefix -eq "-") {
-        Write-Output "Warning: Delete detected. Manual intervention required."
-        $env:DELETE_DETECTED = "true"
-    }
 }
 
 function Get-ResourceNameFromTemplate ($Path, $Pattern) {
-    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | ForEach-Object {
-        $definition = $PSItem | Get-Content -Raw | Select-String -Pattern $Pattern
-        $definition.Matches[0].Groups[1].Value
+    Get-ChildItem -Path "$Path/*.bicep" -Filter "*.bicep" | Where-Object Name -NE ".deploy.bicep" | ForEach-Object {
+        $name = $PSItem | Get-Content -Raw | Select-String -Pattern $Pattern
+        $name.Matches.Groups[1].Value
     }
 }
 
-function Compare-Item ($Item, $Label, $Path, $Pattern, $ManagementGroupId) {
+function Compare-Item ($Source, $Cloud, $Label, $ManagementGroupId) {
     Write-Output "Comparing $($Label.ToLower()) under '$ManagementGroupId'..."
-    $toBeDeployed = Get-ResourceNameFromTemplate -Path $Path -Pattern $Pattern
-    $compare = Compare-Object -ReferenceObject ($toBeDeployed ?? @()) -DifferenceObject ($Item ?? @()) -IncludeEqual
-    Write-Compare -Label "$Label to be deleted:" -Object $compare -SideIndicator "=>" -Prefix "-"
-    Write-Compare -Label "$Label to be created:" -Object $compare -SideIndicator "<=" -Prefix "+"
+    $compare = Compare-Object -ReferenceObject ($Cloud ?? @()) -DifferenceObject ($Source ?? @()) -IncludeEqual
+    Write-Compare -Label "$Label to be created:" -Object $compare -SideIndicator "=>" -Prefix "+"
     Write-Compare -Label "$Label to be updated:" -Object $compare -SideIndicator "==" -Prefix "*"
+    Write-Compare -Label "$Label to be deleted:" -Object $compare -SideIndicator "<=" -Prefix "-"
+
+    if ($compare | Where-Object SideIndicator -EQ "<=") {
+        Write-Output "::set-output name=DELETE_DETECTED::true"
+    }
 }
 
 function Get-AssignmentGroup {
@@ -60,28 +59,19 @@ function Get-AssignmentGroup {
     }
 }
 
-$definitions = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
-Compare-Item -Label "Definitions" `
-    -Item $definitions `
-    -Path "$Path/definitions" `
-    -ManagementGroupId $ManagementGroupRoot `
-    -Pattern "=\s+\{\s+name:\s+'(.+)\'"
+$cloud = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
+$source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "definitions") -Pattern "resource .+ 'Microsoft.Authorization/policyDefinitions@.+' = \{\s+name: '(.+)'"
+Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $ManagementGroupRoot
 
-$initiatives = Get-AzPolicySetDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
-Compare-Item -Label "Initiatives" `
-    -Item $initiatives `
-    -Path "$Path/initiatives" `
-    -ManagementGroupId $ManagementGroupRoot `
-    -Pattern "=\s+\{\s+name:\s+'(.+)\'"
+$cloud = Get-AzPolicySetDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
+$source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "initiatives") -Pattern "resource .+ 'Microsoft.Authorization/policySetDefinitions@.+' = \{\s+name: '(.+)'"
+Compare-Item -Source $source -Cloud $cloud -Label "Initiatives" -ManagementGroupId $ManagementGroupRoot
 
 Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
     $path = $PSItem.Path
     $managementGroupId = $PSItem.ManagementGroupId
     $managementGroup = Get-AzManagementGroup -GroupName $managementGroupId
-    $assignments = Get-AzPolicyAssignment -Scope $managementGroup.Id | Select-Object -ExpandProperty Name
-    Compare-Item -Label "Assignments" `
-        -Item $assignments `
-        -Path $path `
-        -ManagementGroupId $managementGroupId `
-        -Pattern "policyAssignmentName:\s+'(.+)\'"
+    $cloud = Get-AzPolicyAssignment -Scope $managementGroup.Id | Where-Object { $PSItem.Properties.Scope -eq $managementGroup.Id } | Select-Object -ExpandProperty Name
+    $source = Get-ResourceNameFromTemplate -Path $path -Pattern "policyAssignmentName: '(.+)'"
+    Compare-Item -Source $source -Cloud $cloud -Label "Assignments" -ManagementGroupId $ManagementGroupRoot
 }
