@@ -42,7 +42,7 @@ function Join-Template {
     }
 
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = $ManagementGroupRoot" })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = '$ManagementGroupRoot'" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
 
@@ -155,7 +155,7 @@ function Deploy-TemplateRecursive {
 }
 
 Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupRoot'"
-Deploy-Template -Path $Path/definitions -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
+Deploy-Template -Path $Path/definitions -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
 
 Write-Verbose -Message "Deploying initiatives to '$ManagementGroupRoot'"
 Deploy-Template -Path $Path/initiatives -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
