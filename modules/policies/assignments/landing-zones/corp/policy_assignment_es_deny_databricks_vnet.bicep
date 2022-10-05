@@ -8,7 +8,7 @@ module Deny_DataBricks_Vnet '../../../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-DataBricks-Vnet'
-    policyDefinitionId: extensionResourceId(root, 'Microsoft.Authorization/policyDefinitions', 'Deny-Databricks-VirtualNetwork')
+    policyDefinitionId: extensionResourceId(resourceId('Microsoft.Management/managementGroups', root), 'Microsoft.Authorization/policyDefinitions', 'Deny-Databricks-VirtualNetwork')
     parameters: {
       effect: {
         value: 'Deny'

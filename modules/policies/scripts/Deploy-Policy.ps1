@@ -34,7 +34,6 @@ function Join-Template {
 
     begin {
         $root = $ManagementGroupId -split "-" | Select-Object -First 1
-        $root = "resourceId('Microsoft.Management/managementGroups', '$root')"
         "targetScope = 'managementGroup'"
         $params = @()
     }

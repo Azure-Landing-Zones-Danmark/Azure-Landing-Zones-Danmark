@@ -8,7 +8,7 @@ module Deny_Public_Endpoints '../../../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-Public-Endpoints'
-    policyDefinitionId: extensionResourceId(root, 'Microsoft.Authorization/policySetDefinitions', 'Deny-PublicPaaSEndpoints')
+    policyDefinitionId: extensionResourceId(resourceId('Microsoft.Management/managementGroups', root), 'Microsoft.Authorization/policySetDefinitions', 'Deny-PublicPaaSEndpoints')
     parameters: {}
   }
 }

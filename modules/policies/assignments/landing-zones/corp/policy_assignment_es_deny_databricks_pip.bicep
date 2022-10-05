@@ -8,7 +8,7 @@ module Deny_DataBricks_Pip '../../../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-DataBricks-Pip'
-    policyDefinitionId: extensionResourceId(root, 'Microsoft.Authorization/policyDefinitions', 'Deny-Databricks-NoPublicIp')
+    policyDefinitionId: extensionResourceId(resourceId('Microsoft.Management/managementGroups', root), 'Microsoft.Authorization/policyDefinitions', 'Deny-Databricks-NoPublicIp')
     parameters: {
       effect: {
         value: 'Deny'

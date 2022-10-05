@@ -8,7 +8,7 @@ module Deny_Public_IP '../../../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-Public-IP'
-    policyDefinitionId: extensionResourceId(root, 'Microsoft.Authorization/policyDefinitions', 'Deny-PublicIP')
+    policyDefinitionId: extensionResourceId(resourceId('Microsoft.Management/managementGroups', root), 'Microsoft.Authorization/policyDefinitions', 'Deny-PublicIP')
     parameters: {
       effect: {
         value: 'Deny'

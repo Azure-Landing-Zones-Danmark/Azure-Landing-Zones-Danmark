@@ -8,7 +8,7 @@ module Deny_RDP_From_Internet '../../modules/policy-assignment.bicep' = {
   scope: managementGroup(managementGroupId)
   params: {
     policyAssignmentName: 'Deny-RDP-From-Internet'
-    policyDefinitionId: extensionResourceId(root, 'Microsoft.Authorization/policyDefinitions', 'Deny-RDP-From-Internet')
+    policyDefinitionId: extensionResourceId(resourceId('Microsoft.Management/managementGroups', root), 'Microsoft.Authorization/policyDefinitions', 'Deny-RDP-From-Internet')
     parameters: {
       effect: {
         value: 'Deny'
