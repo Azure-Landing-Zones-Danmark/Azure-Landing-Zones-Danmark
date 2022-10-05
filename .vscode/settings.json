@@ -22,7 +22,8 @@
         "powershell",
         "xml"
     ],
-    "cSpell.userWords": [
+    "cSpell.words": [
+        "decompile",
         "pwsh",
         "-notcontains",
         "-notin",
@@ -71,5 +72,5 @@
         "westeurope",
         "westindia",
         "westus"
-    ],
+    ]
 }
