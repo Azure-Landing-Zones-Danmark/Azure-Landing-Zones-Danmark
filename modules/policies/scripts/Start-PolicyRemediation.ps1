@@ -2,32 +2,24 @@
 param (
     [Parameter(Mandatory = $true)]
     [String]
-    $Path
+    $ManagementGroupRoot
 )
 
-Get-ChildItem -Path $Path -Recurse -Directory | Sort-Object -Property FullName | ForEach-Object {
-    $managementGroupId = $PSItem.Name
-    Write-Verbose "Remediating policies under $managementGroupId..."
-    (az policy state list --management-group $managementGroupId --query "[?complianceState=='NonCompliant' && (policyDefinitionAction=='deployifnotexists' || policyDefinitionAction=='modify')].{policyAssignmentId:policyAssignmentId, policyDefinitionReferenceId:policyDefinitionReferenceId}") |
-    ConvertFrom-Json |
-    Select-Object -Property policyAssignmentId, policyDefinitionReferenceId -Unique |
-    ForEach-Object {
-        $policyAssignmentId = $PSItem.policyAssignmentId
-        $policyDefinitionReferenceId = $PSItem.policyDefinitionReferenceId
-        $remediation = $policyDefinitionReferenceId ? "$policyAssignmentId/$policyDefinitionReferenceId" : $policyAssignmentId
-        $running = (az policy remediation list --management-group $managementGroupId --query "[?provisioningState=='Running' && policyAssignmentId=='$policyAssignmentId' && policyDefinitionReferenceId == '$policyDefinitionReferenceId']") | ConvertFrom-Json
-        if ($running) {
-            Write-Warning -Message "Remediation for $remediation is already running"
-        }
-        else {
-            if ($policyDefinitionReferenceId) {
-                Write-Verbose -Message "Remediating $remediation under $managementGroupId"
-                az policy remediation create --name (New-Guid) --management-group $managementGroupId --policy-assignment $policyAssignmentId --definition-reference-id $policyDefinitionReferenceId
-            }
-            else {
-                Write-Verbose -Message "Remediating $remediation under $managementGroupId"
-                az policy remediation create --name (New-Guid) --management-group $managementGroupId --policy-assignment $policyAssignmentId
-            }
-        }
+Get-AzPolicyState -ManagementGroupName $ManagementGroupRoot |
+Where-Object { $PSItem.ComplianceState -eq "NonCompliant" -and $PSItem.PolicyDefinitionAction -in "DeployIfNotExists", "Modify" } |
+Select-Object -Property PolicyAssignmentId, PolicyDefinitionReferenceId -Unique |
+ForEach-Object {
+    $policyAssignmentId = $PSItem.PolicyAssignmentId
+    $policyDefinitionReferenceId = $PSItem.PolicyDefinitionReferenceId
+    $remediation = $policyDefinitionReferenceId ? "$policyAssignmentId/$policyDefinitionReferenceId" : $policyAssignmentId
+
+    $running = Get-AzPolicyRemediation -ManagementGroupName $ManagementGroupRoot -Filter "ProvisioningState eq 'Running' && PolicyAssignmentId eq '$policyAssignmentId' && PolicyDefinitionReferenceId eq '$policyDefinitionReferenceId'"
+
+    if ($running) {
+        Write-Warning "Remediation for $remediation is already running"
+    }
+    else {
+        Write-Output "Remediating $remediation under $ManagementGroupRoot"
+        Start-AzPolicyRemediation -ManagementGroupName $ManagementGroupRoot -PolicyAssignmentId $policyAssignmentId -PolicyDefinitionReferenceId $policyDefinitionReferenceId
     }
 }
