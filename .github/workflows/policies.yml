@@ -47,6 +47,7 @@ jobs:
           enable-AzPSSession: true
 
       - name: Compare policies, initiatives, and assignments
+        id: compare-policies
         uses: azure/powershell@v1
         with:
           inlineScript: |
@@ -55,10 +56,9 @@ jobs:
 
       - name: Fail on delete detected if build reason is pull request
         run: |
-          Write-Output "##[error]Delete detected. Manual intervention required."
+          echo "::error::Delete detected. Manual intervention required."
           exit 1
-        shell: pwsh
-        if: env.DELETE_DETECTED && github.event_name == 'pull_request'
+        if: steps.compare-policies.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
 
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
@@ -87,18 +87,18 @@ jobs:
           enable-AzPSSession: true
 
       - name: Compare policies, initiatives, and assignments
+        id: compare-policies
         uses: azure/powershell@v1
         with:
           inlineScript: |
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
           azPSVersion: latest
 
-      - name: Fail on delete detected if source branch is main
+      - name: Fail on delete detected if branch is main
         run: |
-          Write-Output "##[error]Delete detected. Manual intervention required."
+          echo "::error::Delete detected. Manual intervention required."
           exit 1
-        shell: pwsh
-        if: env.DELETE_DETECTED && github.ref == 'refs/heads/main'
+        if: steps.compare-policies.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
 
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
@@ -151,7 +151,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
-      MANAGEMENT_GROUP_ROOT: alz
+      MANAGEMENT_GROUP_ROOT: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3
