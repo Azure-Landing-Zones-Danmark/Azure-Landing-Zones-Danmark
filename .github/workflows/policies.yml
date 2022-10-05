@@ -52,6 +52,8 @@ jobs:
           inlineScript: |
             $pr = $${{ github.event_name == 'pull_request' }}
             $deleted = ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            Write-Host "MAIN: $main"
+            Write-Host "deleted: $deleted"
             if ($pr -and $deleted) {
               Write-Error "Delete detected. Manual intervention required."
             }
@@ -89,6 +91,8 @@ jobs:
           inlineScript: |
             $main = $${{ github.ref == 'refs/heads/main' }}
             $deleted = ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            Write-Host "MAIN: $main"
+            Write-Host "deleted: $deleted"
             if ($main -and $deleted) {
               Write-Error "Delete detected. Manual intervention required."
             }
@@ -145,7 +149,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
-      MANAGEMENT_GROUP_ROOT: alz
+      MANAGEMENT_GROUP_ROOT: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3

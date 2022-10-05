@@ -47,7 +47,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
-      MANAGEMENT_GROUP_ROOT: alz
+      MANAGEMENT_GROUP_ROOT: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3
