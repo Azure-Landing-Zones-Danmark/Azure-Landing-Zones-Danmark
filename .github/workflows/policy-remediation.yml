@@ -21,7 +21,7 @@ jobs:
     name: Remediate Policies Canary
     runs-on: ubuntu-latest
     environment:
-      name: canary
+      name: Canary
     env:
       ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     environment:
-      name: prod
+      name: Production
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
