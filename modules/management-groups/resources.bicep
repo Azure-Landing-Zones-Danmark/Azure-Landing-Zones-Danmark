@@ -3,6 +3,7 @@ targetScope = 'tenant'
 param rootManagementGroupDisplayName string = 'Azure Landing Zones'
 param prefix string
 param enableConfidential bool = false
+param platformManagementSubscriptionId string
 
 resource tenantRoot 'Microsoft.Management/managementGroups@2021-04-01' existing = {
   name: tenant().tenantId
@@ -137,6 +138,10 @@ resource management 'Microsoft.Management/managementGroups@2021-04-01' = {
         id: platform.id
       }
     }
+  }
+
+  resource subscription 'subscriptions' = {
+    name: platformManagementSubscriptionId
   }
 }
 
