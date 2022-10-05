@@ -113,7 +113,7 @@ jobs:
     needs:
       - validate_canary
       - validate_prod
-    if: success() && github.event_name == 'pull_request'
+    if: success() && (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
     environment:
       name: Canary
     env:

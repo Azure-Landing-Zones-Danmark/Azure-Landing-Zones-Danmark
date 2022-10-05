@@ -17,7 +17,7 @@ module group '../shared/resource-group.bicep' = {
 
 module automationAccount '../shared/automation-account.bicep' = {
   scope: resourceGroup(resourceGroupName)
-  name: automationAccountName
+  name: 'automation-account-${uniqueString(resourceGroupName, automationAccountName)}'
   params: {
     location: location
     automationAccountName: storageAccountName
@@ -27,7 +27,7 @@ module automationAccount '../shared/automation-account.bicep' = {
 
 module ddosProtectionPlan '../shared/ddos-protection-plan.bicep' = {
   scope: resourceGroup(resourceGroupName)
-  name: automationAccountName
+  name: 'ddos-protection-plan-${uniqueString(resourceGroupName, ddosPlanName)}'
   params: {
     location: location
     ddosPlanName: ddosPlanName
@@ -69,7 +69,7 @@ var solutions = [
 
 module solution '../shared/log-analytics-workspace-solution.bicep' = [for solution in solutions: {
   scope: resourceGroup(resourceGroupName)
-  name: 'solution-${solution}'
+  name: 'log-analytics-workspace-solution-${uniqueString(resourceGroupName, workspaceName, solution)}'
   dependsOn: [
     workspace
   ]
