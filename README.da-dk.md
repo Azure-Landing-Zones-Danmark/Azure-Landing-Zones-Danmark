@@ -1,10 +1,14 @@
 <!-- spell-checker:locale en,da-DK -->
 # Azure-Landing-Zones-Danmark
 
-[![GitHub Super-Linter](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
-
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![en](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
+
+[![Lint and Test Code Base](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml)
+[![Management Groups](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml)
+[![Monitoring](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/monitoring.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/monitoring.yml)
+[![Policies](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml)
+[![Policy Remediation](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml)
 
 ## Repository til det Danske Azure Landing Zone setup
 
