@@ -58,7 +58,7 @@ jobs:
         run: |
           echo "::error::Delete detected. Manual intervention required."
           exit 1
-        if: steps.compare-policies.DELETE_DETECTED && github.event_name == 'pull_request'
+        if: steps.compare-policies.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
 
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
@@ -98,7 +98,7 @@ jobs:
         run: |
           echo "::error::Delete detected. Manual intervention required."
           exit 1
-        if: steps.compare-policies.DELETE_DETECTED && github.ref == 'refs/heads/main'
+        if: steps.compare-policies.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
 
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
