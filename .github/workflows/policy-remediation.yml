@@ -9,8 +9,12 @@ on:  # yamllint disable-line rule:truthy
     - cron: 0 */2 * * *
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
-  component: policies
+  MODULE_NAME: policies
 
 jobs:
   remediate_canary:
@@ -35,7 +39,7 @@ jobs:
           enable-AzPSSession: true
 
       - name: Remediate policies
-        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Verbose
+        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
         shell: pwsh
 
   remediate_prod:
@@ -61,5 +65,5 @@ jobs:
           enable-AzPSSession: true
 
       - name: Remediate policies
-        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Verbose
+        run: ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
         shell: pwsh
