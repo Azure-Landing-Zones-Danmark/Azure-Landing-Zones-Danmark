@@ -11,16 +11,17 @@
 [![Policy Remediation](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml)
 
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/LICENSE)
+[![CodeOfConduct](https://img.shields.io/badge/Code--of--conduct-MS--Open--Source-red)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/CODE-OF-CONDUCT.md)
 
 ## Repository til en dansk Azure Landing Zone opsætning
 
 ```txt
- _____                                   _               _      ______
-|  __ \                                 | |        /\   | |    |___  /
-| |  | | __ _ _ __  _ __ ___   __ _ _ __| | __    /  \  | |       / /
-| |  | |/ _` | '_ \| '_ ` _ \ / _` | '__| |/ /   / /\ \ | |      / /
-| |__| | (_| | | | | | | | | | (_| | |  |   <   / ____ \| |____ / /__
-|_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
+               _____                                   _               _      ______
+              |  __ \                                 | |        /\   | |    |___  /
+              | |  | | __ _ _ __  _ __ ___   __ _ _ __| | __    /  \  | |       / /
+              | |  | |/ _` | '_ \| '_ ` _ \ / _` | '__| |/ /   / /\ \ | |      / /
+              | |__| | (_| | | | | | | | | | (_| | |  |   <   / ____ \| |____ / /__
+              |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
 
 ```
 ![ALZ](docs/images/Azure-landing-zone.png)
