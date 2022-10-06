@@ -18,6 +18,9 @@ module group '../shared/resource-group.bicep' = {
 module automationAccount '../shared/automation-account.bicep' = {
   scope: resourceGroup(resourceGroupName)
   name: 'automation-account-${uniqueString(resourceGroupName, automationAccountName)}'
+  dependsOn: [
+    group
+  ]
   params: {
     location: location
     automationAccountName: storageAccountName
@@ -28,6 +31,9 @@ module automationAccount '../shared/automation-account.bicep' = {
 module ddosProtectionPlan '../shared/ddos-protection-plan.bicep' = {
   scope: resourceGroup(resourceGroupName)
   name: 'ddos-protection-plan-${uniqueString(resourceGroupName, ddosPlanName)}'
+  dependsOn: [
+    group
+  ]
   params: {
     location: location
     ddosPlanName: ddosPlanName
@@ -37,6 +43,9 @@ module ddosProtectionPlan '../shared/ddos-protection-plan.bicep' = {
 module storageAccount '../shared/storage-account.bicep' = {
   scope: resourceGroup(resourceGroupName)
   name: 'storage-account-${uniqueString(resourceGroupName, storageAccountName)}'
+  dependsOn: [
+    group
+  ]
   params: {
     location: location
     storageAccountName: storageAccountName
@@ -47,6 +56,9 @@ module storageAccount '../shared/storage-account.bicep' = {
 module workspace '../shared/log-analytics-workspace.bicep' = {
   scope: resourceGroup(resourceGroupName)
   name: 'log-analytics-workspace-${uniqueString(resourceGroupName, workspaceName)}'
+  dependsOn: [
+    group
+  ]
   params: {
     location: location
     workspaceName: workspaceName
