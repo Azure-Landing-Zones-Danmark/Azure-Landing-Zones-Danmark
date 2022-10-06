@@ -1,7 +1,7 @@
 # Azure-Landing-Zones-Danmark
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
-[![en](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
+[![dk](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
 
 [![Lint and Test Code Base](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml)
 [![Management Groups](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml)
@@ -9,7 +9,7 @@
 [![Policies](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml)
 [![Policy Remediation](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml)
 
-[![License](https://img.shields.io/badge/MIT-green)](https://github.com/Azure-Landing-Zones-Danmark/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/LICENSE)
 
 ## Repository for the Danish Azure Landing Zone accelerator
 
