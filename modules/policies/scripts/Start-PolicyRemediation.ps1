@@ -2,10 +2,10 @@
 param (
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupRoot
+    $Prefix
 )
 
-Get-AzPolicyState -ManagementGroupName $ManagementGroupRoot |
+Get-AzPolicyState -ManagementGroupName $Prefix |
 Where-Object { $PSItem.ComplianceState -eq "NonCompliant" -and $PSItem.PolicyDefinitionAction -in "DeployIfNotExists", "Modify" } |
 Select-Object PolicyAssignmentId, PolicyDefinitionReferenceId -Unique |
 ForEach-Object {
@@ -13,18 +13,18 @@ ForEach-Object {
     $policyDefinitionReferenceId = $PSItem.PolicyDefinitionReferenceId
     $remediation = $policyDefinitionReferenceId ? "$policyAssignmentId/$policyDefinitionReferenceId" : $policyAssignmentId
 
-    $running = Get-AzPolicyRemediation -ManagementGroupName $ManagementGroupRoot -Filter "PolicyAssignmentId eq '$policyAssignmentId' and PolicyDefinitionReferenceId eq '$policyDefinitionReferenceId'" | Where-Object ProvisioningState -ne "Running"
+    $running = Get-AzPolicyRemediation -ManagementGroupName $Prefix -Filter "PolicyAssignmentId eq '$policyAssignmentId' and PolicyDefinitionReferenceId eq '$policyDefinitionReferenceId'" | Where-Object ProvisioningState -ne "Running"
 
     if ($running) {
         Write-Warning "Remediation for $remediation is already running"
     }
     else {
-        Write-Output "Remediating $remediation under $ManagementGroupRoot"
+        Write-Output "Remediating $remediation under $Prefix"
         if ($policyDefinitionReferenceId) {
-            Start-AzPolicyRemediation -Name (New-Guid) -ManagementGroupName $ManagementGroupRoot -PolicyAssignmentId $policyAssignmentId -PolicyDefinitionReferenceId $policyDefinitionReferenceId
+            Start-AzPolicyRemediation -Name (New-Guid) -ManagementGroupName $Prefix -PolicyAssignmentId $policyAssignmentId -PolicyDefinitionReferenceId $policyDefinitionReferenceId
         }
         else {
-            Start-AzPolicyRemediation -Name (New-Guid) -ManagementGroupName $ManagementGroupRoot -PolicyAssignmentId $policyAssignmentId
+            Start-AzPolicyRemediation -Name (New-Guid) -ManagementGroupName $Prefix -PolicyAssignmentId $policyAssignmentId
         }
     }
 }
