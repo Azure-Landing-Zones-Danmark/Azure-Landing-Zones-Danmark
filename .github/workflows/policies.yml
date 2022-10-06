@@ -1,5 +1,5 @@
 ---
-name: Policies
+name: Deploy Policies
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -33,7 +33,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
-      MANAGEMENT_GROUP_ROOT: lz-canary
+      PREFIX: lz-canary
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Prefix ${{ env.PREFIX }}
           azPSVersion: latest
 
       - name: Fail on delete detected if build reason is pull request
@@ -64,7 +64,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   validate_prod:
@@ -73,7 +73,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
-      MANAGEMENT_GROUP_ROOT: lz
+      PREFIX: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -91,7 +91,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Prefix ${{ env.PREFIX }}
           azPSVersion: latest
 
       - name: Fail on delete detected if branch is main
@@ -104,7 +104,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   deploy_canary:
@@ -119,7 +119,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
-      MANAGEMENT_GROUP_ROOT: lz-canary
+      PREFIX: lz-canary
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -136,7 +136,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
 
   deploy_prod:
@@ -151,7 +151,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
-      MANAGEMENT_GROUP_ROOT: lz
+      PREFIX: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -168,5 +168,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
