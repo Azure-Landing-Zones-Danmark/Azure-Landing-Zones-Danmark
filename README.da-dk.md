@@ -23,7 +23,7 @@
 |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
 
 ```
-![ALZ](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.png#lightbox)
+![ALZ](docs/images/Azure-landing-zone.png)
 
 Dette er startsiden til projektet **Danmark ALZ**. Projektet er stadig under udarbejdelse.
 

@@ -22,7 +22,7 @@
 |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
 
 ```
-![ALZ](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.png#lightbox)
+![ALZ](docs/images/Azure-landing-zone.png)
 
 This is a landing page and is still work in progress!
 
