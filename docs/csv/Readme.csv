@@ -1,0 +1,23 @@
+,
+      Azure Security Benchmark v3,
+"This spreadsheet is designed to provide you a spreadsheet(Excel) format of the Azure Security Benchmark(ASB) v3. For the web version of the content, please refer to ttps://docs.microsoft.com/en-us/security/benchmark/azure/overview
+
+Disclaimer: 
+a. The control mappings between ASB and industry benchmarks (such as NIST, CIS and PCI) only indicate that a specific Azure feature can be used to fully or partially address a control requirement defined in NIST, CIS or PCI. You should be aware that such implementation does not necessarily translate to the full compliance of the corresponding control in CIS, NIST or PCI.
+b. This document is developed as a reference and should not be used to define all means by which a customer can meet specific compliance requirements and regulations. Customers should seek legal support from their organization on approved customer implementations. ",
+,
+,
+Column Header,Overview
+ASB ID,The Azure Security Benchmark ID.
+ASB Control Domain,The Azure Security Benchmark control domain.
+CIS Controls v8 ID(s),The CIS Controls v8 control(s) that correspond to the recommendation.
+CIS Controls v8 ID(s),The CIS Controls v8 control(s) that correspond to the recommendation.
+PCI-DSS v3.2.1 ID(s),The PCI-DSS v3.2.1 control(s) that correspond to the recommendation.
+NIST SP 800-53 r4 ID(s),The NIST SP 800-53 r4 (Moderate and High) control(s) that correspond to this recommendation.
+Security Principle,"The recommendation focused on the ""what"", explaining the control at the technology-agnostic level."
+Recommendation,The Azure Security Benchmark control recommendation in summarized format.
+ASB Guideline ,"The recommendation focused on the ""how"", explaining the Azure technical features and implementation basics."
+Implementation and additional context,The implementation details and other relevant context which links to the Azure service offering documentation articles.
+Customer Stakeholders,"The security functions at the customer organization who may be accountable, responsible, or consulted for the respective control. It may be different from organization to organization depending on your company’s security organization structure, and the roles and responsibilities you set up related to Azure security."
+Azure Policy Mapping,The Azure Policy that can be used to audit the services that correspond to the ASB control.
+Azure Policy GUID,The GUID(s) that correspond to the Azure Policy. 

@@ -1,0 +1,63 @@
+Framework,Control Domain,Description
+,,
+Azure Security Benchmark,ASB Control Domains,Description
+,Network security (NS),"Network Security covers controls to secure and protect Azure networks, including securing virtual networks, establishing private connections, preventing, and mitigating external attacks, and securing DNS."
+,Identity Management (IM),"Identity Management covers controls to establish a secure identity and access controls using Azure Active Directory, including the use of single sign-on, strong authentications, managed identities (and service principles) for applications, conditional access, and account anomalies monitoring."
+,Privileged Access (PA),"Privileged Access covers controls to protect privileged access to your Azure tenant and resources, including a range of controls to protect your administrative model, administrative accounts, and privileged access workstations against deliberate and inadvertent risk."
+,Data Protection (DP),"Data Protection covers control of data protection at rest, in transit, and via authorized access mechanisms, including discover, classify, protect, and monitor sensitive data assets using access control, encryption, key and certificate management in Azure."
+,Asset Management (AM),"Asset Asset Management covers controls to ensure security visibility and governance over Azure resources, including recommendations on permissions for security personnel, security access to asset inventory, and managing approvals for services and resources (inventory, track, and correct)."
+,Logging and Threat Detection (LT),"Logging and Threat Detection covers controls for detecting threats on Azure and enabling, collecting, and storing audit logs for Azure services, including enabling detection, investigation, and remediation processes with controls to generate high-quality alerts with native threat detection in Azure services; it also includes collecting logs with Azure Monitor, centralizing security analysis with Azure Sentinel, time synchronization, and log retention."
+,Incident Response (IR),"Incident Response covers controls in incident response life cycle - preparation, detection and analysis, containment, and post-incident activities, including using Azure services such as Microsoft Defender for Cloud and Sentinel to automate the incident response process."
+,Posture and Vulnerability Management (PV),"Posture and Vulnerability Management focuses on controls for assessing and improving Azure security posture, including vulnerability scanning, penetration testing and remediation, as well as security configuration tracking, reporting, and correction in Azure resources."
+,Endpoint Security (ES),"Endpoint Security covers controls in endpoint detection and response, including use of endpoint detection and response (EDR) and anti-malware service for endpoints in Azure environments."
+,Backup and Recovery (BR),"Backup and Recovery covers controls to ensure that data and configuration backups at the different service tiers are performed, validated, and protected."
+,DevOps Security (DS),"DevOps Security covers the controls related to the security engineering and operations in the DevOps processes, including deployment of critical security checks (such as static application security testing, vulnerability management) prior to the deployment phase to ensure the security throughout the DevOps process; it also includes common topics such as threat modeling and software supply security."
+,Governance and Strategy (GS),"Governance and Strategy provides guidance for ensuring a coherent security strategy and documented governance approach to guide and sustain security assurance, including establishing roles and responsibilities for the different cloud security functions, unified technical strategy, and supporting policies and standards."
+,,
+NIST SP 800-53 Rev 5,,
+,AC - ACCESS CONTROL,"The Access Control family contains controls that cover access to systems, networks, and devices. Controls provide guidance on the implementation of access policies, account management, and topics like user privileges. The controls aim to lower the risk of unapproved access to a range of systems, devices, or networks"
+,AT - AWARENESS AND TRAINING,"The Awareness and Training family of controls helps to ensure users of information systems are adequately trained to identify threats. A particular focus is improving awareness of different operational risks and threats to privacy or system security. Requirements around the creation of training policy, records, and feedback helps to fine-tune the organization’s approach to cybersecurity training."
+,AU - AUDIT AND ACCOUNTABILITY,"The Audit and Accountability family of controls provides guidance on procedures for event logging and auditing. Controls cover the baseline content of audit records, the capacity of log storage, and the process for monitoring and reviewing logs. Log audits are an important part of identifying the cause of breaches or system issues, and are a tool for accountability."
+,"CA - ASSESSMENT, AUTHORIZATION, AND MONITORING","The Assessment, Authorization and Monitoring family focuses on the continuous monitoring and improvement of security and privacy controls. It covers the creation of an assessment plan and the delegation of the team to carry out control assessment. Controls also cover the creation of a plan of action and milestones (POAM), an integral document for identifying and fixing vulnerabilities or weaknesses."
+,CM - CONFIGURATION MANAGEMENT,"The Configuration Management family contains controls focusing on the configuration of software and devices on the network. Controls cover the creation of a configuration policy, the creation of a baseline configuration of the system, and the management of unauthorized configuration or devices. Configuration controls lower the risk of unauthorized hardware or software being installed on the system, or vulnerabilities caused by changes to settings."
+,CP - CONTINGENCY PLANNING,"The Contingency Planning family contains controls to prepare organizations for system failures and breaches. Controls cover the planning for alternative processing or storage sites and the creation of system backups to help mitigate system downtime. Other controls focus on contingency planning, including training and plan testing. This family of controls is important for mitigating the damage from a system outage or network breach, establishing clear plans to restore normal operation."
+,IA - IDENTIFICATION AND AUTHENTICATION,"The Identification and Authentication family contains controls for the reliable identification of users and devices. Different controls focus on different elements of safe user or device authentication. Controls strengthen user management policies, lowering the risk of unauthorized access to the system."
+,IR - INCIDENT RESPONSE,"The Incident Response family contains controls for all aspects of responding to a serious incident. This includes training and planning for potential incidents, as well as plans for actively monitoring and responding to incidents as they occur. Enhanced controls cover specific types of incidents that distinct organizations might face. Incidents may include data breaches, breakdowns in the supply chain, public relations damage, or malicious code in the system."
+,MA - MAINTENANCE,"The Maintenance family of controls deals with all elements of system maintenance, including software updates, logging, and inspection tools. It covers the need for timely maintenance to lower the risk of operational outages, and outlines policy and the management of maintenance personnel."
+,MP - MEDIA PROTECTION,"The Media Protection family of controls covers the use, storage and safe destruction of media and files in the organization. Established policies and procedures help to lower the risk of information breaches and leaks"
+,PE - PHYSICAL AND ENVIRONMENTAL PROTECTION,"The Physical and Environmental Protection family of controls covers physical access to devices and facilities, and the mitigation of threats to facilities. Controls cover policies for physical access to system controls, including monitoring access and visitors, as well as the monitoring of devices and assets. Other controls cover responses to physical threats, such as emergency lighting or power and the relocation to alternative facilities."
+,PL - PLANNING,"The Planning family of controls covers privacy and system security plans (SSPs), including system architecture, management processes, and the setting of baseline system settings"
+,PM - PROGRAM MANAGEMENT,"The Program Management family of controls covers all elements of the management of an information system, including a variety of processes, programs, and plans. This includes an information security program plan, risk management strategy, and critical infrastructure plan."
+,PS - PERSONNEL SECURITY,The Personnel Security family of controls covers different policies and procedures around the management of personnel. This includes the process for terminating personnel contracts and the relative risk of each position to information security. 
+,PT - PERSONALLY IDENTIFIABLE INFORMATION PROCESSING AND TRANSPARENCY,"The PII Processing and Transparency family of controls helps to safeguard sensitive data, focusing on consent and privacy. Organizations can lower the risk of data breaches by properly managing personally identifiable information."
+,RA - RISK ASSESSMENT,"The Risk Assessment family of controls focuses on the assessment of system vulnerabilities and relevant risk. Controls cover the development of risk response procedures, and the use of vulnerability monitoring tools and processes."
+,SA - SYSTEM AND SERVICES ACQUISITION,"The System and Services Acquisition family of controls includes the allocation of resources and the creation of system development life cycles. Controls help organizations create a safe acquisition process for new systems and devices, safeguarding the integrity of the wider system and data. Controls also cover the development and testing process for new systems, including developer training and security processes."
+,SC - SYSTEM AND COMMUNICATIONS PROTECTION,"The System and Communications Protection family of controls covers the protection of system boundaries and the safe management of collaborative devices. Controls provide in-depth guidance on set-up and ongoing management of systems, including access, partitions, and usage restrictions."
+,SI - SYSTEM AND INFORMATION INTEGRITY,"The System and Information Integrity family of controls focuses on maintaining the integrity of the information system. Controls cover topics like protection from malicious code and spam, and procedures for ongoing system-wide monitoring."
+,SR - SUPPLY CHAIN RISK MANAGEMENT,"The Supply Chain Risk Management family of controls covers policies and procedures to counter risks in the supply chain. This includes processes to assess and manage suppliers, and the inspection of supply chain systems and components."
+,,
+ISO 27001: 2013,A.5: Information security policies ,
+,A.6: Organization of information security ,
+,"A.7: Human resource security - applied before, during, or after employment",
+,A.8: Asset management,
+,A.9: Access control,
+,A.10: Cryptography,
+,A.11: Physical and environmental security,
+,A.12: Operations security,
+,A.13: Communications security,
+,"A.14: System acquisition, development and maintenance",
+,A.15: Supplier relationships,
+,A.16: Information security incident management,
+,A.17: Information security aspects of business continuity management,
+,"A.18: Compliance; with internal requirements, such as policies, and with external requirements, such as laws",
+,,
+,,
+CIS Microsoft Azure Foundations Benchmark 1.3.0,1 Identity and Access Management,
+,2 Security Center,
+,3 Storage Accounts,
+,4 Database Services,
+,5 Logging and Monitoring,
+,6 Networking,
+,7 Virtual Machines,
+,8 Other Security Considerations,
+,9 AppService,

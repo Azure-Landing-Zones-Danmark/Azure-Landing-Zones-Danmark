@@ -1,0 +1,676 @@
+ASB ID,Control Domain,CIS Controls v7.1 ID(s),CIS Controls v8 ID(s),NIST SP800-53 r4 ID(s),PCI-DSS v3.2.1 ID(s),Recommendation,Addressed with custom ESLZ policies?,Addressed with assigned built-in policies in ESLZ?
+NS-1,Network Security,"9.2 - Ensure Only Approved Ports, Protocols and Services Are Running
+9.4 - Apply Host-Based Firewalls or Port Filtering
+12.3 - Deny Communications with Known Malicious IP Addresses
+12.4 - Deny Communication over Unauthorized Ports
+14.1 - Segment the Network Based on Sensitivity
+14.2 - Enable Firewall Filtering Between VLANs
+","3.12 - Segment Data Processing and Storage Based on Sensitivity
+13.4 - Perform Traffic Filtering Between Network Segments
+4.4 - Implement and Manage a Firewall on Severs","AC-4: INFORMATION FLOW ENFORCEMENT
+SC-2: APPLICATION PARTITIONING
+SC-7: BOUNDARY PROTECTION","1.1
+1.2
+1.3",Establish network segmentation boundaries ,Yes,n/a
+NS-2,Network Security,14.1 - Segment the Network Based on Sensitivity,"3.12 - Segment Data Processing and Storage Based on Sensitivity
+4.4 - Implement and Manage a Firewall on Servers
+","AC-4: INFORMATION FLOW ENFORCEMENT
+SC-2: APPLICATION PARTITIONING
+SC-7: BOUNDARY PROTECTION","1.1
+1.2
+1.3
+",Secure cloud services with network controls,Yes,Yes
+NS-3,Network Security,"9.2 - Ensure Only Approved Ports, Protocols and Services Are Running
+9.4 - Apply Host-Based Firewalls or Port Filtering
+12.3 - Deny Communications with Known Malicious IP Addresses
+12.4 - Deny Communication over Unauthorized Ports
+14.1 - Segment the Network Based on Sensitivity
+14.2 - Enable Firewall Filtering Between VLANs
+
+","4.4 - Implement and Manage a Firewall on Servers
+4.8 - Uninstall or Disable Unnecessary Services on Enterprise Assets and Software
+13.10 Perform Application Layer Filtering","AC-4: INFORMATION FLOW ENFORCEMENT
+SC-7: BOUNDARY PROTECTION
+CM-7: LEAST FUNCTIONALITY","1.1
+1.2
+1.3",Deploy firewall at the edge of enterprise network,Yes,n/a
+NS-4,Network Security,"12.6 - Deploy Network-Based IDS Sensors
+12.7 - Deploy Network-Based Intrusion Prevention Systems","13.2 Deploy a Host-Based Intrusion Detection Solution
+13.3 - Deploy a Network Intrusion Detection Solution
+13.7 Deploy a Host-Based Intrusion Prevention Solution
+13.8 - Deploy a Network Intrusion Prevention Solution
+","SC-7: BOUNDARY PROTECTION
+SI-4: INFORMATION SYSTEM MONITORING","11.4
+
+",Deploy intrusion detection/intrusion prevention systems (IDS/IPS),Yes,Yes
+NS-5,Network Security,"9.5 - Implement Application Firewalls
+12.3 - Deny Communications with Known Malicious IP Addresses
+
+",13.10 - Perform Application Layer Filtering,"SC-5: DENIAL OF SERVICE PROTECTION
+SC-7: BOUNDARY PROTECTION","1.1
+1.2
+1.3
+6.6",Deploy DDOS protection,Yes,n/a
+NS-6,Network Security,"9.5 - Implement Application Firewalls
+12.3 - Deny Communications with Known Malicious IP Addresses
+12.9 - Deploy Application Layer Filtering Proxy Server
+18.10 - Deploy Web Application Firewalls (WAFs)
+
+",13.10 - Perform Application Layer Filtering,SC-7: BOUNDARY PROTECTION,"1.1
+1.2
+1.3
+6.6",Deploy web application firewall,n/a,n/a
+NS-7,Network Security,"9.2 - Ensure Only Approved Ports, Protocols and Services Are Running
+
+
+
+
+
+","4.4 - Implement and Manage a Firewall on Severs
+4.8 - Uninstall or Disable Unnecessary Services on Enterprise Assets and Software
+","AC-4: INFORMATION FLOW ENFORCEMENT
+SC-2: APPLICATION PARTITIONING
+SC-7: BOUNDARY PROTECTION","1.1
+1.2
+1.3
+",Simplify network security configuration,Yes,Yes
+NS-8,Network Security,"9.2 - Ensure Only Approved Ports, Protocols and Services Are Running
+
+
+
+
+
+","4.4 - Implement and Manage a Firewall on Severs
+4.8 - Uninstall or Disable Unnecessary Services on Enterprise Assets and Software
+","CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+CM-7: LEAST FUNCTIONALITY","4.1
+A2.1
+A2.2
+A2.3
+
+",Detect and disable insecure services and  protocols,n/a,n/a
+NS-9,Network Security,N/A,"12.7 - Ensure Remote Devices Utilize a VPN and are Connecting to 
+an Enterprise’s AAA Infrastructure","CA-3: SYSTEM INTERCONNECTIONS
+AC-17: REMOTE ACCESS
+AC-4: INFORMATION FLOW ENFORCEMENT
+",N/A,"Connect on-premises or cloud network privately 
+",n/a,n/a
+NS-10,Network Security,7.7 - Use of DNS Filtering Services,"4.9 - Configure Trusted DNS Servers on Enterprise Assets
+9.2 - Use DNS Filtering Services","SC-20: SECURE NAME / ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)
+SC-21: SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)",N/A,Ensure Domain Name System (DNS) security,Yes,Yes
+DP-1,Data Protection,"13.1 - 	Maintain an Inventory of Sensitive Information
+14.5 - Utilize an Active Discovery Tool to Identify Sensitive Data","3.2 - Establish and Maintain a Data Inventory
+3.7 - Establish and Maintain a Data Classification Scheme
+3.13 - Deploy a Data Loss Prevention Solution","RA-2: SECURITY CATEGORIZATION
+SC-28: PROTECTION OF INFORMATION AT REST",A3.2,"Discover, classify, and label sensitive data
+
+",n/a,n/a
+DP-2,Data Protection,"13.3 - Monitor and Block Unauthorized Network Traffic
+14.7 - Enforce Access Control to Data through Automated Tools",3.13 - Deploy a Data Loss Prevention Solution,"AC-4: INFORMATION FLOW ENFORCEMENT
+SI-4: INFORMATION SYSTEM MONITORING",A3.2,Monitor anomalies and threats targeting sensitive data,Yes,Yes
+DP-3,Data Protection,14.4 - Encrypt All Sensitive Information in Transit,3.10 - Encrypt Sensitive Data In Transit,SC-8: TRANSMISSION CONFIDENTIALITY AND INTEGRITY,"3.5
+3.6
+4.1",Encrypt sensitive data in transit,Yes,Yes
+DP-4,Data Protection,14.8 - Encrypt Sensitive Information at Rest,3.11 - Encrypt Sensitive Data at Rest,SC-28: PROTECTION OF INFORMATION AT REST,"3.4
+3.5",Enable data at rest encryption by default  ,n/a,n/a
+DP-5,Data Protection,14.8 - Encrypt Sensitive Information at Rest,3.11 - Encrypt Sensitive Data at Rest,"SC-12: CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+SC-28: PROTECTION OF INFORMATION AT REST","3.4
+3.5
+3.6",Use customer-managed key option in data at rest encryption when required,n/a,n/a
+DP-6,Data Protection,N/A,N/A,"IA-5: AUTHENTICATOR MANAGEMENT
+SC-12: CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+SC-28: PROTECTION OF INFORMATION AT REST",3.6,Use a secure key management process,n/a,n/a
+DP-7,Data Protection,N/A,N/A,"IA-5: AUTHENTICATOR MANAGEMENT
+SC-12: CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+SC-17: PUBLIC KEY INFRASTRUCTURE CERTIFICATES",3.6,Use a secure certificate management process,n/a,n/a
+DP-8,Data Protection,N/A,N/A,"IA-5: AUTHENTICATOR MANAGEMENT
+SC-12: CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+SC-17: PUBLIC KEY INFRASTRUCTURE CERTIFICATES",3.6,Ensure security of key and certificate repository ,Yes,Yes
+IM-1,Identity Management,"16.1 - Maintain an Inventory of 
+Authentication Systems
+16.2 - Configure Centralized 
+Point of Authentication","6.7 - Centralize Access Control
+12.5 - Centralize Network Authentication, Authorization, and Auditing (AAA)
+","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+IA-8: IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)","7.2
+8.3",Use centralized identity and authentication system,n/a,n/a
+IM-2,Identity Management,"4.3 - Ensure the Use of Dedicated Administrative Accounts
+4.5 - Use Multi-Factor Authentication for All Administrative Access","5.4 - Restrict Administrator Privileges to Dedicated Administrator Accounts
+6.5 - Require MFA for Administrative Access
+","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+IA-8: IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)
+SI-4: INFORMATION SYSTEM MONITORING","8.2
+8.3
+",Protect identity and authentication systems,n/a,n/a
+IM-3,Identity Management,N/A,N/A,"AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+IA-4: IDENTIFIER MANAGEMENT
+IA-5: AUTHENTICATOR MANAGEMENT
+IA-9: SERVICE IDENTIFICATION AND AUTHENTICATION","N/A
+",Manage application identities securely and automatically,n/a,n/a
+IM-4,Identity Management,N/A,N/A,IA-9: SERVICE IDENTITIFICATION AND AUTHENTICATION,N/A,Authenticate server and services,n/a,n/a
+IM-5,Identity Management,16.2 - Configure Centralized Point of Authentication,"12.5 - Centralize Network Authentication, Authorization, and Auditing (AAA)","IA-4: IDENTIFIER MANAGEMENT
+IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+IA-8: IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)",N/A,Use single sign-on (SSO) for application access,n/a,n/a
+IM-6,Identity Management,"4.2 - Change Default Passwords
+4.5 - Use Multifactor Authentication For All Administrative Access
+12.11 - Require All Remote Logins to Use Multi-Factor Authentication
+16.3 - Require Multi-Factor Authentication","6.3 - Require MFA for Externally-Exposed Applications
+6.4 - Require MFA for Administrative Access","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+IA-5: AUTHENTICATOR MANAGEMENT
+IA-8: IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)","7.2
+8.2
+8.3
+8.4",Use strong authentication controls,n/a,n/a
+IM-7,Identity Management,"12.11 - Require All Remote Logins to Use Multi-Factor Authentication
+12.12 - Manage All Devices Remotely Logging Into Internal Network
+14.6 - Protect Information Through Access Control Lists
+16.3 - Require Multi-Factor Authentication","3.3 - Configure Data Access Control Lists
+6.4 - Require MFA for Administrative Access
+13.5 - Manage Access Control for Remote Assets","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-6: LEAST PRIVILEGE",7.2,Restrict resource access based on  conditions,n/a,n/a
+IM-8,Identity Management,"18.1 - Establish Secure Coding Practices
+18.6 - Ensure Software Development Personnel Are Trained in Secure Coding
+18.7 - Apply Static and Dynamic Code Analysis Tools","16.9 - Train Developers in Application Security Concepts and Secure Coding
+16.12 - Implement Code-Level Security Checks
+",IA-5: AUTHENTICATOR MANAGEMENT,"3.5
+6.3
+8.2
+
+",Restrict the exposure of credential and secrets,n/a,n/a
+IM-9,Identity Management,"12.10 Decrypt Network Traffic at Proxy
+16.2 Configure Centralized Point of Authentication","6.7 - Centralize Access Control
+12.5 - Centralize Network Authentication, Authorization, and Auditing (AAA)","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+SC-11: TRUSTED PATH",N/A,Secure user access to  existing applications,n/a,n/a
+PA-1,Privileged Access,"4.3 - Ensure the Use of Dedicated Administrative Accounts
+14.6 - Protect Information Through Access Control Lists","5.4 - Restrict Administrator Privileges to Dedicated Administrator Accounts
+6.8 - Define and Maintain Role-Based Access Control","AC-2: ACCOUNT MANAGEMENT
+AC-6: LEAST PRIVILEGE","7.1
+7.2
+8.1
+",Separate and limit highly privileged/administrative users,n/a,n/a
+PA-2,Privileged Access,N/A,N/A,AC-2: ACCOUNT MANAGEMENT,"N/A
+",Avoid standing access for user accounts and permissions,Yes,Yes
+PA-3,Privileged Access,16.7 - Establish Process for Revoking Access,"6.1 - Establish an Access Granting Process
+6.2 - Establish an Access Revoking Process","AC-2: ACCOUNT MANAGEMENT
+AC-5: SEPARATION OF DUTIES
+AC-6: LEAST PRIVILEGE","7.1
+7.2
+8.1	
+",Manage lifecycle of identities and entitlements,n/a,n/a
+PA-4,Privileged Access,"4.1 - Maintain Inventory of Administrative Accounts
+16.6 - Maintain an Inventory of Accounts
+16.8 - Disable Any Unassociated Accounts
+Disable Dormant Accounts
+16.9 - Disable Dormant Accounts","5.1 - Establish and Maintain an Inventory of Accounts
+5.3 - Disable Dormant Accounts
+5.5 - Establish and Maintain an Inventory of Service Accounts
+","AC-2: ACCOUNT MANAGEMENT
+AC-6: LEAST PRIVILEGE","7.1
+7.2
+8.1
+A3.4",Review and reconcile user access regularly,n/a,n/a
+PA-5,Privileged Access,N/A,N/A,AC-2: ACCOUNT MANAGEMENT,N/A,Set up emergency access,n/a,n/a
+PA-6,Privileged Access,"4.6 - Use Dedicated Workstations For All Administrative Tasks
+11.6 - Use Dedicated Machines For All Network Administrative Tasks
+12.12 - Manage All Devices Remotely Logging into Internal Network","12.8 - Establish and Maintain Dedicated Computing Resources for All Administrative Work
+13.5 Manage Access Control for Remote Assets
+","AC-2: ACCOUNT MANAGEMENT
+SC-2 APPLICATION PARTITIONING
+SC-7: BOUNDARY PROTECTION",N/A,Use privileged access workstations,n/a,n/a
+PA-7,Privileged Access,14.6 - Protect Information Through Access Control Lists,"3.3 - Configure Data Access Control Lists
+6.8 - Define and Maintain Role-Based Access Control","AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-6: LEAST PRIVILEGE
+","7.1
+7.2",Follow just enough administration (least privilege) principle,n/a,n/a
+PA-8,Privileged Access,16.7 - Establish Process for Revoking Access,"6.1 - Establish an Access Granting Process
+6.2 - Establish an Access Revoking Process","AC-4: INFORMATION FLOW ENFORCEMENT
+AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT",N/A,"Determine access process for cloud provider support
+
+",n/a,n/a
+PV-1,Posture and Vulnerability Management,"5.1 - Establish Secure Configurations
+11.1 - Maintain Standard Security Configurations for Network Devices ","4.1 - Establish and Maintain a Secure Configuration Process
+4.2 - Establish and Maintain a Secure Configuration Process for Network Infrastructure","CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS","1.1
+2.2",Define and establish secure configurations ,n/a,n/a
+PV-2,Posture and Vulnerability Management,"5.4 - Deploy System Configuration Management Tools
+5.5 - Implement Automated Configuration Monitoring Systems
+11.3 - Use Automated Tools to Verify Standard Device Configurations and Detect Changes","4.1 - Establish and Maintain a Secure Configuration Process
+4.2 - Establish and Maintain a Secure Configuration Process for Network Infrastructure","CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS","2.2
+",Audit and enforce secure configurations,Yes,Yes
+PV-3,Posture and Vulnerability Management,"5.1 - Establish Secure Configurations
+5.5 - Implement Automated Configuration Monitoring Systems",4.1 - Establish and Maintain a Secure Configuration Process,"CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS","2.2
+11.5",Define and establish secure configurations for compute resources,n/a,n/a
+PV-4,Posture and Vulnerability Management,"5.4 - Deploy System Configuration Management Tools
+5.5 - Implement Automated Configuration Monitoring Systems
+11.3 - Use Automated Tools to Verify Standard Device Configurations and Detect Changes",4.1 - Establish and Maintain a Secure Configuration Process,"CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS",2.2,Audit and enforce secure configurations for compute resources,Yes,n/a
+PV-5,Posture and Vulnerability Management,"3.1 - Run Automated Vulnerability Scanning Tools
+3.3 - Protect Dedicated Assessment Accounts
+3.6 - Compare Back-to-back Vulnerability Scans","5.5 - Establish and Maintain an Inventory of Service Accounts
+7.1 - Establish and Maintain a Vulnerability Management Process
+7.5 - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+7.6 - Perform Automated Vulnerability Scans of Externally-Exposed Enterprise Assets","RA-3: RISK ASSESSMENT
+RA-5: VULNERABILITY SCANNING
+","6.1 
+6.2
+6.6
+11.2",Perform vulnerability assessments,Yes,n/a
+PV-6,Posture and Vulnerability Management,"3.4 - Deploy Automated Operating System Patch Management Tools
+3.5 - Deploy Automated Software Patch Management Tools
+3.7 - Utilize a Risk-rating Process","7.2 - Establish and Maintain a Remediation Process
+7.3 - Perform Automated Operating System Patch Management
+7.4 - Perform Automated Application Patch Management
+7.7 - Remediate Detected Vulnerabilities
+","RA-3: RISK ASSESSMENT
+RA-5: VULNERABILITY SCANNING
+SI-2: FLAW REMEDIATION","6.1
+6.2
+6.5
+11.2",Rapidly and automatically remediate vulnerabilities,n/a,n/a
+PV-7,Posture and Vulnerability Management,"20.1 - Establish a Penetration Testing Program
+20.2 - Conduct Regular External and Internal Penetration Tests
+20.3 - Perform Periodic Red Team Exercises","18.1 - Establish and Maintain a Penetration Testing Program
+18.2 - Perform Periodic External Penetration Tests
+18.3 - Remediate Penetration Test Findings
+18.4 - Validate Security Measures
+18.5 - Perform Periodic Internal Penetration Tests","CA-8: PENETRATION TESTING
+RA-5: VULNERABILITY SCANNING","6.6
+11.2
+11.3
+",Conduct regular red team operations,n/a,n/a
+LT-1,Logging and threat detection,6.7 - Regularly Review Logs,8.11 - Conduct Audit Log Reviews,"AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING","10.6
+10.8
+A3.5",Enable threat detection capabilities,Yes,Yes
+LT-2,Logging and threat detection,"4.9 - Log and Alert on Unsuccessful Administrative Account Login
+6.7 - Regularly Review Logs
+16.13 - Alert on Account Login Behavior Deviation
+",8.11 - Conduct Audit Log Reviews,"AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING","10.6
+10.8
+A3.5",Enable threat detection for  identity and access management,Yes,Yes
+LT-3,Logging and threat detection,"6.2 - Activate Audit Logging
+6.3 - Enable Detailed Logging
+8.8 - Enable Command-Line Audit Logging","8.2 - Collect Audit Logs
+8.5 - Collect Detailed Audit Logs
+8.12 - Collect Service Provider Logs","AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING","10.1
+10.2
+10.3",Enable logging for security investigation,Yes,Yes
+LT-4,Logging and threat detection,"6.2 - Activate Audit Logging
+6.3 - Enable Detailed Logging
+7.6 - Log All URL Requests
+8.7 - Enable DNS Query Logging
+12.8 - Deploy NetFlow Collection on Networking Boundary Devices","8.2 - Collect Audit Logs
+8.5 - Collect Detailed Audit Logs
+8.6 - Collect DNS Query Audit Logs
+8.7 - Collect URL Request Audit Logs
+13.6 - Collect Network Traffic Flow Logs","AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING",10.8,"Enable network logging for security investigation
+",Yes,n/a
+LT-5,Logging and threat detection,"6.5 - Central Log Management
+6.6 - Deploy SIEM or Log Analytic tool
+6.7 - Regularly Review Logs
+8.6 - Centralize Anti-Malware Logging","8.9 - Centralize Audit Logs
+8.11 - Conduct Audit Log Reviews
+13.1 - Centralize Security Event Alerting","AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING",N/A,Centralize security log management and analysis,Yes,n/a
+LT-6,Logging and threat detection,6.4 - Ensure Adequate Storage for Logs,"8.3 - Ensure Adequate Audit Log Storage
+8.10 - Retain Audit Logs",AU-11: AUDIT RECORD RETENTION,"10.5
+10.7",Configure log storage retention,Yes,Yes
+LT-7,Logging and threat detection,6.1 - Utilize Three Synchronized Time Sources,8.4 - Standardize Time Synchronization,AU-8: TIME STAMPS,10.4,Use approved time synchronization sources,Yes,n/a
+AM-1,Asset Management,"1.1 - Utilize an Active Discovery Tool
+1.2 - Use a Passive Asset Discovery Tool
+1.4 - Maintain Detailed Asset Inventory
+1.5 - Maintain Asset Inventory Information
+2.1 - Maintain Inventory of Authorized Software
+","1.1 - Establish and Maintain Detailed Enterprise Asset Inventory
+1.5 - Use a Passive Asset Discovery Tool
+2.1 - Establish and Maintain a Software Inventory
+2.4 - Utilize Automated Software Inventory Tools
+","CM-8: INFORMATION SYSTEM COMPONENT INVENTORY
+PM-5: INFORMATION SYSTEM INVENTORY",2.4,Track asset inventory and their risks,Yes,Yes
+AM-2,Asset Management,"2.7 - Utilize Application Whitelisting
+2.8 - Implement Application Whitelisting of Libraries
+2.9 - Implement Application Whitelisting of Scripts
+9.2 - Ensure Only Approved Ports, Protocols, and Services Are Running","2.5 - Allowlist Authorized Software
+2.6 - Allowlist Authorized Libraries
+2.7 - Allowlist Authorized Scripts
+4.8 - Uninstall or Disable Unnecessary Services on Enterprise Assets and Software","CM-8: INFORMATION SYSTEM COMPONENT INVENTORY
+PM-5: INFORMATION SYSTEM INVENTORY",6.3,"Use only approved services
+",n/a,n/a
+AM-3,Asset Management,"1.4 - Maintain Detailed Asset Inventory
+1.5 - Maintain Asset Inventory Information
+2.1 - Maintain Inventory of Authorized Software
+2.4 - Track Software Inventory Information
+","1.1 - Establish and Maintain Detailed Enterprise Asset Inventory
+2.1 - Establish and Maintain a Software Inventory","CM-8: INFORMATION SYSTEM COMPONENT INVENTORY
+CM-7: LEAST FUNCTIONALITY",2.4,"Ensure security of asset lifecycle management
+",n/a,n/a
+AM-4,Asset Management,14.6 - Protect Information Through Access Control Lists,3.3 - Configure Data Access Control Lists,AC-3: ACCESS ENFORCEMENT,N/A,"Limit access to asset management
+",n/a,n/a
+AM-5,Asset Management,"2.7 - Utilize Application Whitelisting
+2.8 - Implement Application Whitelisting of Libraries
+2.9 - Implement Application Whitelisting of Scripts
+9.2 - Ensure Only Approved Ports, Protocols, and Services Are Running","2.5 - Allowlist Authorized Software
+2.6 - Allowlist Authorized Libraries
+2.7 - Allowlist Authorized Scripts
+4.8 - Uninstall or Disable Unnecessary Services on Enterprise Assets and Software","CM-8: INFORMATION SYSTEM COMPONENT INVENTORY
+CM-7: LEAST FUNCTIONALITY
+CM-10: SOFTWARE USAGE RESTRICTIONS
+CM-11: USER-INSTALLED SOFTWARE",6.3,Use only approved applications in virtual machine,Yes,Yes
+ES-1,Endpoint security,9.4 - Apply Host-Based Firewalls or Port Filtering,13.7 - Deploy a Host-Based Intrusion Prevention Solution,"SC-3: SECURITY FUNCTION ISOLATION
+SI-2: FLAW REMEDIATION
+SI-3: MALICIOUS CODE PROTECTION
+SI-16 MEMORY PROTECTION",11.5,Use Endpoint Detection and Response (EDR),Yes,Yes
+ES-2,Endpoint security,8.1 - Utilize Centrally Managed Anti-malware Software,10.1 - Deploy and Maintain Anti-Malware Software,"SC-3: SECURITY FUNCTION ISOLATION
+SI-2: FLAW REMEDIATION
+SI-3: MALICIOUS CODE PROTECTION
+SI-16 MEMORY PROTECTION",5.1,Use modern anti-malware software,Yes,Yes
+ES-3,Endpoint security,8.2 - Ensure Anti-Malware Software and Signatures are Updated,10.2 - Configure Automatic Anti-Malware Signature Updates,"SI-2: FLAW REMEDIATION
+SI-3: MALICIOUS CODE PROTECTION","5.2
+5.3",Ensure anti-malware software and signatures are updated,Yes,Yes
+BR-1,Backup and recovery,10.1 - Ensure Regular Automated Backups,11.2 - Perform Automated Backups,"CP-2: CONTINGENCY PLAN
+CP-4: CONTINGENCY PLAN TESTING
+CP-9: INFORMATION SYSTEM BACKUP",N/A,Ensure regular automated backups,n/a,n/a
+BR-2,Backup and recovery,10.4 - Ensure Protection of Backups,11.3 - Protect Recovery Data,"CP-6: ALTERNATE STORAGE SITE
+CP-9: INFORMATION SYSTEM BACKUP",3.4,Protect backup and recovery data,Yes,Yes
+BR-3,Backup and recovery,10.4 - Ensure Protection of Backups,11.3 - Protect Recovery Data,CP-9: INFORMATION SYSTEM BACKUP,N/A,Monitor backups  ,n/a,n/a
+BR-4,Backup and recovery,10.3 - Test Data on Backup Media,11.5 - Test Data Recovery,"CP-4: CONTINGENCY PLAN TESTING
+CP-9: INFORMATION SYSTEM BACKUP",N/A,Regularly test backup,n/a,n/a
+IR-1,Incident Response,"19.1 - Document Incident Response Procedures
+19.7 - Conduct Periodic Incident Scenario Sessions for Personnel","17.4 - Establish and Maintain an Incident Response Process
+17.7 - Conduct Routine Incident Response Exercises","IR-4: INCIDENT HANDLING
+IR-8: INCIDENT RESPONSE PLAN",10.8,Preparation - update incident response plan and handling process,n/a,n/a
+IR-2,Incident Response,"19.2 - Assign Job Titles and Duties for Incident Response
+19.3 - Designate Management Personnel to Support Incident Handling
+19.4 - Devise Organization-wide Standards for Reporting Incidents
+19.5 - Maintain Contact Information For Reporting Security Incidents","17.1 - Designate Personnel to Manage Incident Handling
+17.3 - Establish and Maintain an Enterprise Process for Reporting Incidents
+17.6 - Define Mechanisms for Communicating During Incident Response","IR-4: INCIDENT HANDLING
+IR-8: INCIDENT RESPONSE PLAN
+IR-5: INCIDENT MONITORING
+IR-6: INCIDENT REPORTING",12.10,Preparation - setup incident notification,Yes,n/a
+IR-3,Incident Response,19.8 - Create Incident Scoring and Prioritization Schema,17.9 - Establish and Maintain Security Incident Thresholds,"IR-4: INCIDENT HANDLING
+IR-5: INCIDENT MONITORING
+IR-7 INCIDENT RESPONSE ASSISTANCE",10.8,Detection and analysis - create incidents based on high-quality alerts,Yes,n/a
+IR-4,Incident Response,N/A,N/A,IR-4: INCIDENT HANDLING,12.10,Detection and analysis - investigate an incident,n/a,n/a
+IR-5,Incident Response,19.8 - Create Incident Scoring and Prioritization Schema,"17.4 - Establish and Maintain an Incident Response Process
+17.9 - Establish and Maintain Security Incident Thresholds",IR-4: INCIDENT HANDLING,12.10,Detection and analysis - prioritize incidents,Yes,Yes
+IR-6,Incident Response,N/A,N/A,"IR-4: INCIDENT HANDLING
+IR-5: INCIDENT MONITORING
+IR-6: INCIDENT REPORTING",12.10,"Containment, eradication and recovery - automate the incident handling",Yes,Yes
+IR-7,Incident Response,N/A,17.8 - Conduct Post-Incident Reviews,IR-4 INCIDENT HANDLING,12.10,Post-incident activity - conduct lesson learned and retain evidence,n/a,n/a
+DS-1,DevOps Security,N/A,"16.10 - Apply Secure Design Principles in Application Architectures
+16.14 - Conduct Threat Modeling
+","SA-15: DEVELOPMENT PROCESS, STANDARDS, AND TOOLS","6.5
+12.2","Conduct threat modeling
+
+",n/a,n/a
+DS-2,DevOps Security,"18.3 - Verify That Acquired Software is Still Supported
+18.4 - Only Use Up-to-Date And Trusted Third-Party Components
+18.8 - Establish a Process to Accept and Address Reports of Software Vulnerabilities","16.4 - Establish and Manage an Inventory of Third-Party Software Components
+16.6 - Establish and Maintain a Severity Rating System and Process for Application Vulnerabilities
+16.11 - Leverage Vetted Modules or Services for Application Security Components","SA-12: SUPPLY CHAIN PROTECTION
+SA-15: DEVELOPMENT PROCESS, STANDARDS, AND TOOLS","6.3
+6.5",Ensure software supply chain security,n/a,n/a
+DS-3,DevOps Security,18.11 - Use Standard Hardening Configuration Templates for Databases,16.7 - Use Standard Hardening Configuration Templates for Application Infrastructure,"CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-6: LEAST PRIVILEGE","2.2
+6.3
+7.1
+
+",Secure DevOps infrastructure,n/a,n/a
+DS-4,DevOps Security,18.7 - Apply Static and Dynamic Code Analysis Tools,16.12 - Implement Code-Level Security Checks,SA-11: DEVELOPER TESTING AND EVALUATION,"6.3
+6.5",Integrate static application security testing into DevOps pipeline,n/a,n/a
+DS-5,DevOps Security,18.7 - Apply Static and Dynamic Code Analysis Tools,16.12 - Implement Code-Level Security Checks,SA-11: DEVELOPER TESTING AND EVALUATION,"6.3
+6.5",Integrate dynamic application security testing into DevOps pipeline,n/a,n/a
+DS-6,DevOps Security,"5.2 - Deploy System Configuration Management Tools
+5.3 - Securely Store Master Images
+5.4 - Deploy System Configuration Management Tools
+5.5 - Implement Automated Configuration Monitoring Systems
+18.1 - Establish Secure Coding Practices","7.5 - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+7.6 - Perform Automated Vulnerability Scans of Externally-Exposed Enterprise Assets
+7.7 - Remediate Detected Vulnerabilities
+16.1 - Establish and Maintain a Secure Application Development Process
+16.7 - Use Standard Hardening Configuration Templates for Application Infrastructure","CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-6: LEAST PRIVILEGE","6.1
+6.2
+6.3
+",Enforce security of workload throughout DevOps lifecycle,n/a,Yes
+DS-7,DevOps Security,"6.2 - Activate audit logging
+6.3 - Enable Detailed Logging
+6.5 - Central Log Management
+6.6 - Deploy SIEM or Log Analytic tool
+6.7 - Regularly Review Logs
+6.8 - Regularly Tune SIEM","8.2 Collect Audit Logs
+8.5 Collect Detailed Audit Logs
+8.9 Centralize Audit Logs
+8.11 Conduct Audit Log Reviews","AU-3: CONTENT OF AUDIT RECORDS
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING","10.1
+10.2
+10.3
+10.6",Enable logging and monitoring in DevOps,n/a,n/a
+GS-1,Governance and Strategy,17.2 - Deliver Training to Fill the Skills Gap,14.9 - Conduct Role-Specific Security Awareness and Skills Training,"PL-9: CENTRAL MANAGEMENT
+PM-10: SECURITY AUTHORIZATION PROCESS
+PM-13: INFORMATION SECURITY WORKFORCE	
+AT-1: SECURITY AWARENESS AND TRAINING POLICY AND PROCEDURES
+AT-3: ROLE-BASED SECURITY TRAINING
+",12.4,"Align organization roles, responsibilities and accountabilities",n/a,n/a
+GS-2,Governance and Strategy,"2.10 - Physically or Logically Segregate High Risk Applications
+14.1 - Segment the Network Based on Sensitivity
+",3.12 - Segment Data Processing and Storage Based on Sensitivity,"AC-4: INFORMATION FLOW ENFORCEMENT
+SC-7: BOUNDARY PROTECTION
+SC-2: APPLICATION PARTITIONING","1.2
+6.4
+",Define and implement enterprise segmentation/separation of duties strategy ,n/a,n/a
+GS-3,Governance and Strategy,"14.1 - Segment the Network Based on Sensitivity
+
+","3.1 - Establish and Maintain a Data Management Process
+3.7 - Establish and Maintain a Data Classification Scheme
+3.12 - Segment Data Processing and Storage Based on Sensitivity","AC-4: INFORMATION FLOW ENFORCEMENT
+SI-4: INFORMATION SYSTEM MONITORING
+SC-8: TRANSMISSION CONFIDENTIALITY AND INTEGRITY
+SC-12: CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+SC-17: PUBLIC KEY INFRASTRUCTURE CERTIFICATES
+SC-28: PROTECTION OF INFORMATION AT REST
+RA-2: SECURITY CATEGORIZATION","3.1
+3.2 
+3.3
+3.4
+3.5
+3.6
+3.7
+4.1
+A3.2",Define and implement data protection strategy,n/a,n/a
+GS-4,Governance and Strategy,12.1 - Maintain an Inventory of Network Boundaries,"12.2 - Establish and Maintain a Secure Network Infrastructure
+12.4 - Establish and Maintain Architecture Diagram(s)
+","AC-4: INFORMATION FLOW ENFORCEMENT
+AC-17: REMOTE ACCESS
+CA-3: SYSTEM INTERCONNECTIONS
+CM-1: CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
+CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+CM-7: LEAST FUNCTIONALITY
+SC-1: SYSTEM AND COMMUNICATIONS PROTECTION POLICY AND PROCEDURES
+SC-2: APPLICATION PARTITIONING
+SC-5: DENIAL OF SERVICE PROTECTION
+SC-7: BOUNDARY PROTECTION
+SC-20: SECURE NAME / ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)
+SC-21: SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)
+SI-4: INFORMATION SYSTEM MONITORING
+
+
+
+
+
+
+
+
+
+
+
+
+
+","1.1
+1.2
+1.3
+1.5
+4.1
+6.6
+11.4
+A2.1
+A2.2
+A2.3
+A3.2",Define and implement network security strategy,n/a,n/a
+GS-5,Governance and Strategy,5.1 - Establish Secure Configurations,"4.1 - Establish and Maintain a Secure Configuration Process
+4.2 - Establish and Maintain a Secure Configuration Process for Network Infrastructure","CA-1: SECURITY ASSESSMENT AND AUTHORIZATION POLICY AND PROCEDURES
+CA-8: PENETRATION TESTING
+CM-1: CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
+CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+RA-1: RISK ASSESSMENT POLICY AND PROCEDURES
+RA-3: RISK ASSESSMENT
+RA-5: VULNERABILITY SCANNING
+SI-1: SYSTEM AND INFORMATION INTEGRITY POLICY AND PROCEDURES
+SI-2: FLAW REMEDIATION
+SI-5: SECURITY ALERTS, ADVISORIES, AND DIRECTIVES","1.1
+1.2
+2.2
+6.1
+6.2
+6.5
+6.6
+11.2
+11.3
+11.5
+
+",Define and implement security posture management strategy,n/a,n/a
+GS-6,Governance and Strategy,"4.5 - Use Multifactor Authentication For All Administrative Access
+16.2 - Configure Centralized Point of Authentication","5.6 - Centralize Account Management
+6.5 - Require MFA for Administrative Access
+6.7 - Centralize Access Control","AC-1: ACCESS CONTROL POLICY AND PROCEDURES
+AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-4: INFORMATION FLOW ENFORCEMENT
+AC-5: SEPARATION OF DUTIES
+AC-6: LEAST PRIVILEGE
+IA-1: IDENTIFICATION AND AUTHENTICATION POLICY AND PROCEDURES
+IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+IA-4: IDENTIFIER MANAGEMENT
+IA-5: AUTHENTICATOR MANAGEMENT
+IA-8: IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)
+IA-9: SERVICE IDENTIFICATION AND AUTHENTICATION
+SI-4: INFORMATION SYSTEM MONITORING","7.1
+7.2
+7.3
+8.1
+8.2
+8.3
+8.4
+8.5
+8.6
+8.7
+8.8
+A3.4",Define and implement identity and privileged access strategy,n/a,n/a
+GS-7,Governance and Strategy,"6.2 -Activate audit logging
+6.3 - Enable Detailed Logging
+6.6 - Deploy SIEM or Log Analytic tool
+6.7 - Regularly Review Logs
+19.1 - Document Incident Response Procedures
+19.5 - Maintain Contact Information For Reporting Security Incidents
+19.7 - Conduct Periodic Incident Scenario Sessions for Personnel","8.1 - Establish and Maintain an Audit Log Management Process
+13.1 - Centralize Security Event Alerting
+17.2 - Establish and Maintain Contact Information for Reporting Security Incidents
+17.4 - Establish and Maintain an Incident Response Process
+17.7 - Conduct Routine Incident Response Exercises","AU-1: AUDIT AND ACCOUNTABILITY POLICY AND PROCEDURES
+IR-1: INCIDENT RESPONSE POLICY AND PROCEDURES
+IR-2: INCIDENT RESPONSE TRAINING
+IR-10: INTEGRATED INFORMATION SECURITY ANALYSIS TEAM
+SI-1: SYSTEM AND INFORMATION INTEGRITY POLICY AND PROCEDURES
+SI-5: SECURITY ALERTS, ADVISORIES, AND DIRECTIVES","10.1
+10.2
+10.3
+10.4
+10.5
+10.6
+10.7
+10.8
+10.9
+12.10
+A3.5","Define and implement logging, threat detection and incident response strategy",n/a,n/a
+GS-8,Governance and Strategy,10.1 - Ensure Regular Automated Backups,11.1 - Establish and Maintain a Data Recovery Process ,"CP-1: CONTINGENCY PLANNING POLICY AND PROCEDURES
+CP-9: INFORMATION SYSTEM BACKUP
+CP-10: INFORMATION SYSTEM RECOVERY AND RECONSTITUTION
+",3.4,Define and implement backup and recovery strategy,n/a,n/a
+GS-9,Governance and Strategy,"8.1 - Utilize Centrally Managed Anti-malware Software
+9.4 - Apply Host-Based Firewalls or Port-Filtering","4.4 - Implement and Manage a Firewall on Servers
+10.1 - Deploy and Maintain Anti-Malware Software","SI-2: FLAW REMEDIATION
+SI-3: MALICIOUS CODE PROTECTION
+SC-3: SECURITY FUNCTION ISOLATION
+","5.1
+5.2
+5.3
+5.4
+11.5",Define and implement endpoint security strategy,n/a,n/a
+GS-10,Governance and Strategy,"5.1 - Establish Secure Configurations
+18.1 - Establish Secure Coding Practices
+18.8 - Establish a Process to Accept and Address Reports of Software Vulnerabilities
+
+","4.1 - Establish and Maintain a Secure Configuration Process
+4.2 - Establish and Maintain a Secure Configuration Process for Network Infrastructure
+16.1 - Establish and Maintain a Secure Application Development Process
+16.2 - Establish and Maintain a Process to Accept and Address Software Vulnerabilities
+","SA-12: SUPPLY CHAIN PROTECTION
+SA-15: DEVELOPMENT PROCESS, STANDARDS, AND TOOLS
+CM-1: CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
+CM-2: BASELINE CONFIGURATION
+CM-6: CONFIGURATION SETTINGS
+AC-2: ACCOUNT MANAGEMENT
+AC-3: ACCESS ENFORCEMENT
+AC-6: LEAST PRIVILEGE
+SA-11: DEVELOPER TESTING AND EVALUATION
+AU-6: AUDIT REVIEW, ANALYSIS, AND REPORTING
+AU-12: AUDIT GENERATION
+SI-4: INFORMATION SYSTEM MONITORING","2.2
+6.1
+6.2
+6.3
+6.5
+7.1
+10.1
+10.2
+10.3
+10.6
+12.2",Define and implement DevOps security strategy,n/a,n/a

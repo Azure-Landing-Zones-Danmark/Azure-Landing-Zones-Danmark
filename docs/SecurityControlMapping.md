@@ -4,7 +4,7 @@ A detailed description of the Security Control Mapping Process can be found here
 
 ## What is Security Control Mapping and why perform it?
 
-Many organizations are required to comply with certain industry/regional or organizational regulations before adopting and onboarding Azure cloud services.  Security Control Mapping is the process of mapping these requirements to specific Azure controls and Azure Policies or initiatives to ensure the proper compliance and reporting can be enforced.
+Many organizations are required to comply with certain industry/regional or organizational regulations before adopting and onboarding Azure cloud services. Security Control Mapping is the process of mapping these requirements to specific Azure controls and Azure Policies or initiatives to ensure the proper compliance and reporting can be enforced.
 
 Security Control Mapping can greatly expedite onboarding of new services into Azure by providing clarity and transparency in the form of reporting on the compliance state of individual Azure Resources and by also enforcing a given state.
 
@@ -12,7 +12,7 @@ The best practice recommendation is to map the required compliance controls to A
 
 ![security control mapping](images/asb.securitycontrolmapping.coverage.png)
 
-The best practice recommendation is to map the required compliance controls to Azure Security Benchmark (ASB) and identify the custom set of the controls that are not covered by ASB. Performing the Security Control Benchmark process will help customers identify a gap or delta of controls that are not included in ASB.
+The best practice recommendation is to map the required compliance controls to Azure Security Benchmark (ASB) and identify a custom set of the controls that are not covered by ASB. Performing the Security Control Benchmark process will help customers identify a gap, or delta, of controls that are not included in ASB.
 
 ![security control mapping process](images/securitycontrolmapping.process.png)
 
