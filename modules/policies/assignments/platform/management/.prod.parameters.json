@@ -6,13 +6,13 @@
       "value": "Management"
     },
     "workspaceName": {
-      "value": "azure-landing-zones"
+      "value": "ondfisklz"
     },
     "automationAccountName": {
-      "value": "azure-landing-zones"
+      "value": "ondfisklz"
     },
     "dataRetention": {
-      "value": 365
+      "value": 30
     }
   }
 }
