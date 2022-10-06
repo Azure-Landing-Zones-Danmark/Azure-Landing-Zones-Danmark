@@ -9,6 +9,8 @@
 [![Policies](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml)
 [![Policy Remediation](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml)
 
+[![License](https://img.shields.io/badge/MIT-green)](https://github.com/Azure-Landing-Zones-Danmark/LICENSE)
+
 ## Repository for the Danish Azure Landing Zone accelerator
 
 ```txt
