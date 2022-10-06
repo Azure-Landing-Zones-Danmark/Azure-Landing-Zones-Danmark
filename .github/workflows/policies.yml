@@ -1,5 +1,5 @@
 ---
-name: Policies
+name: Deploy Policies
 
 on:  # yamllint disable-line rule:truthy
   push:

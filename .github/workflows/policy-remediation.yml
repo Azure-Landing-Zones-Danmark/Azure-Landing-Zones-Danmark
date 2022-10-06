@@ -1,5 +1,5 @@
 ---
-name: Policy Remediation
+name: Remediate Policies
 
 on:  # yamllint disable-line rule:truthy
   push:
