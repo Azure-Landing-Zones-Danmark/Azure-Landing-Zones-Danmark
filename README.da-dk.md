@@ -23,6 +23,7 @@
 |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
 
 ```
+![ALZ](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.png#lightbox)
 
 Dette er startsiden til projektet **Danmark ALZ**. Projektet er stadig under udarbejdelse.
 
@@ -36,7 +37,7 @@ Projektet vil indeholde følgende:
 1. Kortlægning af interessenter: En kortlægning af sikkerheds kontroller er en kontinuerlig process. Denne proces kræver en forankring i ens organisation samt et klarlagt ejerskab i forhold til hvem der håndtere vedligeholdelsen af ens sikkerheds opsætning, de politikker der skal følges og implementering af disse, afrapportering samt håndtering af hændelser/afvigelser.
 1. Alle politikker skal være kortlagt i forhold til det krav de opfylder, den opsætning de tilhører samt de kontroller disse er underlagt.
 1. De politikker der dannes i *Azure Policy* vil være under source code kontrol. Politikkerne vedligeholdes efter *DevOps* principper og sættes i værk ved hjælp af en *CI/CD* proces
-1. Dette projekt bygger på samt følger [Azure Landing Zones](https://github.com/Azure/Enterprise-Scale).
+1. Dette projekt bygger på, samt følger [Azure Landing Zones](https://github.com/Azure/Enterprise-Scale).
 1. Det umiddelbare formål med dette projekt er give adgang til en hurtigere implementering for kunder i Danmark som er i en kontrolleret industri. Men projektet kan selvfølgelig benyttes af alle kunder der ønsker en sådan opsætning.
 
 ## Implementerings metode
