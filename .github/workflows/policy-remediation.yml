@@ -1,5 +1,5 @@
 ---
-name: Policy Remediation
+name: Remediate Policies
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -25,7 +25,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: canary
       AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
-      MANAGEMENT_GROUP_ROOT: lz-canary
+      PREFIX: lz-canary
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,7 +42,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Prefix ${{ env.PREFIX }}
           azPSVersion: latest
 
   remediate_prod:
@@ -54,7 +54,7 @@ jobs:
     env:
       ENVIRONMENT_SHORT_NAME: prod
       AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
-      MANAGEMENT_GROUP_ROOT: lz
+      PREFIX: lz
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -71,5 +71,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -ManagementGroupRoot ${{ env.MANAGEMENT_GROUP_ROOT }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Start-PolicyRemediation.ps1 -Prefix ${{ env.PREFIX }}
           azPSVersion: latest

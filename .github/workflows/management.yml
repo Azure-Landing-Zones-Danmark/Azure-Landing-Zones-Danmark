@@ -1,5 +1,5 @@
 ---
-name: Management
+name: Deploy Platform Management Resources
 
 on:  # yamllint disable-line rule:truthy
   push:

@@ -1,5 +1,5 @@
 ---
-name: Management Groups
+name: Deploy Management Group Structure
 
 on:  # yamllint disable-line rule:truthy
   push:

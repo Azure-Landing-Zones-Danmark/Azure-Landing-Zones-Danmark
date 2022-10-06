@@ -6,7 +6,7 @@ param (
 
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupRoot
+    $Prefix
 )
 
 function Write-Compare ([Parameter(Mandatory = $true)][String]$Label, $Object, $SideIndicator, $Prefix) {
@@ -45,7 +45,7 @@ function Get-AssignmentGroup {
 
         [Parameter(Mandatory = $true)]
         [String]
-        $ManagementGroupRoot
+        $Prefix
     )
 
     $assignments = Get-ChildItem -Path "$Path/assignments" -Directory -Recurse | Sort-Object -Property FullName
@@ -54,24 +54,24 @@ function Get-AssignmentGroup {
     $assignments | Sort-Object FullName | ForEach-Object {
         @{
             Path              = $PSItem.FullName
-            ManagementGroupId = $PSItem.FullName.Replace($root.FullName, $ManagementGroupRoot) -replace "[\\/]", "-"
+            ManagementGroupId = $PSItem.FullName.Replace($root.FullName, $Prefix) -replace "[\\/]", "-"
         }
     }
 }
 
-$cloud = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
+$cloud = Get-AzPolicyDefinition -ManagementGroupName $Prefix -Custom | Select-Object -ExpandProperty Name
 $source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "definitions") -Pattern "resource .+ 'Microsoft.Authorization/policyDefinitions@.+' = \{\s+name: '(.+)'"
-Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $ManagementGroupRoot
+Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $Prefix
 
-$cloud = Get-AzPolicySetDefinition -ManagementGroupName $ManagementGroupRoot -Custom | Select-Object -ExpandProperty Name
+$cloud = Get-AzPolicySetDefinition -ManagementGroupName $Prefix -Custom | Select-Object -ExpandProperty Name
 $source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "initiatives") -Pattern "resource .+ 'Microsoft.Authorization/policySetDefinitions@.+' = \{\s+name: '(.+)'"
-Compare-Item -Source $source -Cloud $cloud -Label "Initiatives" -ManagementGroupId $ManagementGroupRoot
+Compare-Item -Source $source -Cloud $cloud -Label "Initiatives" -ManagementGroupId $Prefix
 
-Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
+Get-AssignmentGroup -Path $Path -Prefix $Prefix | ForEach-Object {
     $path = $PSItem.Path
     $managementGroupId = $PSItem.ManagementGroupId
     $managementGroup = Get-AzManagementGroup -GroupName $managementGroupId
     $cloud = Get-AzPolicyAssignment -Scope $managementGroup.Id | Where-Object { $PSItem.Properties.Scope -eq $managementGroup.Id } | Select-Object -ExpandProperty Name
     $source = Get-ResourceNameFromTemplate -Path $path -Pattern "policyAssignmentName: '(.+)'"
-    Compare-Item -Source $source -Cloud $cloud -Label "Assignments" -ManagementGroupId $ManagementGroupRoot
+    Compare-Item -Source $source -Cloud $cloud -Label "Assignments" -ManagementGroupId $Prefix
 }

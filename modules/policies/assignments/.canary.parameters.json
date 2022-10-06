@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logAnalytics": {
-      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourceGroups/Management/providers/Microsoft.OperationalInsights/workspaces/azure-landing-zones"
+      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourceGroups/Management/providers/Microsoft.OperationalInsights/workspaces/ondfisklzcanary"
     },
     "emailSecurityContact": {
       "value": "management@azurelandingzones.com"
@@ -12,7 +12,7 @@
       "value": "AzurePlatform"
     },
     "ddosPlan": {
-      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourceGroups/Management/providers/Microsoft.Network/ddosProtectionPlans/azure-landing-zones"
+      "value": "/subscriptions/0b3ff046-7854-4f2b-a83f-c45dfc89d22d/resourceGroups/Management/providers/Microsoft.Network/ddosProtectionPlans/ondfisklzcanary"
     }
   }
 }

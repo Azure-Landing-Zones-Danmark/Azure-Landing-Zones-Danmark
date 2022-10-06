@@ -10,7 +10,7 @@ param (
 
     [Parameter(Mandatory = $true)]
     [String]
-    $ManagementGroupRoot,
+    $Prefix,
 
     [Parameter(Mandatory = $true)]
     [ValidateSet("canary", "prod")]
@@ -29,7 +29,7 @@ function Join-Template {
 
         [Parameter(Mandatory = $true)]
         [String]
-        $ManagementGroupRoot,
+        $Prefix,
 
         [Parameter(Mandatory = $true)]
         [String]
@@ -42,7 +42,7 @@ function Join-Template {
     }
 
     process {
-        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = '$ManagementGroupRoot'" })
+        $params += (Get-Content -Path $Path | Where-Object { $PSItem -match "^param " } | ForEach-Object { $PSItem -replace "^param managementGroupId string$", "param managementGroupId string = '$ManagementGroupId'" -replace "^param root string$", "param root string = '$Prefix'" })
         Get-Content -Path $Path | Where-Object { $PSItem -ne "targetScope = 'managementGroup'" -and $PSItem -notmatch "^param " }
     }
 
@@ -78,7 +78,7 @@ function Deploy-Template {
 
         [Parameter(Mandatory = $true)]
         [String]
-        $ManagementGroupRoot,
+        $Prefix,
 
         [Parameter(Mandatory = $true)]
         [String]
@@ -98,7 +98,7 @@ function Deploy-Template {
     )
 
     $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
+    Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -Prefix $Prefix -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
     $parameters = Get-Parameter -Path $Path -Environment $Environment
     New-AzManagementGroupDeployment -Name $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters
 }
@@ -112,7 +112,7 @@ function Get-AssignmentGroup {
 
         [Parameter(Mandatory = $true)]
         [String]
-        $ManagementGroupRoot
+        $Prefix
     )
 
     $assignments = Get-ChildItem -Path $Path -Directory -Recurse | Sort-Object -Property FullName
@@ -121,7 +121,7 @@ function Get-AssignmentGroup {
     $assignments | Sort-Object FullName | ForEach-Object {
         @{
             Path              = $PSItem.FullName
-            ManagementGroupId = $PSItem.FullName.Replace($root.FullName, $ManagementGroupRoot) -replace "[\\/]", "-"
+            ManagementGroupId = $PSItem.FullName.Replace($root.FullName, $Prefix) -replace "[\\/]", "-"
         }
     }
 }
@@ -135,7 +135,7 @@ function Deploy-TemplateRecursive {
 
         [Parameter(Mandatory = $true)]
         [String]
-        $ManagementGroupRoot,
+        $Prefix,
 
         [Parameter(Mandatory = $true)]
         [String]
@@ -146,18 +146,18 @@ function Deploy-TemplateRecursive {
         $Environment
     )
 
-    Get-AssignmentGroup -Path $Path -ManagementGroupRoot $ManagementGroupRoot | ForEach-Object {
+    Get-AssignmentGroup -Path $Path -Prefix $Prefix | ForEach-Object {
         $path = $PSItem.Path
         $managementGroupId = $PSItem.ManagementGroupId
         Write-Verbose -Message "Deploying policy assignments to '$managementGroupId'"
-        Deploy-Template -Path $path -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
+        Deploy-Template -Path $path -Prefix $Prefix -ManagementGroupId $managementGroupId -Location $Location -DeploymentName "policy-assignments" -Environment $Environment
     }
 }
 
-Write-Verbose -Message "Deploying policy definitions to '$ManagementGroupRoot'"
-Deploy-Template -Path $Path/definitions -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
+Write-Verbose -Message "Deploying policy definitions to '$Prefix'"
+Deploy-Template -Path $Path/definitions -Prefix $Prefix -ManagementGroupId $Prefix -Location $Location -DeploymentName "policy-definitions" -Environment $Environment
 
-Write-Verbose -Message "Deploying initiatives to '$ManagementGroupRoot'"
-Deploy-Template -Path $Path/initiatives -ManagementGroupRoot $ManagementGroupRoot -ManagementGroupId $ManagementGroupRoot -Location $Location -DeploymentName "initiatives" -Environment $Environment
+Write-Verbose -Message "Deploying initiatives to '$Prefix'"
+Deploy-Template -Path $Path/initiatives -Prefix $Prefix -ManagementGroupId $Prefix -Location $Location -DeploymentName "initiatives" -Environment $Environment
 
-Deploy-TemplateRecursive -Path $Path/assignments -ManagementGroupRoot $ManagementGroupRoot -Location $Location -Environment $Environment
+Deploy-TemplateRecursive -Path $Path/assignments -Prefix $Prefix -Location $Location -Environment $Environment
