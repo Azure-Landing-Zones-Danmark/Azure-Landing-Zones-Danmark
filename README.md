@@ -13,15 +13,7 @@
 [![CodeOfConduct](https://img.shields.io/badge/Code--of--conduct-MS--Open--Source-red)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/CODE-OF-CONDUCT.md)
 ## Repository for a danish Azure Landing Zone accelerator
 
-```txt
-               _____                                   _               _      ______
-              |  __ \                                 | |        /\   | |    |___  /
-              | |  | | __ _ _ __  _ __ ___   __ _ _ __| | __    /  \  | |       / /
-              | |  | |/ _` | '_ \| '_ ` _ \ / _` | '__| |/ /   / /\ \ | |      / /
-              | |__| | (_| | | | | | | | | | (_| | |  |   <   / ____ \| |____ / /__
-              |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
-
-```
+![Heading](docs/images/azure-danmark-alz.jpg)
 ![ALZ](docs/images/Azure-landing-zone.png)
 
 This is a landing page and is still work in progress!
