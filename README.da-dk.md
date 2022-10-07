@@ -15,15 +15,7 @@
 
 ## Repository til en dansk Azure Landing Zone opsætning
 
-```txt
-               _____                                   _               _      ______
-              |  __ \                                 | |        /\   | |    |___  /
-              | |  | | __ _ _ __  _ __ ___   __ _ _ __| | __    /  \  | |       / /
-              | |  | |/ _` | '_ \| '_ ` _ \ / _` | '__| |/ /   / /\ \ | |      / /
-              | |__| | (_| | | | | | | | | | (_| | |  |   <   / ____ \| |____ / /__
-              |_____/ \__,_|_| |_|_| |_| |_|\__,_|_|  |_|\_\ /_/    \_\______/_____|
-
-```
+![Heading](docs/images/azure-danmark-alz.jpg)
 ![ALZ](docs/images/Azure-landing-zone.png)
 
 Dette er startsiden til projektet **Danmark ALZ**. Projektet er stadig under udarbejdelse.
