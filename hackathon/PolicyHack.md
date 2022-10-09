@@ -38,6 +38,9 @@
 
 You will be split into groups and can voulunteer to accept any of the following challenges. Alternatively you can agree your own challenge with the group using the outcome of the [Security Control Mapping process](../docs/Danmark-azure-security-benchmark-v3.0.xlsx)
 
+
+DOnøt be too ambitious! - just take a challenge you think you can complete in the time available
+
 ---
 &nbsp;
 
@@ -52,7 +55,7 @@ You will be split into groups and can voulunteer to accept any of the following 
 &nbsp;
 &nbsp;
 
-2. Create an Assignment Azure Security Baseline
+2. Create an Assignment Azure Security Benchmark
 
     - Create a CI/CD pipeline that assigns [Azure Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/overview) at the Pseudo root Group
     - consider how to handle [exceptions](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure) for this assignment
