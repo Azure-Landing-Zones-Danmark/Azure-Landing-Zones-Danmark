@@ -2,7 +2,8 @@
 
 ## Team 1
 
-LT-3 enables "Diagnostic Settings" logs. Log to a common Log Analytics workspace for event types which would be valuable for a central Audit/Compliance function. This would not include metrics. Would the metrics and all other event types be useful for the application team to retain within their Log Analytics workspace? How could you configure 2 types of settings enforcement? Are all resource types with "Diagnostic Settings" addressed?
+LT-3 enables "Diagnostic Settings" logs. Log to a common Log Analytics workspace for event types which would be valuable for a central Audit/Compliance function. This would not include metrics. Would the metrics and all other event types be useful for the application team to retain within their Log Analytics workspace?
+How could you configure 2 types of settings enforcement? Are all resource types with "Diagnostic Settings" addressed?
 
 ES-1 relates to deploying Defender for Endpoints to servers. Should you also consider AKS nodes? Containers or other types of compute? Where do you draw the line between this policy and one for other services?
 
@@ -32,7 +33,8 @@ IR-3 and IR-5 both require the same enforcement. Investigate if other services c
 
 Choose to complete either NS-2 and NS-8 or AM-2
 
-NS-2 would be useful on "CORP" landing zones where 2 actions need to happen on all deployed resources with public endpoints; 1) remove the public endpoint or enable the public endpoint firewall for the service, 2) ensure the service is deployed with a private endpoint enabled. Assume that the Landing Zone was provisioned with a VNET. Also investigate if are there additional services which can use private endpoints.
+NS-2 would be useful on "CORP" landing zones where 2 actions need to happen on all deployed resources with public endpoints; 1) remove the public endpoint or enable the public endpoint firewall for the service, 2) ensure the service is deployed with a private endpoint enabled.
+Assume that the Landing Zone was provisioned with a VNET. Also investigate if are there additional services which can use private endpoints.
 
 NS-8 requires at least TLS 1.2. Are there any other endpoint types which can enforce a specific TLS version?
 
