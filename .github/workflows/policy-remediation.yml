@@ -19,9 +19,9 @@ env:
 jobs:
   remediate_canary:
     name: Remediate Policies Canary
-    runs-on: ubuntu-latest
     environment:
       name: Canary
+    runs-on: ubuntu-latest
     env:
       ENVIRONMENT_SHORT_NAME: canary
       PREFIX: lz-canary
@@ -46,10 +46,10 @@ jobs:
 
   remediate_prod:
     name: Remediate Policies Production
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     environment:
       name: Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     env:
       ENVIRONMENT_SHORT_NAME: prod
       PREFIX: lz

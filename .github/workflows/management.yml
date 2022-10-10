@@ -30,6 +30,8 @@ env:
 jobs:
   validate_canary:
     name: Validate Canary
+    environment:
+      name: Canary
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT_SHORT_NAME: canary
@@ -54,6 +56,8 @@ jobs:
 
   validate_prod:
     name: Validate Production
+    environment:
+      name: Production
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT_SHORT_NAME: prod
@@ -78,13 +82,13 @@ jobs:
 
   deploy_canary:
     name: Deploy Canary
+    environment:
+      name: Canary
     runs-on: ubuntu-latest
     needs:
       - validate_canary
       - validate_prod
     if: success() && (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
-    environment:
-      name: Canary
     env:
       ENVIRONMENT_SHORT_NAME: canary
     steps:
@@ -104,13 +108,13 @@ jobs:
 
   deploy_prod:
     name: Deploy Production
+    environment:
+      name: Production
     runs-on: ubuntu-latest
     needs:
       - validate_canary
       - validate_prod
     if: success() && github.ref == 'refs/heads/main'
-    environment:
-      name: Production
     env:
       ENVIRONMENT_SHORT_NAME: prod
     steps:
