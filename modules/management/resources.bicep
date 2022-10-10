@@ -28,7 +28,7 @@ module automationAccount '../shared/automation-account.bicep' = {
   }
 }
 
-module ddosProtectionPlan '../shared/ddos-protection-plan.bicep' = {
+module ddosProtectionPlan '../shared/ddos-protection-plan.bicep' = if(false) {
   scope: resourceGroup(resourceGroupName)
   name: 'ddos-protection-plan-${uniqueString(resourceGroupName, ddosPlanName)}'
   dependsOn: [

@@ -30,8 +30,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,7 +39,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Build Bicep Templates
         run: |
@@ -55,7 +53,6 @@ jobs:
     if: success()
     env:
       ENVIRONMENT_SHORT_NAME: canary
-      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -65,7 +62,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Validate
         run: >
@@ -91,7 +88,6 @@ jobs:
     if: success()
     env:
       ENVIRONMENT_SHORT_NAME: prod
-      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -101,7 +97,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Validate
         run: >
@@ -130,7 +126,6 @@ jobs:
       name: Canary
     env:
       ENVIRONMENT_SHORT_NAME: canary
-      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -140,7 +135,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
         run: >
@@ -161,7 +156,6 @@ jobs:
       name: Production
     env:
       ENVIRONMENT_SHORT_NAME: prod
-      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -171,7 +165,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
         run: >

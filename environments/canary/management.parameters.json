@@ -6,16 +6,16 @@
             "value": "Management"
         },
         "automationAccountName": {
-            "value": "ondfisklzcanary"
+            "value": "ufstlzcanary"
         },
         "storageAccountName": {
-            "value": "ondfisklzcanary"
+            "value": "ufstlzcanary"
         },
         "workspaceName": {
-            "value": "ondfisklzcanary"
+            "value": "ufstlzcanary"
         },
         "ddosPlanName": {
-            "value": "ondfisklzcanary"
+            "value": "ufstlzcanary"
         }
     }
 }

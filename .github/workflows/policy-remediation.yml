@@ -24,7 +24,6 @@ jobs:
       name: Canary
     env:
       ENVIRONMENT_SHORT_NAME: canary
-      AZURE_SUBSCRIPTION_ID: e678d35b-125e-41ad-ae35-c04dfd4162e5
       PREFIX: lz-canary
     steps:
       - name: Checkout
@@ -35,7 +34,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
       - name: Remediate policies
@@ -53,7 +52,6 @@ jobs:
       name: Production
     env:
       ENVIRONMENT_SHORT_NAME: prod
-      AZURE_SUBSCRIPTION_ID: 8228ddb9-d118-47b4-b4e7-1f1de7667d4d
       PREFIX: lz
     steps:
       - name: Checkout
@@ -64,7 +62,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
       - name: Remediate policies
