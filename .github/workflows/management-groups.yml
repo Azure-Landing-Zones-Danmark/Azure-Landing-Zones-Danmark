@@ -27,30 +27,11 @@ env:
   LOCATION: westeurope
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
-
-      - name: Build Bicep Templates
-        run: |
-          az bicep build --file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
-
   validate_canary:
     name: Validate Canary
+    environment:
+      name: Canary
     runs-on: ubuntu-latest
-    needs:
-      - build
-    if: success()
     env:
       ENVIRONMENT_SHORT_NAME: canary
     steps:
@@ -82,10 +63,9 @@ jobs:
 
   validate_prod:
     name: Validate Production
+    environment:
+      name: Production
     runs-on: ubuntu-latest
-    needs:
-      - build
-    if: success()
     env:
       ENVIRONMENT_SHORT_NAME: prod
     steps:
@@ -117,13 +97,13 @@ jobs:
 
   deploy_canary:
     name: Deploy Canary
+    environment:
+      name: Canary
     runs-on: ubuntu-latest
     needs:
       - validate_canary
       - validate_prod
     if: success() && (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
-    environment:
-      name: Canary
     env:
       ENVIRONMENT_SHORT_NAME: canary
     steps:
@@ -147,13 +127,13 @@ jobs:
 
   deploy_prod:
     name: Deploy Production
+    environment:
+      name: Production
     runs-on: ubuntu-latest
     needs:
       - validate_canary
       - validate_prod
     if: success() && github.ref == 'refs/heads/main'
-    environment:
-      name: Production
     env:
       ENVIRONMENT_SHORT_NAME: prod
     steps:
