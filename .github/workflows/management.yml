@@ -40,7 +40,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Build Bicep Templates
         run: |
@@ -63,15 +63,15 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Validate
         run: |
-          az deployment sub validate --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub validate --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: |
-          az deployment sub what-if --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub what-if --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   validate_prod:
     name: Validate Production
@@ -90,15 +90,15 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Validate
         run: |
-          az deployment sub validate --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub validate --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: |
-          az deployment sub what-if --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub what-if --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   deploy_canary:
     name: Deploy Canary
@@ -120,11 +120,11 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
         run: |
-          az deployment sub create --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub create --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
   deploy_prod:
     name: Deploy Production
@@ -146,8 +146,8 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
         run: |
-          az deployment sub create --name management --subscription ${{ secrets.MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
+          az deployment sub create --name management --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }} --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
