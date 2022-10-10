@@ -36,10 +36,8 @@ NS-2 would be useful on "CORP" landing zones where 2 actions need to happen on a
 
 NS-8 requires at least TLS 1.2. Are there any other endpoint types which can enforce a specific TLS version?
 
-AM-2 states that "only approved cloud services can be used, by auditing and restricting which services users can provision in the environment." Many organisations in Demark are affected by a legal compliance requirement that requires them to only use "Core Online Services", defined by this list: https://www.microsoft.com/licensing/terms/product/PrivacyandSecurityTerms/EAEAS
+AM-2 states that "only approved cloud services can be used, by auditing and restricting which services users can provision in the environment." Many organizations in Demark are affected by a legal compliance requirement that requires them to only use "Core Online Services", defined by this list: <https://www.microsoft.com/licensing/terms/product/PrivacyandSecurityTerms/EAEAS>.
 
 Investigate of you can construct a policy which denies creating services from Resource Providers not contained in this list.
 
-
-
-Other organisations in Denmark must only allow data to reside in the EU. Consider creating a policy which denies creating resources in regions which are not located in the EU. This may also include "global" resources like CDN, Front Door, Azure DNS etc.
+Other organizations in Denmark must only allow data to reside in the EU. Consider creating a policy which denies creating resources in regions which are not located in the EU. This may also include "global" resources like CDN, Front Door, Azure DNS etc.
