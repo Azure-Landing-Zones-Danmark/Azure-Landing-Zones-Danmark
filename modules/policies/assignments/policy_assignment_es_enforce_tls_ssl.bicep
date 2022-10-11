@@ -2,17 +2,16 @@ targetScope = 'managementGroup'
 
 param location string = deployment().location
 param managementGroupId string
+param userAssignedManagedIdentity string
 
-module Enforce_TLS_SSL '../modules/initiative-and-role-assignment.bicep' = {
+module Enforce_TLS_SSL '../../shared/policy-assignment.bicep' = {
   name: 'Enforce-TLS-SSL-Assignment'
   scope: managementGroup(managementGroupId)
   params: {
     location: location
     policyAssignmentName: 'Enforce-TLS-SSL'
-    policySetDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policySetDefinitions', 'Enforce-EncryptTransit')
-    roleDefinitionIds: [
-      '/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635'
-    ]
+    policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policySetDefinitions', 'Enforce-EncryptTransit')
+    userAssignedManagedIdentity: userAssignedManagedIdentity
     parameters: {}
   }
 }
