@@ -47,7 +47,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Validate
-        run: |
+        run: >
           az deployment mg validate
           --name management
           --management-group-id lz-canary
@@ -56,7 +56,7 @@ jobs:
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
-        run: |
+        run: >
           az deployment mg what-if
           --name management
           --management-group-id lz-canary
@@ -123,7 +123,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
+        run: >
           az deployment mg create
           --name management
           --management-group-id lz-canary
@@ -154,7 +154,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        run: |
+        run: >
           az deployment mg create
           --name management
           --management-group-id lz
