@@ -2,11 +2,15 @@
 .DESCRIPTION
 Remove all policies in hierarchy up to and including prefix
 #>
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
 [CmdletBinding(SupportsShouldProcess)]
 param (
     [Parameter(Mandatory = $true, Position = 0)]
     [String]
-    $Prefix
+    $Prefix,
+
+    [switch]
+    $AssignmentsOnly
 )
 
 Get-AzManagementGroup | Where-Object Name -match "^$Prefix" | Sort-Object Name -Descending | ForEach-Object {
@@ -23,21 +27,23 @@ Get-AzManagementGroup | Where-Object Name -match "^$Prefix" | Sort-Object Name -
         Remove-AzPolicyAssignment -Name $PSItem.Name -Scope $scope | Out-Null
     }
 
-    Write-Output "Removing initiatives from management group '$displayName'..."
+    if (-not $AssignmentsOnly) {
+        Write-Output "Removing initiatives from management group '$displayName'..."
 
-    Get-AzPolicySetDefinition -ManagementGroupName $managementGroupName -Custom |
-    Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$managementGroupName/" |
-    ForEach-Object {
-        Write-Output "- $($PSItem.ResourceId)"
-        Remove-AzPolicySetDefinition -Name $PSItem.Name -ManagementGroupName $managementGroupName -Force | Out-Null
-    }
+        Get-AzPolicySetDefinition -ManagementGroupName $managementGroupName -Custom |
+        Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$managementGroupName/" |
+        ForEach-Object {
+            Write-Output "- $($PSItem.ResourceId)"
+            Remove-AzPolicySetDefinition -Name $PSItem.Name -ManagementGroupName $managementGroupName -Force | Out-Null
+        }
 
-    Write-Output "Removing policy definitions from management group '$displayName'..."
+        Write-Output "Removing policy definitions from management group '$displayName'..."
 
-    Get-AzPolicyDefinition -ManagementGroupName $managementGroupName -Custom |
-    Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$managementGroupName/" |
-    ForEach-Object {
-        Write-Output "- $($PSItem.ResourceId)"
-        Remove-AzPolicyDefinition -Name $PSItem.Name -ManagementGroupName $managementGroupName -Force | Out-Null
+        Get-AzPolicyDefinition -ManagementGroupName $managementGroupName -Custom |
+        Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$managementGroupName/" |
+        ForEach-Object {
+            Write-Output "- $($PSItem.ResourceId)"
+            Remove-AzPolicyDefinition -Name $PSItem.Name -ManagementGroupName $managementGroupName -Force | Out-Null
+        }
     }
 }
