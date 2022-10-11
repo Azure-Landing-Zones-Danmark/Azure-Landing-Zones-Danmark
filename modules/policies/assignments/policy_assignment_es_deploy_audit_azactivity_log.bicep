@@ -12,9 +12,6 @@ module Deploy_AzActivity_Log '../modules/policy-and-role-assignment.bicep' = {
     policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Audit-LogAnalytics')
     location: location
     parameters: {
-      effect: {
-        value: 'DeployIfNotExists'
-      }
       logAnalytics: {
         value: logAnalytics
       }
