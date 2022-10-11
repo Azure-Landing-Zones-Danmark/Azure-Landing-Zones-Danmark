@@ -2,6 +2,7 @@
 .DESCRIPTION
 Remove all policies in hierarchy up to and including prefix
 #>
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
 [CmdletBinding(SupportsShouldProcess)]
 param (
     [Parameter(Mandatory = $true, Position = 0)]
