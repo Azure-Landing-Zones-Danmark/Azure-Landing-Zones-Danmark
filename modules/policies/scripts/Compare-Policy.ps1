@@ -59,11 +59,15 @@ function Get-AssignmentGroup {
     }
 }
 
-$cloud = Get-AzPolicyDefinition -ManagementGroupName $Prefix -Custom | Select-Object -ExpandProperty Name
+$cloud = Get-AzPolicyDefinition -ManagementGroupName $Prefix -Custom |
+    Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$Prefix/" |
+    Select-Object -ExpandProperty Name
 $source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "definitions") -Pattern "resource .+ 'Microsoft.Authorization/policyDefinitions@.+' = \{\s+name: '(.+)'"
 Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $Prefix
 
-$cloud = Get-AzPolicySetDefinition -ManagementGroupName $Prefix -Custom | Select-Object -ExpandProperty Name
+$cloud = Get-AzPolicySetDefinition -ManagementGroupName $Prefix -Custom |
+    Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$Prefix/" |
+    Select-Object -ExpandProperty Name
 $source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "initiatives") -Pattern "resource .+ 'Microsoft.Authorization/policySetDefinitions@.+' = \{\s+name: '(.+)'"
 Compare-Item -Source $source -Cloud $cloud -Label "Initiatives" -ManagementGroupId $Prefix
 
