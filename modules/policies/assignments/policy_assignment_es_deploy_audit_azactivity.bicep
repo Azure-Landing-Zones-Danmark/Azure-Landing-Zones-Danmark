@@ -4,11 +4,11 @@ param location string = deployment().location
 param managementGroupId string
 param logAnalytics string
 
-module Deploy_Audit_AzActivity_Log '../modules/policy-and-role-assignment.bicep' = {
-  name: 'Deploy-Audit-AzActivity-Log-Assignment'
+module Deploy_Audit_AzActivity '../modules/policy-and-role-assignment.bicep' = {
+  name: 'Deploy-Audit-AzActivity-Assignment'
   scope: managementGroup(managementGroupId)
   params: {
-    policyAssignmentName: 'Deploy-Audit-AzActivity-Log'
+    policyAssignmentName: 'Deploy-Audit-AzActivity'
     policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Audit-LogAnalytics')
     location: location
     parameters: {
