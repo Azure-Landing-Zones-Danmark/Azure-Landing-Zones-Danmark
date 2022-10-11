@@ -48,18 +48,18 @@ jobs:
 
       - name: Validate
         run: |
-          az deployment sub validate
+          az deployment mg validate
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz-canary
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: |
-          az deployment sub what-if
+          az deployment mg what-if
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz-canary
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
@@ -84,18 +84,18 @@ jobs:
 
       - name: Validate
         run: >
-          az deployment sub validate
+          az deployment mg validate
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
 
       - name: What-if
         run: >
-          az deployment sub what-if
+          az deployment mg what-if
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
@@ -124,9 +124,9 @@ jobs:
 
       - name: Deploy
         run: |
-          az deployment sub create
+          az deployment mg create
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz-canary
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
@@ -155,9 +155,9 @@ jobs:
 
       - name: Deploy
         run: |
-          az deployment sub create
+          az deployment mg create
           --name management
-          --subscription ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          --management-group-id lz
           --location ${{ env.LOCATION }}
           --template-file ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/resources.bicep
           --parameters ${{ github.workspace }}/environments/${{ env.ENVIRONMENT_SHORT_NAME }}/${{ env.MODULE_NAME }}.parameters.json
