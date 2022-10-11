@@ -1,6 +1,6 @@
 targetScope = 'managementGroup'
 
-param location string
+param location string = deployment().location
 param managementGroupId string
 
 module Deny_Storage_http '../../shared/policy-assignment.bicep' = {
