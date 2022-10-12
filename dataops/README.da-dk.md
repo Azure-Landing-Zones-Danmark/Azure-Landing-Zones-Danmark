@@ -77,9 +77,11 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 
 ## Data Etablering ##
 
-Et **Projekt rum** er et isoleret miljø - typisk en resourcegruppe - hvor ejerskabet alene er en eller to AD-grupper.
+Et **Projekt rum** er et isoleret miljø - typisk en resourcegruppe - hvor ejerskabet alene er en, to eller tre AD-grupper.
 
 Det er muligt at bringe data ind i et projekt rum som er i read-only - det kræver et særskilt ejerskab og dermed AD-gruppe *"nr-2"*.
+
+Ligeledes er det muligt at skabe en forbindelse mellem projekt rum - det kræver ejerskab af AD-gruppe *"nr-3"*.
 
 Processen til at etablere data i et projekt rum vil bestå af en eller flere af følgende metoder:
 
@@ -87,16 +89,51 @@ Processen til at etablere data i et projekt rum vil bestå af en eller flere af 
 - Data generering af *fake data*
 - Anonymisering
 - Pseudonomisering
-- Kryptering + *Dictionary*
+- Kryptering + *Katalog*
 - *“Ingen sammenhæng”* datasæt
 
 Den eller de processer der skal benyttes afhænger af klassifikationen af de enkelte data elementer.
 
-## Data etablering - detaljeret information ##
+## Data etablering - mere detaljeret ##
+
+I denne sektion ser vi på hvilke mulige teknikker der kan bruges til at etablere et eller flere datasæt i et projekt rum.
+Man vil typisk bruge en kombination af disse.
+
+__Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovginingen__
 
 ### Kopi af produktions data ###
-### Data generering af *fake data* ###
+I denne proces kopieres et subset af produktions data til et projekt rum. Disse datasæt er som oftest markeret som *read-only*.
+Data Factory copy pipelines er et eksempel på en Azure service der kan bruges til dette.
+
+### Data generation of fake data ###
+
+
 ### Anonymisering ###
-### Pseudonomisering ###
+
+Anonymisering bruges når man kan *scramble* - typisk - et produktions datasæt og bringe det ind i et projekt rum.
+Denne teknik går ud på at skabe et datasæt som ikke bruges til en "gen-identifikation" af det oprindelig data.
+
+Selve *scramblingen* kan gøres på flere forskellig måder v.h.a. teknikker som *noise addition*, substituering, og aggregering.
+
+Men - igen - det er meget vigtigt at en anonymisering er en "en-vejs proces", hvor man vil og skal miste mulighederne for at komme tilbage
+til de oprindelige data. Ej heller må disse data kunne bruges til at "koble" sig op på andre produktions data.
+
+Azure Data Factory data flows kan bruges til dette v.h.a. udvidelsen ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+
+### Pseudomisering ###
+
+Pseudomisering er en proces lig anonymisring, men med en væsentlig forskel.
+Pseudomiserede data er data da har været *udsat* for en **de-identificerings** proces som har den egenskab at,
+de - om nødvendigt - kan blive **gen-identificeret**.
+
+Tokenization og hash funktioner kan bruges til a pseudomisere data.
+
+Azure Data Factory data flows kan bruges til dette..
+
 ### Kryptering + *Dictionary* ###
-### *“Ingen sammenhæng”* datasæt ###
+I dette tilfælde beskytter man data med en krypterings nøgle som kun de personer som er i *"Kataloget"* har adgang til.
+Denne nøgle opbevares typisk i en Azure KeyVault.
+
+__NOTE:Det er ikke en valid GDPR "beskyttelse" da vi kun beskytter adgangen til data og ikke data i sig selv__
+
+### *“Ingem sammehæng”* datasæt ###

@@ -73,9 +73,11 @@ In the different environments different tags are used to identify the nature of 
 
 ## Data Establishment ##
 
-Project room is an isolated environment with a one or two AD-Group ownership.
+Project room is an isolated environment with a one, two or three AD-Group ownership.
 
 Possible to make data sources brought into the project room read-only, in that case the ownership is the "second AD-group"
+
+Possible to make a integration connection between project rooms, in that case the ownership is the "third AD-group".In case
 
 The process of bringing Data into the project room is one (or more) of the following:
 
@@ -90,9 +92,42 @@ The process being used will depend on the classification of the different data e
 
 ## Data processing in detail ##
 
+In this section we discuss the different possibilities that you could use to establish one or more datasets in a project room.
+You will most likely use a combination of these.
+
+__Note: Pseudonymous data and anonymous data are treated differently under GDPR, the European Union data protection law__
+
 ### Copy of production data ###
+In this process you copy a subset of production data to the project room. These datasets will most likely be marked as *read-only*.
+An Azure service suitable for this task could be Data Factory copy pipelines.
+
 ### Data generation of fake data ###
+
+
 ### Anonymization ###
+Anonymization is used when you are able to *scramble* a production dataset and bring to the project room.
+Anonymous data is data that has been changed so that re-identification of the individual is impossible.
+
+The scrambling can be done in many ways, using different technics like noise addition, substitution, and aggregation.
+
+But - again - the important part to notice is that anonymization is a "one-way process", where you will and must loose
+the ability to trace back to the original data. You must also not be able to use these data to connect and use data from
+other production datasets.
+
+Azure Data Factory data flows can be used for this, with the extension of ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+
 ### Pseudonymization ###
+Pseudonymization is bascially the same process as Anonymization, but with one big difference.
+Pseudonymous data is data that has been **de-identified** from the data’s subject but can be **re-identified** as needed.
+
+Tokenization and hash functions can be used to pseudonymize data.
+
+Azure Data Factory data flows can be used for this.
+
 ### Encryption + *Dictionary* ###
+In this case you protect your data with an encryption key and only the people within the *Dictionary* of this data storage will
+be able to use the key. This key could be held in an Azure KeyVault.
+
+__NOTE:This is not a valid GDPR "protection" mechanism because it "only" protects the access to the data, not the data itself__
+
 ### *“No relations”* datasets ###
