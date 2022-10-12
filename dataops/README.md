@@ -99,6 +99,8 @@ You will most likely use a combination of these.
 
 __Note: Pseudonymous data and anonymous data are treated differently under GDPR, the European Union data protection law__
 
+Reference [EU-document](https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf)
+
 ### Copy of production data ###
 In this process you copy a subset of production data to the project room. These datasets will most likely be marked as *read-only*.
 An Azure service suitable for this task could be *Data Factory copy pipelines*.

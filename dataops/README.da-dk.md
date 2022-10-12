@@ -104,6 +104,8 @@ Man vil typisk bruge en kombination af disse.
 
 **Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovginingen**
 
+Reference [EU-dokument](https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf)
+
 ### Kopi af produktions data ###
 I denne proces kopieres et subset af produktions data til et projekt rum. Disse datasæt er som oftest markeret som *read-only*.
 *Data Factory copy pipelines* er et eksempel på en Azure service der kan bruges til dette.
