@@ -44,4 +44,4 @@ The current repository is built using *Microsoft Bicep*
 
 Their is a special section discussing how data can be handled within the **Danmark ALZ** framework.
 
-Please see the folder *dataops* [DataOps Guidelines](dataops/Readme.md)
+Please see the folder [DataOps](dataops/README.md)

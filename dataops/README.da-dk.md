@@ -1,5 +1,5 @@
 <!-- spell-checker:locale en,da-DK -->
-# Azure-Landing-Zones-Danmark
+# Azure-Landing-Zones-Danmark - DataOps
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![dk](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
@@ -9,7 +9,7 @@
 
 ## Repository til en dansk Azure Landing Zone opsætning - **Dataops sektion**
 
-![Heading](docs/images/azure-danmark-alz.jpg)
+![Heading](../docs/images/azure-danmark-alz.jpg)
 
 Dette er startsiden til **DataOps**. Projektet er stadig under udarbejdelse.
 
