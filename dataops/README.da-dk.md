@@ -89,7 +89,7 @@ Ligeledes er det muligt at skabe en forbindelse mellem projekt rum - det kræver
 Processen til at etablere data i et projekt rum vil bestå af en eller flere af følgende metoder:
 
 - Kopi af produktions data
-- Data generering af *fake data*
+- Generering af *fake data*
 - Anonymisering
 - Pseudonomisering
 - Kryptering + *Katalog*
@@ -108,8 +108,18 @@ Man vil typisk bruge en kombination af disse.
 I denne proces kopieres et subset af produktions data til et projekt rum. Disse datasæt er som oftest markeret som *read-only*.
 *Data Factory copy pipelines* er et eksempel på en Azure service der kan bruges til dette.
 
-### Data generation of fake data ###
+### Generering af fake data ###
 
+I denne proces dannes der *snyde(fake)* data ud fra de oplysninger man har om hvilken datatype, lændge, mønster disse passe til.
+Der er **vigtig** at disse data er *reele* fake data og ikke data der gøres *fake* ved hjælp af produktions datasæt.
+
+Oprettelse af fake datasæt er som oftest en vanskelig opgave, derfor giver det god mening at bruge tid på at denne proces har nogle om ikke alle
+af disse egenskaber: kan genrbuges, er automatisk, kan skaleres og kan kaldes via parametre.
+
+Eksempler på Python værktøjer der kan bruges til dette:
+- [Faker](https://github.com/joke2k/faker)
+- [SDV](https://sdv.dev/SDV/)
+- [Gretel](https://synthetics.docs.gretel.ai/en/stable/#)
 
 ### Anonymisering ###
 

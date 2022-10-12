@@ -105,6 +105,16 @@ An Azure service suitable for this task could be *Data Factory copy pipelines*.
 
 ### Data generation of fake data ###
 
+In this task you will create fake data based on the information of what datatype, length, pattern your data need to adhere to.
+It is **important** that this is *real* fake data and not data that is made *fake* from a production dataset.
+
+Creating a fake data set is most often a difficult task, so it is worth making sure that the process being established has
+some of the characteristics of being re-useable, automatic, scalable and parameterized.
+
+Tools to create fake data within a Python environment.
+- [Faker](https://github.com/joke2k/faker)
+- [SDV](https://sdv.dev/SDV/)
+- [Gretel](https://synthetics.docs.gretel.ai/en/stable/#)
 
 ### Anonymization ###
 Anonymization is used when you are able to *scramble* a production dataset and bring to the project room.
