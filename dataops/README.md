@@ -20,7 +20,7 @@ This part of the project will provide:
 
 ## Guiding principles
 
-1. **GDPR** rules must be adhered to
+1. **GDPR** rules/principles must be adhered to
 
 1. Data can only be used in the context of which they are collected
 
@@ -63,19 +63,19 @@ In the different environments different tags are used to identify the nature of 
 
 |Environment/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
-|Data-owner|N/A|Required|Required|Required|*name of owner*|
+|Data-owner|Audit|Required|Required|Required|*name of owner*|
 |Environment|Required|Required|Required|Required|Sandbox, Non-Prod, Prod, Conf|
 |Environment-type|N/A|Required|Required|Required|NonProd: Dev,Test,QA / Prod: PreProd,Prod|
 
-- Audit – it is required that a policy audit if encryption is in place but does not require it. This can be used for risk-assessment.
-- Required – the policy will prevent creating data storage of any kind without encryption.
+- Audit – *tag* should be in place.
+- Required – *tag* must be present, if not the deployment will be denied.
 - N/A – Not applicable
 
 ## Data Establishment ##
 
-Project room as an isolated environment with AD-Group ownership.
+Project room is an isolated environment with a one or two AD-Group ownership.
 
-Possible to make data sources brought into the project room read-only
+Possible to make data sources brought into the project room read-only, in that case the ownership is the "second AD-group"
 
 The process of bringing Data into the project room is one (or more) of the following:
 
