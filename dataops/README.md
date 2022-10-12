@@ -99,7 +99,7 @@ __Note: Pseudonymous data and anonymous data are treated differently under GDPR,
 
 ### Copy of production data ###
 In this process you copy a subset of production data to the project room. These datasets will most likely be marked as *read-only*.
-An Azure service suitable for this task could be Data Factory copy pipelines.
+An Azure service suitable for this task could be *Data Factory copy pipelines*.
 
 ### Data generation of fake data ###
 
@@ -114,7 +114,7 @@ But - again - the important part to notice is that anonymization is a "one-way p
 the ability to trace back to the original data. You must also not be able to use these data to connect and use data from
 other production datasets.
 
-Azure Data Factory data flows can be used for this, with the extension of ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+*Data Factory data flows* can be used for this, with the extension of ![Microsoft Presidio](https://microsoft.github.io/presidio/).
 
 ### Pseudonymization ###
 Pseudonymization is bascially the same process as Anonymization, but with one big difference.
@@ -122,11 +122,11 @@ Pseudonymous data is data that has been **de-identified** from the data’s subj
 
 Tokenization and hash functions can be used to pseudonymize data.
 
-Azure Data Factory data flows can be used for this.
+*Data Factory data flows* can be used for this.
 
 ### Encryption + *Dictionary* ###
 In this case you protect your data with an encryption key and only the people within the *Dictionary* of this data storage will
-be able to use the key. This key could be held in an Azure KeyVault.
+be able to use the key. This key could be held in an *Azure KeyVault*.
 
 __NOTE:This is not a valid GDPR "protection" mechanism because it "only" protects the access to the data, not the data itself__
 

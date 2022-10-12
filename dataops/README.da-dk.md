@@ -103,7 +103,7 @@ __Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR l
 
 ### Kopi af produktions data ###
 I denne proces kopieres et subset af produktions data til et projekt rum. Disse datasæt er som oftest markeret som *read-only*.
-Data Factory copy pipelines er et eksempel på en Azure service der kan bruges til dette.
+*Data Factory copy pipelines* er et eksempel på en Azure service der kan bruges til dette.
 
 ### Data generation of fake data ###
 
@@ -118,7 +118,7 @@ Selve *scramblingen* kan gøres på flere forskellig måder v.h.a. teknikker som
 Men - igen - det er meget vigtigt at en anonymisering er en "en-vejs proces", hvor man vil og skal miste mulighederne for at komme tilbage
 til de oprindelige data. Ej heller må disse data kunne bruges til at "koble" sig op på andre produktions data.
 
-Azure Data Factory data flows kan bruges til dette v.h.a. udvidelsen ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+*Data Factory data flows* kan bruges til dette v.h.a. udvidelsen ![Microsoft Presidio](https://microsoft.github.io/presidio/).
 
 ### Pseudomisering ###
 
@@ -128,12 +128,12 @@ de - om nødvendigt - kan blive **gen-identificeret**.
 
 Tokenization og hash funktioner kan bruges til a pseudomisere data.
 
-Azure Data Factory data flows kan bruges til dette..
+*Data Factory data flows* kan bruges til dette..
 
 ### Kryptering + *Dictionary* ###
 I dette tilfælde beskytter man data med en krypterings nøgle som kun de personer som er i *"Kataloget"* har adgang til.
-Denne nøgle opbevares typisk i en Azure KeyVault.
+Denne nøgle opbevares typisk i en *Azure KeyVault*.
 
 __NOTE:Det er ikke en valid GDPR "beskyttelse" da vi kun beskytter adgangen til data og ikke data i sig selv__
 
-### *“Ingem sammehæng”* datasæt ###
+### *“Ingen sammenhæng”* datasæt ###
