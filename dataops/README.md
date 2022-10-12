@@ -27,7 +27,6 @@ This part of the project will provide:
 1. Development **can not** be done on production data
 
 
-
 ## Requirements
 
 ### Environment description
@@ -73,7 +72,10 @@ In the different environments different tags are used to identify the nature of 
 
 ## Data Establishment ##
 
-Project room is an isolated environment with a one, two or three AD-Group ownership.
+Project room is an isolated environment with a one, two or three AD-Group ownership. The following figure shows an example of a project room in a dataplatform environment.
+
+![ProjectRoom](../docs/images/projectroom.jpg)
+
 
 Possible to make data sources brought into the project room read-only, in that case the ownership is the "second AD-group"
 
@@ -114,7 +116,7 @@ But - again - the important part to notice is that anonymization is a "one-way p
 the ability to trace back to the original data. You must also not be able to use these data to connect and use data from
 other production datasets.
 
-*Data Factory data flows* can be used for this, with the extension of ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+*Data Factory data flows* can be used for this, with the extension of [Microsoft Presidio](https://microsoft.github.io/presidio/)
 
 ### Pseudonymization ###
 Pseudonymization is bascially the same process as Anonymization, but with one big difference.
@@ -128,6 +130,6 @@ Tokenization and hash functions can be used to pseudonymize data.
 In this case you protect your data with an encryption key and only the people within the *Dictionary* of this data storage will
 be able to use the key. This key could be held in an *Azure KeyVault*.
 
-__NOTE:This is not a valid GDPR "protection" mechanism because it "only" protects the access to the data, not the data itself__
+**NOTE:This is not a valid GDPR "protection" mechanism because it "only" protects the access to the data, not the data itself**
 
 ### *“No relations”* datasets ###

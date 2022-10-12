@@ -78,6 +78,9 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 ## Data Etablering ##
 
 Et **Projekt rum** er et isoleret miljø - typisk en resourcegruppe - hvor ejerskabet alene er en, to eller tre AD-grupper.
+Følgende viser et eksempel på hvorledes et projekt rum kunne findes i data warehouse miljø.
+
+![ProjectRoom](../docs/images/projectroom.jpg)
 
 Det er muligt at bringe data ind i et projekt rum som er i read-only - det kræver et særskilt ejerskab og dermed AD-gruppe *"nr-2"*.
 
@@ -99,7 +102,7 @@ Den eller de processer der skal benyttes afhænger af klassifikationen af de enk
 I denne sektion ser vi på hvilke mulige teknikker der kan bruges til at etablere et eller flere datasæt i et projekt rum.
 Man vil typisk bruge en kombination af disse.
 
-__Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovginingen__
+**Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovginingen**
 
 ### Kopi af produktions data ###
 I denne proces kopieres et subset af produktions data til et projekt rum. Disse datasæt er som oftest markeret som *read-only*.
@@ -118,7 +121,7 @@ Selve *scramblingen* kan gøres på flere forskellig måder v.h.a. teknikker som
 Men - igen - det er meget vigtigt at en anonymisering er en "en-vejs proces", hvor man vil og skal miste mulighederne for at komme tilbage
 til de oprindelige data. Ej heller må disse data kunne bruges til at "koble" sig op på andre produktions data.
 
-*Data Factory data flows* kan bruges til dette v.h.a. udvidelsen ![Microsoft Presidio](https://microsoft.github.io/presidio/).
+*Data Factory data flows* kan bruges til dette v.h.a. udvidelsen [Microsoft Presidio](https://microsoft.github.io/presidio/).
 
 ### Pseudomisering ###
 
@@ -134,6 +137,6 @@ Tokenization og hash funktioner kan bruges til a pseudomisere data.
 I dette tilfælde beskytter man data med en krypterings nøgle som kun de personer som er i *"Kataloget"* har adgang til.
 Denne nøgle opbevares typisk i en *Azure KeyVault*.
 
-__NOTE:Det er ikke en valid GDPR "beskyttelse" da vi kun beskytter adgangen til data og ikke data i sig selv__
+**Note:Det er ikke en valid GDPR "beskyttelse" da vi kun beskytter adgangen til data og ikke data i sig selv**
 
 ### *“Ingen sammenhæng”* datasæt ###
