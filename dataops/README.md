@@ -3,45 +3,96 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![dk](https://img.shields.io/badge/lang-da--dk-green.svg)](README.da-dk.md)
 
-[![Lint and Test Code Base](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/linter.yml)
-[![Management Groups](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management-groups.yml)
-[![Management](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/management.yml)
-[![Policies](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policies.yml)
-[![Policy Remediation](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml/badge.svg)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/actions/workflows/policy-remediation.yml)
-
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/LICENSE)
 [![CodeOfConduct](https://img.shields.io/badge/Code--of--conduct-MS--Open--Source-red)](https://github.com/Azure-Landing-Zones-Danmark/Azure-Landing-Zones-Danmark/blob/main/CODE-OF-CONDUCT.md)
-## Repository for a danish Azure Landing Zone accelerator
 
-![Heading](docs/images/azure-danmark-alz.jpg)
-![ALZ](docs/images/Azure-landing-zone.png)
+## Repository for a danish Azure Landing Zone accelerator - **DataOps section**
 
-This is a landing page and is still work in progress!
+![Heading](../docs/images/azure-danmark-alz.jpg)
 
-This project will provide:
+This is a landing page for **dataops** and is still work in progress!
 
-- a repository of *Azure Policies* to create the foundation for a compliant *Azure Landing Zone* in a Danish context using the principles of [Policy-Driven-Governance](https://learn.microsoft.com/en-gb/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance)
-- A [Security Control Mapping Process](docs/SecurityControlMapping.md) to map every deployable *Azure Policy* back to a regulatory or organizational requirement and to ensure the mapping process has a owner
+This part of the project will provide:
+
+- a repository of *Azure Policies* that can be used to create the foundation for a compliant *Azure Landing Zone* with special focus of data.
+- Guidelines to the usage of data within different environments.
+- the data element be used as an example is a *Personal record* containing CPR number (danish personal identifier), first name, last name and address information
 
 ## Guiding principles
 
-1. Stakeholder mapping: Security Control Mapping is a continuous process and requires clear organizational ownership fo Compliance Domains, Policy application, Compliance reporting and remediation.
+1. **GDPR** rules must be adhered to
 
-1. All Policies mus be mapped to a requirement in the form of a Compliance domain and Control
+1. Data can only be used in the context of which they are collected
 
-1. *Azure Policy* must be under source control, managed using *DevOps* principals and deployed via a *CI/CD* process
+1. Development **can not** be done on production data
 
-1. This project builds on and is aligned to [Azure Landing Zones](https://github.com/Azure/Enterprise-Scale). The aim of this project is to provide solution accelerator for Danish Customers in regulated Industries
 
-## Implementation options
 
-The current repository is built using *Microsoft Bicep*
+## Requirements
 
-- Support for *Terraform* will be added later
-- The current repository is deployed using *GitHub Actions*, support for *Azure DevOps Pipelines* will be added later
+### Environment description
 
-## Data Operations Section
+To control the policies, we need to know which environment we are working in. Overall, this document works with 4 environments:
 
-Their is a special section discussing how data can be handled within the **Danmark ALZ** framework.
+- Sandbox – environment used to test functionality in a given service. These environments do NOT contain any business/company data.
+- Non-Production – environments that contain development, qa and test scenarios organized in project rooms (see below)
+- Production – environments supporting pre-prod and prod scenarios
+- Confidential – environments supporting data processing of highly confidential data.
 
-Please see the folder *dataops* [DataOps Guidelines](dataops/Readme.md)
+### Data classification lookup “database”
+
+A “database” where we can do lookups to find out if a given asset requires special treatment – see Data Establishment.
+
+## Environments and policies
+
+In the different environments certain politics regarding encryption should be enforced.
+
+|Environment/Policy|Sandbox|Non-Production|Production|Confidential|
+|---|---|---|---|---|
+|Encryption at Rest|Audit|Audit|Required|Required|
+|Encryption in Transit|Audit|Audit|Required|Required|
+|Encryption in Processing|N/A|N/A|N/A|Required|
+
+- Audit – it is required that a policy audit if encryption is in place but does not require it. This can be used for risk-assessment.
+- Required – the policy will prevent creating data storage of any kind without encryption.
+- N/A – Not applicable
+
+## Environments and Tags ##
+
+In the different environments different tags are used to identify the nature of environment.
+
+|Environment/Tag|Sandbox|Non-Production|Production|Confidential|Values|
+|---|---|---|---|---|---|
+|Data-owner|N/A|Required|Required|Required|*name of owner*|
+|Environment|Required|Required|Required|Required|Sandbox, Non-Prod, Prod, Conf|
+|Environment-type|N/A|Required|Required|Required|NonProd: Dev,Test,QA / Prod: PreProd,Prod|
+
+- Audit – it is required that a policy audit if encryption is in place but does not require it. This can be used for risk-assessment.
+- Required – the policy will prevent creating data storage of any kind without encryption.
+- N/A – Not applicable
+
+## Data Establishment ##
+
+Project room as an isolated environment with AD-Group ownership.
+
+Possible to make data sources brought into the project room read-only
+
+The process of bringing Data into the project room is one (or more) of the following:
+
+- Copy of production data
+- Data generation of fake data
+- Anonymization
+- Pseudonymization
+- Encryption + *Dictionary*
+- *“No relations”* datasets
+
+The process being used will depend on the classification of the different data elements.
+
+## Data processing in detail ##
+
+### Copy of production data ###
+### Data generation of fake data ###
+### Anonymization ###
+### Pseudonymization ###
+### Encryption + *Dictionary* ###
+### *“No relations”* datasets ###
