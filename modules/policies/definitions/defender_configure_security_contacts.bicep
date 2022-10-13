@@ -1,4 +1,5 @@
 targetScope = 'managementGroup'
+
 resource Deploy_Security_Contacts 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
   name: 'Deploy-Security-Contacts'
   properties: {

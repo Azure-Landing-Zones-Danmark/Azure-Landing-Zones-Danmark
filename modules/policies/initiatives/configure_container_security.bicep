@@ -22,6 +22,16 @@ resource Configure_Container_Security 'Microsoft.Authorization/policySetDefiniti
     }
     policyDefinitions: [
       {
+        policyDefinitionReferenceId: 'KubernetesClustersShouldBeAccessibleOnlyOverHttps'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d')
+        parameters: {
+          effect: {
+            value: 'Deny'
+          }
+        }
+        groupNames: []
+      }
+      {
         policyDefinitionReferenceId: 'ConfigureAzureArcEnabledKubernetesClustersToInstallMicrosoftDefenderForCloudExtension'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '708b60a6-d253-4fe0-9114-4be4c00f012c')
         parameters: {}
@@ -59,6 +69,26 @@ resource Configure_Container_Security 'Microsoft.Authorization/policySetDefiniti
         policyDefinitionReferenceId: 'ConfigureContainerRegistriesToDisableLocalAdminAccount'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '79fdfe03-ffcb-4e55-b4d0-b925b8241759')
         parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'KubernetesClusterShouldNotAllowPrivilegedContainers'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '95edb821-ddaf-4404-9732-666045e056b4')
+        parameters: {
+          effect: {
+            value: 'Deny'
+          }
+        }
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'KubernetesClustersShouldNotAllowContainerPrivilegeEscalation'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1c6e92c9-99f0-4e55-9cf2-0c234dc48f99')
+        parameters: {
+          effect: {
+            value: 'Deny'
+          }
+        }
         groupNames: []
       }
     ]

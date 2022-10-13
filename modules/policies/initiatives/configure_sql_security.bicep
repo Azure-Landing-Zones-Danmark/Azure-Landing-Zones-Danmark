@@ -168,6 +168,18 @@ resource Configure_SQL_Security 'Microsoft.Authorization/policySetDefinitions@20
         parameters: {}
         groupNames: []
       }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureSqlManagedInstanceToUseTheLatestTlsVersion'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Azure-SQL-Managed-Instance-Configure-Latest-TLS-Version')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderToBeEnabledOnSqlServers'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '36d49e87-48c4-4f2e-beed-ba4ed02b71f5')
+        parameters: {}
+        groupNames: []
+      }
     ]
     policyDefinitionGroups: []
   }

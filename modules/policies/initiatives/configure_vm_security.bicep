@@ -98,6 +98,12 @@ resource Configure_VM_Security 'Microsoft.Authorization/policySetDefinitions@202
         parameters: {}
         groupNames: []
       }
+      {
+        policyDefinitionReferenceId: 'ConfigureBackupOnVirtualMachinesWithoutAGivenTagToANewRecoveryServicesVaultWithADefaultPolicy'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86')
+        parameters: {}
+        groupNames: []
+      }
     ]
     policyDefinitionGroups: []
   }

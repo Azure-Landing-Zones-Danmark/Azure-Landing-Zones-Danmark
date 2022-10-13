@@ -111,6 +111,16 @@ resource Configure_Monitoring 'Microsoft.Authorization/policySetDefinitions@2021
         }
         groupNames: []
       }
+      {
+        policyDefinitionReferenceId: 'DeployConfigureDiagnosticSettingsForAzureKubernetesServiceToLogAnalyticsWorkspace'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6c66c325-74c8-42fd-a286-a74b0e2939d8')
+        parameters: {
+          logAnalytics: {
+            value: '[parameters(\'logAnalytics\')]'
+          }
+        }
+        groupNames: []
+      }
     ]
     policyDefinitionGroups: []
   }
