@@ -2,7 +2,7 @@ targetScope = 'managementGroup'
 
 param location string = deployment().location
 param managementGroupId string
-param userAssignedManagedIdentity string
+param userAssignedIdentity string
 
 param ddosPlan string
 
@@ -13,7 +13,7 @@ module Enable_DDoS_VNET '../../shared/policy-assignment.bicep' = {
     location: location
     policyAssignmentName: 'Enable-DDoS-VNET'
     policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d')
-    userAssignedManagedIdentity: userAssignedManagedIdentity
+    userAssignedIdentity: userAssignedIdentity
     parameters: {
       effect: {
         value: 'Modify'

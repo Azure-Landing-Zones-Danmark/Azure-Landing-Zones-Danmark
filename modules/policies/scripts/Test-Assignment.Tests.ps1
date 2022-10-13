@@ -1,7 +1,7 @@
 Describe "Test-Assignment" {
     $path = Resolve-Path "$PSScriptRoot/../assignments"
 
-    $testCases = Get-ChildItem -Path $path -Include *.bicep -Recurse | ForEach-Object {
+    $testCases = Get-ChildItem -Path $path -Filter *.bicep -Recurse | Where-Object Name -NE ".deploy.bicep" | ForEach-Object {
         @{
             Name     = $PSItem.FullName.Replace($path, "")
             FullName = $PSItem.FullName

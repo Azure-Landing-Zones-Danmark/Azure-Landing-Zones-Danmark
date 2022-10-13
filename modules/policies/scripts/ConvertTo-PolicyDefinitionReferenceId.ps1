@@ -4,8 +4,11 @@ function ConvertTo-PolicyDefinitionReferenceId {
         [String]
         $DisplayName
     )
-
-    [System.Globalization.CultureInfo]::InvariantCulture.TextInfo.ToTitleCase($DisplayName.ToLower()) -replace "\W+", ""
+    begin {}
+    process {
+        [System.Globalization.CultureInfo]::InvariantCulture.TextInfo.ToTitleCase($DisplayName.ToLower()) -replace "\W+", ""
+    }
+    end {}
 }
 
 Set-Alias -Name "polref" -Value "ConvertTo-PolicyDefinitionReferenceId"

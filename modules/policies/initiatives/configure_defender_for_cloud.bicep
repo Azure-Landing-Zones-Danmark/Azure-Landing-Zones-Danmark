@@ -1,7 +1,7 @@
 targetScope = 'managementGroup'
 
 resource Configure_Defender_For_Cloud 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
-  name: 'Configure_Defender_For_Cloud'
+  name: 'Configure-Defender-For-Cloud'
   properties: {
     policyType: 'Custom'
     displayName: 'Configure Microsoft Defender for Cloud'

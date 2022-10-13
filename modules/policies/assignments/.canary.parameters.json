@@ -14,7 +14,7 @@
     "ddosPlan": {
       "value": "/subscriptions/bd0c76c9-58a6-4c33-bda2-5dc48915446e/resourceGroups/Management/providers/Microsoft.Network/ddosProtectionPlans/ufstlzcanary"
     },
-    "userAssignedManagedIdentity": {
+    "userAssignedIdentity": {
       "value": "/subscriptions/bd0c76c9-58a6-4c33-bda2-5dc48915446e/resourceGroups/Management/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ufstlzcanary"
     }
   }

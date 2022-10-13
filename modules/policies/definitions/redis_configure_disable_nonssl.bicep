@@ -1,7 +1,7 @@
 targetScope = 'managementGroup'
 
-resource Redis_Configure_HTTPS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'Redis-Configure-HTTPS'
+resource Redis_Configure_Disable_NonSSL 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'Redis-Configure-Disable-NonSSL'
   properties: {
     displayName: 'Configure Azure Cache for Redis to use the latest TLS version'
     description: 'Disable non-ssl port.'

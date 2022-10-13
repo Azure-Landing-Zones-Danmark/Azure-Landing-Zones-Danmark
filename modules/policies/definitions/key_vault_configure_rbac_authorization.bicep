@@ -1,6 +1,6 @@
 targetScope = 'managementGroup'
 
-resource Authorization 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+resource Key_Vault_Configure_RBAC_Authorization 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
   name: 'Key-Vault-Configure-RBAC-Authorization'
   properties: {
     displayName: 'Configure Key Vaults to enable RBAC authorization'

@@ -2,7 +2,7 @@ targetScope = 'managementGroup'
 
 param location string = deployment().location
 param managementGroupId string
-param userAssignedManagedIdentity string
+param userAssignedIdentity string
 param resourceGroupName string
 param workspaceName string
 param automationAccountName string
@@ -15,7 +15,7 @@ module Deploy_Log_Analytics '../../../../shared/policy-assignment.bicep' = {
     location: location
     policyAssignmentName: 'Deploy-Log-Analytics'
     policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8e3e61b3-0b32-22d5-4edf-55f87fdb5955')
-    userAssignedManagedIdentity: userAssignedManagedIdentity
+    userAssignedIdentity: userAssignedIdentity
     parameters: {
       effect: {
         value: 'DeployIfNotExists'
