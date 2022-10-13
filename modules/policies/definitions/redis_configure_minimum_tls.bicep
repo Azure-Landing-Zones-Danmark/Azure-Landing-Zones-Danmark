@@ -4,9 +4,9 @@ resource Redis_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@
   name: 'Redis-Configure-Minimum-TLS'
   properties: {
     displayName: 'Configure Azure Cache for Redis to use the latest TLS version'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest TLS version.'
     metadata: {
       version: '1.0'
       category: 'Cache'
@@ -36,7 +36,7 @@ resource Redis_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@
             anyOf: [
               {
                 field: 'Microsoft.Cache/Redis/minimumTlsVersion'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.Cache/Redis/minimumTlsVersion'

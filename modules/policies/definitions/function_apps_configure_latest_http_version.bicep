@@ -4,9 +4,9 @@ resource Function_Apps_Configure_Latest_HTTP_Version 'Microsoft.Authorization/po
   name: 'Function-Apps-Configure-Latest-HTTP-Version'
   properties: {
     displayName: 'Configure Function apps to use the latest HTTP version'
+    description: 'Upgrade to the latest HTTP version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest HTTP version.'
     metadata: {
       version: '1.0'
       category: 'App Service'

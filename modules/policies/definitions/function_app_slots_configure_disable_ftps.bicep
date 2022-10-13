@@ -4,9 +4,9 @@ resource Function_App_Slots_Configure_Disable_FTPS 'Microsoft.Authorization/poli
   name: 'Function-App-Slots-Configure-Disable-FTPS'
   properties: {
     displayName: 'Configure Function app slots to disable FTP and FTPS'
+    description: 'Disable FTP and FTPS.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Disable FTP and FTPS.'
     metadata: {
       version: '1.0'
       category: 'App Service'

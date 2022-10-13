@@ -1,7 +1,7 @@
 targetScope = 'managementGroup'
 
-resource Configure_Encryption_in_Transit 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
-  name: 'Configure-Encryption-in-Transit'
+resource Configure_SQL_Security 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
+  name: 'Configure-SQL-Security'
   properties: {
     policyType: 'Custom'
     displayName: 'Configure SQL security'
@@ -10,7 +10,16 @@ resource Configure_Encryption_in_Transit 'Microsoft.Authorization/policySetDefin
       version: '1.0'
       category: 'SQL'
     }
-    parameters: {}
+    parameters: {
+      logAnalytics: {
+        type: 'String'
+        metadata: {
+          displayName: 'Primary Log Analytics workspace'
+          description: 'Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant \'Log Analytics Contributor\' permissions (or similar) to the policy assignment\'s principal ID.'
+          strongType: 'omsWorkspace'
+        }
+      }
+    }
     policyDefinitions: [
       {
         policyDefinitionReferenceId: 'ConfigureAzureSqlServerToDisablePublicNetworkAccess'
@@ -52,6 +61,26 @@ resource Configure_Encryption_in_Transit 'Microsoft.Authorization/policySetDefin
         policyDefinitionReferenceId: 'DeployAdvancedDataSecurityOnSqlServers'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6134c3db-786f-471e-87bc-8f479dc890f6')
         parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureSqlServersToHaveAuditingEnabledToLogAnalyticsWorkspace'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '25da7dfb-0666-4a15-a8f5-402127efd8bb')
+        parameters: {
+          logAnalyticsWorkspaceId: {
+            value: '[parameters(\'logAnalytics\')]'
+          }
+        }
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureSynapseWorkspacesToHaveAuditingEnabledToLogAnalyticsWorkspace'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '32ba8d30-07c0-4136-ab18-9a11bf4a67b7')
+        parameters: {
+          logAnalyticsWorkspaceId: {
+            value: '[parameters(\'logAnalytics\')]'
+          }
+        }
         groupNames: []
       }
       {
@@ -100,6 +129,42 @@ resource Configure_Encryption_in_Transit 'Microsoft.Authorization/policySetDefin
       {
         policyDefinitionReferenceId: 'ConfigureAzureDatabaseForMysqlToUseTheLatestTlsVersion'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'MySQL-Configure-Minimum-TLS')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForPostgresqlToDisablePublicNetworkAccess'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'PostgreSQL-Configure-Disable-Public-Network-Access')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForPostgresqlFlexibleServerToDisablePublicNetworkAccess'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'PostgreSQL-Flex-Configure-Disable-Public-Network-Access')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForMariadbToDisablePublicNetworkAccess'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'MariaDB-Configure-Disable-Public-Network-Access')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForMysqlToDisablePublicNetworkAccess'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'MySQL-Configure-Disable-Public-Network-Access')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForMysqlFlexibleServerToDisablePublicNetworkAccess'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'MySQL-Flex-Configure-Disable-Public-Network-Access')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'DeploySqlDbTransparentDataEncryption'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '86a912f6-9a06-4e26-b447-11b16ba8659f')
         parameters: {}
         groupNames: []
       }

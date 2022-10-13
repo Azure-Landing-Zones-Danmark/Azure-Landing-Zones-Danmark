@@ -49,7 +49,7 @@ resource Deny_Sql_minTLS 'Microsoft.Authorization/policyDefinitions@2021-06-01' 
             anyOf: [
               {
                 field: 'Microsoft.Sql/servers/minimalTlsVersion'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.Sql/servers/minimalTlsVersion'

@@ -7,6 +7,7 @@ resource Key_Vault_Configure_Purge_Protection 'Microsoft.Authorization/policyDef
     description: 'Enables purge protection'
     mode: 'Indexed'
     metadata: {
+      version: '1.0'
       category: 'Key Vault'
     }
     parameters: {

@@ -143,8 +143,18 @@ resource Configure_Defender_For_Cloud 'Microsoft.Authorization/policySetDefiniti
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'securityEmailContact'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-ASC-SecurityContacts')
+        policyDefinitionReferenceId: 'EnableSecurityCentersAutoProvisioningOfTheLogAnalyticsAgentOnYourSubscriptionsWithCustomWorkspace'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8e7da0a5-0a0e-4bbc-bfc0-7773c018b616')
+        parameters: {
+          logAnalytics: {
+            value: '[parameters(\'logAnalytics\')]'
+          }
+        }
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'DeploySecurityContacts'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Security-Contacts')
         parameters: {
           emailSecurityContact: {
             value: '[parameters(\'emailSecurityContact\')]'

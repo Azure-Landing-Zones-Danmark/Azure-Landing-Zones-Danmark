@@ -7,6 +7,7 @@ resource Authorization 'Microsoft.Authorization/policyDefinitions@2021-06-01' = 
     description: 'Enables soft delete'
     mode: 'Indexed'
     metadata: {
+      version: '1.0'
       category: 'Key Vault'
     }
     parameters: {

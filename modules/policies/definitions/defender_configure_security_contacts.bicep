@@ -1,13 +1,13 @@
 targetScope = 'managementGroup'
-resource Deploy_ASC_SecurityContacts 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'Deploy-ASC-SecurityContacts'
+resource Deploy_Security_Contacts 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'Deploy-Security-Contacts'
   properties: {
     policyType: 'Custom'
-    mode: 'All'
     displayName: 'Deploy Security Contacts'
+    mode: 'All'
     description: 'Deploy Security Contacts'
     metadata: {
-      version: '1.0.0'
+      version: '1.0'
       category: 'Security Center'
     }
     parameters: {

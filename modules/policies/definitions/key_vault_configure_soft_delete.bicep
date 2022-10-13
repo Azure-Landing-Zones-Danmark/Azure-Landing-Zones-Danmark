@@ -7,6 +7,7 @@ resource Key_Vault_Configure_Soft_Delete 'Microsoft.Authorization/policyDefiniti
     description: 'Enables soft delete'
     mode: 'Indexed'
     metadata: {
+      version: '1.0'
       category: 'Key Vault'
     }
     parameters: {

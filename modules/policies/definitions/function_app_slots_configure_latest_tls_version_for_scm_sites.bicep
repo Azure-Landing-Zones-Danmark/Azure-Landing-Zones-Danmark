@@ -4,9 +4,9 @@ resource Function_App_Slots_Configure_Latest_TLS_Version_For_SCM_Sites 'Microsof
   name: 'Function-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites'
   properties: {
     displayName: 'Configure Function app slots to use the latest TLS version for SCM sites'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest TLS version.'
     metadata: {
       version: '1.0'
       category: 'App Service'

@@ -1,11 +1,11 @@
 targetScope = 'managementGroup'
 
-resource Configure_Kubernetes_Security 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
-  name: 'Configure-Kubernetes-Security'
+resource Configure_Container_Security 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
+  name: 'Configure-Container-Security'
   properties: {
     policyType: 'Custom'
-    displayName: 'Configure security settings for Azure Kubernetes Service'
-    description: 'This policy initiative is a group of policies that configures security settings Azure Kubernetes Service.'
+    displayName: 'Configure security settings for containers'
+    description: 'This policy initiative is a group of policies that configures security settings for containers.'
     metadata: {
       version: '1.0'
       category: 'Kubernetes'
@@ -40,16 +40,6 @@ resource Configure_Kubernetes_Security 'Microsoft.Authorization/policySetDefinit
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'DeployConfigureDiagnosticSettingsForAzureKubernetesServiceToLogAnalyticsWorkspace'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '6c66c325-74c8-42fd-a286-a74b0e2939d8')
-        parameters: {
-          logAnalytics: {
-            value: '[parameters(\'logAnalytics\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
         policyDefinitionReferenceId: 'ConfigureAzureKubernetesServiceClustersToEnableDefenderProfile'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '64def556-fbad-4622-930e-72d1d5589bf5')
         parameters: {
@@ -57,6 +47,18 @@ resource Configure_Kubernetes_Security 'Microsoft.Authorization/policySetDefinit
             value: '[parameters(\'logAnalytics\')]'
           }
         }
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureContainerRegistriesToDisableAnonymousAuthentication'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'cced2946-b08a-44fe-9fd9-e4ed8a779897')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureContainerRegistriesToDisableLocalAdminAccount'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '79fdfe03-ffcb-4e55-b4d0-b925b8241759')
+        parameters: {}
         groupNames: []
       }
     ]

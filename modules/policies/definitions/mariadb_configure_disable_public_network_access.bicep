@@ -1,9 +1,9 @@
 targetScope = 'managementGroup'
-resource MariaDB_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'MariaDB-Configure-Minimum-TLS'
+resource MariaDB_Configure_Disable_Public_Network_Access 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'MariaDB-Configure-Disable-Public-Network-Access'
   properties: {
-    displayName: 'Configure Azure Database for MariaDB to use the latest TLS version'
-    description: 'Upgrade to the latest TLS version.'
+    displayName: 'Configure Azure Database for MariaDB to disable public network access'
+    description: 'Disables the public network access for Azure Database for MariaDB.'
     policyType: 'Custom'
     mode: 'Indexed'
     metadata: {
@@ -30,12 +30,12 @@ resource MariaDB_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinition
           {
             anyOf: [
               {
-                field: 'Microsoft.DBforMariaDB/servers/minimalTlsVersion'
+                field: 'Microsoft.DBforMariaDB/servers/publicNetworkAccess'
                 exists: false
               }
               {
-                field: 'Microsoft.DBforMariaDB/servers/minimalTlsVersion'
-                notEquals: 'TLS1_2'
+                field: 'Microsoft.DBforMariaDB/servers/publicNetworkAccess'
+                notEquals: 'Disabled'
               }
             ]
           }
@@ -45,8 +45,8 @@ resource MariaDB_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinition
         effect: '[parameters(\'effect\')]'
         details: [
           {
-            field: 'Microsoft.DBforMariaDB/servers/minimalTlsVersion'
-            value: 'TLS1_2'
+            field: 'Microsoft.DBforMariaDB/servers/publicNetworkAccess'
+            value: 'Disabled'
           }
         ]
       }

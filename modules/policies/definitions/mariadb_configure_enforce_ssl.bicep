@@ -4,9 +4,9 @@ resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinition
   name: 'MariaDB-Configure-Enforce-SSL'
   properties: {
     displayName: 'Configure Azure Database for MariaDB to enforce SSL'
+    description: 'Enforces SSL for Azure Database for MariaDB.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Enforces SSL for Azure Database for MariaDB.'
     metadata: {
       version: '1.0'
       category: 'SQL'
@@ -30,13 +30,13 @@ resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinition
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.DBforMariaDB/servers/sslEnforcement'
+            equals: 'Microsoft.DBforMariaDB/servers'
           }
           {
             anyOf: [
               {
                 field: 'Microsoft.DBforMariaDB/servers/sslEnforcement'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.DBforMariaDB/servers/sslEnforcement'

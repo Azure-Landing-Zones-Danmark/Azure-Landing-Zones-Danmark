@@ -4,9 +4,9 @@ resource PostgreSQL_Configure_Disable_Public_Network_Access 'Microsoft.Authoriza
   name: 'PostgreSQL-Configure-Disable-Public-Network-Access'
   properties: {
     displayName: 'Configure Azure Database for PostgreSQL to disable public network access'
+    description: 'Disables the public network access for Azure Database for PostgreSQL.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Disables the public network access for Azure Database for PostgreSQL.'
     metadata: {
       version: '1.0'
       category: 'SQL'
@@ -30,13 +30,13 @@ resource PostgreSQL_Configure_Disable_Public_Network_Access 'Microsoft.Authoriza
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.DBforPostgreSQL/servers/publicNetworkAccess'
+            equals: 'Microsoft.DBforPostgreSQL/servers'
           }
           {
             anyOf: [
               {
                 field: 'Microsoft.DBforPostgreSQL/servers/publicNetworkAccess'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.DBforPostgreSQL/servers/publicNetworkAccess'

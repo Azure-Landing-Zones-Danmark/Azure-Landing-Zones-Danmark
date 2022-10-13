@@ -50,7 +50,7 @@ resource Deny_MySql_http 'Microsoft.Authorization/policyDefinitions@2021-06-01' 
             anyOf: [
               {
                 field: 'Microsoft.DBforMySQL/servers/sslEnforcement'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.DBforMySQL/servers/sslEnforcement'

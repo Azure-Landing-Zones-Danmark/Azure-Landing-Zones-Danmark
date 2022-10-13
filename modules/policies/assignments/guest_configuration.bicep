@@ -2,6 +2,7 @@ targetScope = 'managementGroup'
 
 param location string = deployment().location
 param managementGroupId string
+param userAssignedManagedIdentity string
 
 module Guest_Configuration '../../shared/policy-assignment.bicep' = {
   name: 'Guest-Configuration-Assignment'
@@ -10,6 +11,7 @@ module Guest_Configuration '../../shared/policy-assignment.bicep' = {
     location: location
     policyAssignmentName: 'Guest-Configuration'
     policyDefinitionId: tenantResourceId('Microsoft.Authorization/policySetDefinitions', '12794019-7a00-42cf-95c2-882eed337cc8')
+    userAssignedManagedIdentity: userAssignedManagedIdentity
     parameters: {}
   }
 }

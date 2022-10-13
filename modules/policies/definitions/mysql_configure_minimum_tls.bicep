@@ -2,10 +2,10 @@ targetScope = 'managementGroup'
 resource MySQL_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
   name: 'MySQL-Configure-Minimum-TLS'
   properties: {
-    policyType: 'Custom'
-    mode: 'Indexed'
     displayName: 'Configure Azure Database for MySQL to use the latest TLS version'
     description: 'Upgrade to the latest TLS version.'
+    policyType: 'Custom'
+    mode: 'Indexed'
     metadata: {
       version: '1.0'
       category: 'SQL'

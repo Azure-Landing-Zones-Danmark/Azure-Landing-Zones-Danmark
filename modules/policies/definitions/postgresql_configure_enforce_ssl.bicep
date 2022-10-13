@@ -4,9 +4,9 @@ resource PostgreSQL_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinit
   name: 'PostgreSQL-Configure-Enforce-SSL'
   properties: {
     displayName: 'Configure Azure Database for PostgreSQL to enforce SSL'
+    description: 'Enforces SSL for Azure Database for PostgreSQL.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Enforces SSL for Azure Database for PostgreSQL.'
     metadata: {
       version: '1.0'
       category: 'SQL'
@@ -30,13 +30,13 @@ resource PostgreSQL_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinit
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.DBforPostgreSQL/servers/sslEnforcement'
+            equals: 'Microsoft.DBforPostgreSQL/servers'
           }
           {
             anyOf: [
               {
                 field: 'Microsoft.DBforPostgreSQL/servers/sslEnforcement'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.DBforPostgreSQL/servers/sslEnforcement'

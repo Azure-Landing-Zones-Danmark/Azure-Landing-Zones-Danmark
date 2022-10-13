@@ -4,9 +4,9 @@ resource MySQL_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinitions@
   name: 'MySQL-Configure-Enforce-SSL'
   properties: {
     displayName: 'Configure Azure Database for MySQL to enforce SSL'
+    description: 'Enforces SSL for Azure Database for MySQL.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Enforces SSL for Azure Database for MySQL.'
     metadata: {
       version: '1.0'
       category: 'SQL'
@@ -30,13 +30,13 @@ resource MySQL_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinitions@
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.DBforMySQL/servers/sslEnforcement'
+            equals: 'Microsoft.DBforMySQL/servers'
           }
           {
             anyOf: [
               {
                 field: 'Microsoft.DBforMySQL/servers/sslEnforcement'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.DBforMySQL/servers/sslEnforcement'

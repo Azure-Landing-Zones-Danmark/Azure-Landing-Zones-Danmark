@@ -35,7 +35,7 @@ resource ResourceType_Configure_Property 'Microsoft.Authorization/policyDefiniti
             anyOf: [
               {
                 field: 'Microsoft.Web/sites/httpsOnly'
-                exists: 'false'
+                exists: false
               }
               {
                 field: 'Microsoft.Web/sites/httpsOnly'

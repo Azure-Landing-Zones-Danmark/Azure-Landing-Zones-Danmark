@@ -4,9 +4,9 @@ resource App_Service_Apps_Configure_Latest_TLS_Version_For_SCM_Sites 'Microsoft.
   name: 'App-Service-Apps-Configure-Latest-TLS-Version-For-SCM-Sites'
   properties: {
     displayName: 'Configure App Service apps to use the latest TLS version for SCM sites'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest TLS version.'
     metadata: {
       version: '1.0'
       category: 'App Service'

@@ -1,15 +1,15 @@
 targetScope = 'managementGroup'
 
-resource Redis_Configure_HTTPS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'Redis-Configure-HTTPS'
+resource Azure_SQL_Configure_Latest_TLS_Version 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'Azure-SQL-Configure-Latest-TLS-Version'
   properties: {
-    displayName: 'Configure Azure Cache for Redis to use the latest TLS version'
-    description: 'Disable non-ssl port.'
+    displayName: 'Configure Azure SQL Database to use the latest TLS version'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
     metadata: {
       version: '1.0'
-      category: 'Cache'
+      category: 'SQL'
     }
     parameters: {
       effect: {
@@ -30,17 +30,17 @@ resource Redis_Configure_HTTPS 'Microsoft.Authorization/policyDefinitions@2021-0
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.Cache/redis'
+            equals: 'Microsoft.Sql/servers'
           }
           {
             anyOf: [
               {
-                field: 'Microsoft.Cache/Redis/enableNonSslPort'
+                field: 'Microsoft.Sql/servers/minimalTlsVersion'
                 exists: false
               }
               {
-                field: 'Microsoft.Cache/Redis/enableNonSslPort'
-                equals: 'true'
+                field: 'Microsoft.Sql/servers/minimalTlsVersion'
+                notEquals: '1.2'
               }
             ]
           }
@@ -50,14 +50,14 @@ resource Redis_Configure_HTTPS 'Microsoft.Authorization/policyDefinitions@2021-0
         effect: '[parameters(\'effect\')]'
         details: {
           roleDefinitionIds: [
-            '/providers/microsoft.authorization/roleDefinitions/e0f68234-74aa-48ed-b826-c38b57376e17'
+            '/providers/microsoft.authorization/roleDefinitions/6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437'
           ]
           conflictEffect: 'audit'
           operations: [
             {
               operation: 'addOrReplace'
-              field: 'Microsoft.Cache/redis/enableNonSslPort'
-              value: false
+              field: 'Microsoft.Sql/servers/minimalTlsVersion'
+              value: '1.2'
             }
           ]
         }

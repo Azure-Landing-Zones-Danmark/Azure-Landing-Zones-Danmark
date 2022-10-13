@@ -151,36 +151,6 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'KeyVaultDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '55615ac9-af46-4a59-874e-391cc3dfb490')
-        parameters: {
-          effect: {
-            value: '[parameters(\'KeyVaultPublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
-        policyDefinitionReferenceId: 'SqlServerDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1b8ca024-1d5c-4dec-8995-b1a932b41780')
-        parameters: {
-          effect: {
-            value: '[parameters(\'SqlServerPublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
-        policyDefinitionReferenceId: 'StorageDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '34c877ad-507e-4c82-993e-3452a6e0ad3c')
-        parameters: {
-          effect: {
-            value: '[parameters(\'StoragePublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
         policyDefinitionReferenceId: 'AKSDenyPaasPublicIP'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '040732e8-d947-40b8-95d6-854c95024bf8')
         parameters: {

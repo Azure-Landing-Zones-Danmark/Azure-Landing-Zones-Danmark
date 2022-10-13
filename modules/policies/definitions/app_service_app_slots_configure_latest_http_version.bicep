@@ -4,9 +4,9 @@ resource App_Service_App_Slots_Configure_Latest_HTTP_Version 'Microsoft.Authoriz
   name: 'App-Service-App-Slots-Configure-Latest-HTTP-Version'
   properties: {
     displayName: 'Configure App Service app slots to use the latest HTTP version'
+    description: 'Upgrade to the latest HTTP version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest HTTP version.'
     metadata: {
       version: '1.0'
       category: 'App Service'

@@ -10,7 +10,7 @@ resource Configure_Storage_Security 'Microsoft.Authorization/policySetDefinition
       version: '1.0'
       category: 'Storage'
     }
-      parameters: {}
+    parameters: {}
     policyDefinitions: [
       {
         policyDefinitionReferenceId: 'ConfigureSecureTransferOfDataOnAStorageAccount'
@@ -27,6 +27,12 @@ resource Configure_Storage_Security 'Microsoft.Authorization/policySetDefinition
       {
         policyDefinitionReferenceId: 'ConfigureStorageAccountsToDisablePublicNetworkAccess'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'a06d0189-92e8-4dba-b0c4-08d7669fce7d')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'DeployAdvancedThreatProtectionOnStorageAccounts'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '361c2074-3595-4e5d-8cab-4f21dffc835c')
         parameters: {}
         groupNames: []
       }

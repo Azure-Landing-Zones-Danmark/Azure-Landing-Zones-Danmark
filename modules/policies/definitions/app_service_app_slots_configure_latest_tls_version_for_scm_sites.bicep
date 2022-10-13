@@ -4,9 +4,9 @@ resource App_Service_App_Slots_Configure_Latest_TLS_Version_For_SCM_Sites 'Micro
   name: 'App-Service-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites'
   properties: {
     displayName: 'Configure App Service app slots to use the latest TLS version for SCM sites'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Upgrade to the latest TLS version.'
     metadata: {
       version: '1.0'
       category: 'App Service'
