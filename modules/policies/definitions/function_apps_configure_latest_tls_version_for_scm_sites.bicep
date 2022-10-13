@@ -4,7 +4,7 @@ resource Function_Apps_Configure_Latest_TLS_Version_For_SCM_Sites 'Microsoft.Aut
   name: 'Function-Apps-Configure-Latest-TLS-Version-For-SCM-Sites'
   properties: {
     displayName: 'Configure Function apps to use the latest TLS version for SCM sites'
-    policyType: 'BuiltIn'
+    policyType: 'Custom'
     mode: 'Indexed'
     description: 'Upgrade to the latest TLS version.'
     metadata: {

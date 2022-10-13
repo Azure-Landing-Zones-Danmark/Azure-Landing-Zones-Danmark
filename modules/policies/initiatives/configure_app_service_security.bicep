@@ -5,10 +5,37 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
   properties: {
     policyType: 'Custom'
     displayName: 'Configure security settings for App Services'
-    description: 'This policy initiative is a group of policies that configures security settings App Services'
-    metadata: {}
+    description: 'This policy initiative is a group of policies that configures security settings App Services.'
+    metadata: {
+      version: '1.0'
+      category: 'App Service'
+    }
     parameters: {}
     policyDefinitions: [
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToUseTheLatestTlsVersion'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ae44c1d1-0df2-4ca9-98fa-a3d3ae5b409d')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToUseTheLatestTlsVersion'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '014664e7-e348-41a3-aeb9-566e4ff6a9df')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToUseTheLatestTlsVersion'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1f01f1c7-539c-49b5-9ef4-d4ffa37d22e0')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToUseTheLatestTlsVersion'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'fa3a6357-c6d6-4120-8429-855577ec0063')
+        parameters: {}
+        groupNames: []
+      }
       {
         policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToDisableLocalAuthenticationForScmSites'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '2c034a29-2a5f-4857-b120-f800fe5549ae')
@@ -34,73 +61,115 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service app slots to disable FTP and FTPS'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service_App-Slots-Configure-Disable-FTPS')
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToOnlyBeAccessibleOverHttps'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '0f98368e-36bc-4716-8ac2-8f8067203b63')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service app slots to use the latest HTTP version'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToOnlyBeAccessibleOverHttps'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'a096cbd0-4693-432f-9374-682f485f23f3')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToOnlyBeAccessibleOverHttps'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'a18c77f2-3d6d-497a-9f61-849a7e8a3b79')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToTurnOffRemoteDebugging'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'a5e3fe8f-f6cd-4f1d-bbf6-c749754a724b')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToTurnOffRemoteDebugging'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'cca5adfe-626b-4cc6-8522-f5b6ed2391bd')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToTurnOffRemoteDebugging'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '25a5046c-c423-4805-9235-e844ae9ef49b')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToTurnOffRemoteDebugging'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '70adbb40-e092-42d5-a6f8-71c540a5efdb')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToDisableFtpAndFtps'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-App-Slots-Configure-Disable-FTPS')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToUseTheLatestHttpVersion'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-App-Slots-Configure-Latest-HTTP-Version')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service app slots to use the latest TLS version for SCM sites'
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToUseTheLatestTlsVersionForScmSites'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service apps to disable FTP and FTPS'
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToDisableFtpAndFtps'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App_Service_Apps_Configure_Disable_FTPS')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service apps to use the latest HTTP version'
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToUseTheLatestHttpVersion'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-Apps-Configure-Latest-HTTP-Version')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure App Service apps to use the latest TLS version for SCM sites'
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToUseTheLatestTlsVersionForScmSites'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-Apps-Configure-Latest-TLS-Version-For-SCM-Sites')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function app slots to disable FTP and FTPS'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToDisableFtpAndFtps'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function_App-Slots-Configure-Disable-FTPS')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function app slots to use the latest HTTP version'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToUseTheLatestHttpVersion'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-App-Slots-Configure-Latest-HTTP-Version')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function app slots to use the latest TLS version for SCM sites'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToUseTheLatestTlsVersionForScmSites'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function apps to disable FTP and FTPS'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToDisableFtpAndFtps'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function_Apps_Configure_Disable_FTPS')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function apps to use the latest HTTP version'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToUseTheLatestHttpVersion'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-Apps-Configure-Latest-HTTP-Version')
         parameters: {}
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'Configure Function apps to use the latest TLS version for SCM sites'
+        policyDefinitionReferenceId: 'ConfigureFunctionAppsToUseTheLatestTlsVersionForScmSites'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-Apps-Configure-Latest-TLS-Version-For-SCM-Sites')
         parameters: {}
         groupNames: []

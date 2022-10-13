@@ -4,8 +4,8 @@ resource Deploy_ASC_SecurityContacts 'Microsoft.Authorization/policyDefinitions@
   properties: {
     policyType: 'Custom'
     mode: 'All'
-    displayName: 'Deploy Azure Security Center Security Contacts'
-    description: 'Deploy Azure Security Center Security Contacts'
+    displayName: 'Deploy Security Contacts'
+    description: 'Deploy Security Contacts'
     metadata: {
       version: '1.0.0'
       category: 'Security Center'
@@ -70,7 +70,6 @@ resource Deploy_ASC_SecurityContacts 'Microsoft.Authorization/policyDefinitions@
             ]
           }
           deployment: {
-            location: 'northeurope'
             properties: {
               mode: 'incremental'
               parameters: {
@@ -79,7 +78,7 @@ resource Deploy_ASC_SecurityContacts 'Microsoft.Authorization/policyDefinitions@
                 }
               }
               template: {
-                '$schema': 'https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#'
+                '$schema': 'https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#'
                 contentVersion: '1.0.0.0'
                 parameters: {
                   emailSecurityContact: {

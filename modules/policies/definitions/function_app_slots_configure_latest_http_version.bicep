@@ -4,7 +4,7 @@ resource Function_App_Slots_Configure_Latest_HTTP_Version 'Microsoft.Authorizati
   name: 'Function-App-Slots-Configure-Latest-HTTP-Version'
   properties: {
     displayName: 'Configure Function app slots to use the latest HTTP version'
-    policyType: 'BuiltIn'
+    policyType: 'Custom'
     mode: 'Indexed'
     description: 'Upgrade to the latest HTTP version.'
     metadata: {

@@ -1,0 +1,158 @@
+targetScope = 'managementGroup'
+
+resource Configure_Defender_For_Cloud 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
+  name: 'Configure_Defender_For_Cloud'
+  properties: {
+    policyType: 'Custom'
+    displayName: 'Configure Microsoft Defender for Cloud'
+    description: 'Configure Microsoft Defender for Cloud.'
+    metadata: {
+      version: '1.0.0'
+      category: 'Security Center'
+    }
+    parameters: {
+      emailSecurityContact: {
+        type: 'string'
+        metadata: {
+          displayName: 'Security contacts email address'
+          description: 'Provide email address for Microsoft Defender for Cloud contact details'
+        }
+      }
+      logAnalytics: {
+        type: 'String'
+        metadata: {
+          displayName: 'Primary Log Analytics workspace'
+          description: 'Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant \'Log Analytics Contributor\' permissions (or similar) to the policy assignment\'s principal ID.'
+          strongType: 'omsWorkspace'
+        }
+      }
+      exportResourceGroupName: {
+        type: 'String'
+        metadata: {
+          displayName: 'Resource Group name for the export to Log Analytics workspace configuration'
+          description: 'The resource group name where the export to Log Analytics workspace configuration is created. If you enter a name for a resource group that doesn\'t exist, it\'ll be created in the subscription. Note that each resource group can only have one export to Log Analytics workspace configured.'
+        }
+      }
+      exportResourceGroupLocation: {
+        type: 'String'
+        metadata: {
+          displayName: 'Resource Group location for the export to Log Analytics workspace configuration'
+          description: 'The location where the resource group and the export to Log Analytics workspace configuration are created.'
+        }
+      }
+    }
+    policyDefinitions: [
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForOpenSourceRelationalDatabasesToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '44433aa3-7ec2-4002-93ea-65c65ff0310a')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForServersToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '8e86a5b6-b9bd-49d1-8e21-4bb8a0862222')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForSqlServersOnMachinesToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '50ea7265-7d8c-429e-9a7d-ca1f410191c3')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForAppServiceToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b40e7bcd-a1e5-47fe-b9cf-2f534d0bfb7d')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForStorageToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '74c30959-af11-47b3-9ed2-a26e03f427a3')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureMicrosoftDefenderForContainersToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c9ddb292-b203-4738-aead-18e2716e858f')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForKeyVaultsToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1f725891-01c0-420a-9059-4fa46cb770b7')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForDnsToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '2370a3c1-4a25-4283-a91a-c9c1a145fb2f')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForResourceManagerToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b7021b2b-08fd-4dc0-9de7-3c6ece09faf9')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderForAzureSqlDatabaseToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'b99b73e7-074b-4089-9395-b7236f094491')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureMicrosoftDefenderForAzureCosmosDbToBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '82bf5b87-728b-4a74-ba4d-6123845cf542')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureAzureDefenderToBeEnabledOnSqlManagedInstances'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'c5a62eb0-c65a-4220-8a4d-f70dd4ca95dd')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureMicrosoftDefenderForSqlToBeEnabledOnSynapseWorkspaces'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '951c1558-50a5-4ca3-abb6-a93e3e2367a6')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'ConfigureMicrosoftDefenderForApisShouldBeEnabled'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'e54d2be9-5f2e-4d65-98e4-4f0e670b23d6')
+        parameters: {}
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'DeployExportToLogAnalyticsWorkspaceForMicrosoftDefenderForCloudData'
+        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'ffb6f416-7bd2-4488-8828-56585fef2be9')
+        parameters: {
+          resourceGroupName: {
+            value: '[parameters(\'exportResourceGroupName\')]'
+          }
+          resourceGroupLocation: {
+            value: '[parameters(\'exportResourceGroupLocation\')]'
+          }
+          workspaceResourceId: {
+            value: '[parameters(\'logAnalytics\')]'
+          }
+        }
+        groupNames: []
+      }
+      {
+        policyDefinitionReferenceId: 'securityEmailContact'
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-ASC-SecurityContacts')
+        parameters: {
+          emailSecurityContact: {
+            value: '[parameters(\'emailSecurityContact\')]'
+          }
+        }
+        groupNames: []
+      }
+    ]
+    policyDefinitionGroups: null
+  }
+}

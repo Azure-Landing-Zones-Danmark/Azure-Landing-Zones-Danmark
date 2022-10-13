@@ -4,9 +4,9 @@ resource App_Service_Apps_Configure_Disable_FTPS 'Microsoft.Authorization/policy
   name: 'App-Service-Apps-Configure-Disable-FTPS'
   properties: {
     displayName: 'Configure App Service apps to disable FTP and FTPS'
-    policyType: 'BuiltIn'
+    policyType: 'Custom'
     mode: 'Indexed'
-    description: 'Disable FTP and FTPS'
+    description: 'Disable FTP and FTPS.'
     metadata: {
       version: '1.0'
       category: 'App Service'
