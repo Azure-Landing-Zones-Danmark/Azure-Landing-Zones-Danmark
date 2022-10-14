@@ -152,3 +152,15 @@ Denne nøgle opbevares typisk i en *Azure KeyVault*.
 **Note:Det er ikke en valid GDPR "beskyttelse" da vi kun beskytter adgangen til data og ikke data i sig selv**
 
 ### *“Ingen sammenhæng”* datasæt ###
+
+I denne tilgang opretter man data, der indeholder "rigtige" værdi på kolonneniveau. Så hvis man har en postnummerkolonne, så ville postnumrene være rigtige, og hvis man i samme *record* har et gadenavn, ville det også være rigtige vejnavne.
+
+*"Ingen sammenhæng"* tilgangen kommer i spil, når man ser på data på rækkeniveau. I ovenstående tilfælde vil gadenavnet og postnummeret give mening i det virkelige liv hver for sig. Men den givne adresse (kombinationen af gadenavn og postnummer) vil ikke eksistere i det virkelige liv (fysisk).
+
+Metoden går derfor ud på at bygge et sæt af forskellige datasæt, der repræsenterer elementer, der er for eksempel er personrelaterede fra open source-datasæt - med alle vejnavne i Danmark i ét datasæt, alle postnumre i et andet datasæt, de 20 mest almindelige fornavne i et tredje datasæt , de 20 mest brugte efternavne i et fjerde datasæt og så videre.
+
+Og når man så opretter en ny række, skal man tilfældigt tage værdier fra disse datasæt, når man opretter et element som en "person.
+
+Reference til åbne datasæt:
+Danske adresser: https://dataforsyningen.dk/data/4729#data
+Danske navne: https://www.dst.dk/da/Statistik/emner/borgere/navne/navne-i-hele-befolkningen
