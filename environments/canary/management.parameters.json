@@ -2,19 +2,25 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "managementSubscriptionId": {
+            "value": "bd0c76c9-58a6-4c33-bda2-5dc48915446e"
+        },
         "resourceGroupName": {
             "value": "Management"
         },
         "automationAccountName": {
             "value": "ufstlzcanary"
         },
+        "ddosPlanName": {
+            "value": "ufstlzcanary"
+        },
         "storageAccountName": {
             "value": "ufstlzcanary"
         },
-        "workspaceName": {
+        "userAssignedIdentityName": {
             "value": "ufstlzcanary"
         },
-        "ddosPlanName": {
+        "workspaceName": {
             "value": "ufstlzcanary"
         }
     }

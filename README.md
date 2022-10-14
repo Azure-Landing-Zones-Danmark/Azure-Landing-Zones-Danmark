@@ -40,3 +40,9 @@ The current repository is built using *Microsoft Bicep*
 
 - Support for *Terraform* will be added later
 - The current repository is deployed using *GitHub Actions*, support for *Azure DevOps Pipelines* will be added later
+
+## Data Operations Section
+
+Their is a special section discussing how data can be handled within the **Danmark ALZ** framework.
+
+Please see the folder [DataOps](dataops/README.md)

@@ -10,6 +10,20 @@ All definitions and initiatives are deployed to the root management group.
 
 All definitions, initiatives, and assignments are built using atomic management group level templates written i *bicep*.
 
+## Definitions/Initiatives/Assignments
+
+All definitions, initiatives, and policy assignments are built as atomic Bicep templates.
+
+They can be individually deployed and tested like so:
+
+```bash
+az deployment mg create --management-group-id lz-canary --location westeurope --template-file my-policy.bicep
+```
+
+```powershell
+New-AzManagementGroupDeployment -ManagementGroupId lz-canary -Location westeurope -TemplateFile my-policy.bicep
+```
+
 ## Phased Rollout Strategy - Continuous Deployment
 
 A policy change in a PR will be deployed and validated in the *CANARY* management group structure.

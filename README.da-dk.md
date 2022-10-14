@@ -39,3 +39,9 @@ Det nuværende repository gør brug af *Microsoft Bicep* i forhold til IaC (Infr
 
 - Understøttelse for *Terraform* tilføjes senere
 - Det nuværende repository vedligeholdes ved brug af GitHub actions. Understøttelse for *Azure DevOPs Pipelines* tilføjes senere
+
+## Data Operations Sektion
+
+Der er en special secktion for hvorledes data kan håndteres indenfor rammerne af **Danmark ALZ**.
+
+Yderligere information kan findes i folderen *dataops* [DataOps Guidelines](dataops/Readme.da-dk.md)
