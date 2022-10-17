@@ -161,6 +161,8 @@ Metoden går derfor ud på at bygge et sæt af forskellige datasæt, der repræs
 
 Og når man så opretter en ny række, skal man tilfældigt tage værdier fra disse datasæt, når man opretter et element som en "person.
 
-Reference til åbne datasæt:
+*Reference til åbne datasæt:*
+
 Danske adresser: https://dataforsyningen.dk/data/4729#data
+
 Danske navne: https://www.dst.dk/da/Statistik/emner/borgere/navne/navne-i-hele-befolkningen
