@@ -67,12 +67,12 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 
 |Miljø/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
-|Data-owner|Audit|Required|Required|Required|*navn på data-ejer*|
-|Environment|Required|Required|Required|Required|Sandbox, Non-Prod, Prod, Conf|
-|Environment-type|Audit|Required|Required|Required|Sandbox/ NonProd: Dev,Test,QA / Prod: PreProd,Prod/ Confidential|
+|Data-owner|Required|Required|Required|Required|*navn på data-ejer*|
+|Environment|Required|Required|Required|Required|Sandbox, Non-Production, Production, Confidential|
+|Environment-type|Required|Required|Required|Required|Sandbox/ NonProd: Development,Test,Quality Assurance / Prod: Pre-Production,Production/ Confidential|
 
 - Audit – tagget bør være der.
-- Required – tagget skal være der. Hvis ikke **forhindres** oprettelsem
+- Required – tagget skal være der. Hvis ikke **forhindres** oprettelsen
 - N/A – Ikke anvendeligt
 
 ## Data Etablering ##
