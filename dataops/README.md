@@ -62,9 +62,9 @@ In the different environments different tags are used to identify the nature of 
 
 |Environment/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
-|Data-owner|Audit|Required|Required|Required|*name of owner*|
-|Environment|Required|Required|Required|Required|Sandbox, Non-Production, Production, Confidential|
-|Environment-type|Required|Required|Required|Required|Sandbox: Sandbox <br/>Non-Production: Development,Test,Quality Assurance <br/>Production: Pre-Production,Production <br/>Confidential|
+|DataOwner|Audit|Required|Required|Required|*name of owner*|
+|Environment|Required|Required|Required|Required|Sandbox, NonProduction, Production, Confidential|
+|EnvironmentType|Required|Required|Required|Required|Sandbox: Sandbox <br/>NonProduction: Development,Test,QualityAssurance <br/>Production: PreProduction,Production <br/>Confidential|
 
 - Audit – *tag* should be in place.
 - Required – *tag* must be present, if not the deployment will be denied.

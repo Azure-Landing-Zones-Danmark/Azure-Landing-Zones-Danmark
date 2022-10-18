@@ -67,9 +67,9 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 
 |Miljø/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
-|Data-owner|Audit|Required|Required|Required|*navn på data-ejer*|
-|Environment|Required|Required|Required|Required|Sandbox, Non-Production, Production, Confidential|
-|Environment-type|Required|Required|Required|Required|Sandbox: Sandbox <br/>Non-Production: Development,Test,Quality Assurance <br/>Production: Pre-Production,Production <br/>Confidential|
+|DataOwner|Audit|Required|Required|Required|*navn på data-ejer*|
+|Environment|Required|Required|Required|Required|Sandbox, NonProduction, Production, Confidential|
+|EnvironmentType|Required|Required|Required|Required|Sandbox: Sandbox <br/>NonProduction: Development,Test,QualityAssurance <br/>Production: PreProduction,Production <br/>Confidential|
 
 - Audit – tagget bør være der.
 - Required – tagget skal være der. Hvis ikke **forhindres** oprettelsen

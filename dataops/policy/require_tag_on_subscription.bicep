@@ -1,8 +1,15 @@
 targetScope = 'subscription'
 
 @allowed([
+  'Environment'
+  'EnvironmentType'
+  'DataOwner'
+])
+param tagnames string
+
+@allowed([
   'Sandbox'
-  'Non-Production'
+  'NonProduction'
   'Production'
   'Confidential'
 ])
@@ -13,7 +20,7 @@ param environment string
   'Development'
   'Test'
   'QuailtyAssurance'
-  'Pre-Production'
+  'PreProduction'
   'Production'
   'Confidential'
 ])
@@ -22,8 +29,8 @@ param environmentType string
 
 
 
-resource reqTagsOnSubscription1 'Microsoft.Authorization/policyAssignments@2020-09-01' = {
-  name: 'environment'
+resource reqTagsOnSubscription1 'Microsoft.Authorization/policyAssignments@2020-09-01' = [for name in tagnames: {
+  name: ${name}
   properties: {
     policyDefinitionId: reqTagSub_PolicyDef.id
     displayName: 'Require tag "environment" on Subscription'
@@ -34,11 +41,12 @@ resource reqTagsOnSubscription1 'Microsoft.Authorization/policyAssignments@2020-
     }
   }
 }
+]
 
-resource reqTagRG_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
-  name: 'require-tag-on-rg'
+resource reqTagSub_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
+  name: 'required-tag-on-subscription'
   properties: {
-    displayName: 'Require tag on resource groups'
+    displayName: 'Require tag on subscription'
     policyType: 'Custom'
     mode: 'All'
     description: 'Requires the specified tag when any resource group is created or updated.'
@@ -47,7 +55,7 @@ resource reqTagRG_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-0
         type: 'String'
         metadata: {
           displayName: 'Tag Name'
-          description: 'Name of the tag, such as "environment"'
+          description: 'Name of the tag, such as "Environment"'
         }
       }
     }
@@ -59,7 +67,7 @@ resource reqTagRG_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-0
         allOf: [
           {
             field: 'type'
-            equals: 'Microsoft.Resources/subscriptions/resourceGroups'
+            equals: 'Microsoft.Subscriptions'
           }
           {
             field: '[concat(\'tags[\', parameters(\'tagName\'), \']\')]'
