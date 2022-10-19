@@ -23,9 +23,9 @@ Denne sektion vil indeholde følgende:
 
 1. **GDPR** regler/principper skal tilgodeses
 
-1. Data kan kun bruges til det formål som de indsamlet til
+1. Data kan kun bruges til det formål som de er indsamlet til
 
-1. Udvikling **kan ikk** foregå på produktions data
+1. Udvikling **kan ikke** foregå på produktions data
 
 
 

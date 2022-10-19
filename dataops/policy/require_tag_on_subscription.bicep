@@ -29,19 +29,18 @@ param environmentType string
 
 
 
-resource reqTagsOnSubscription1 'Microsoft.Authorization/policyAssignments@2020-09-01' = [for name in tagnames: {
-  name: ${name}
+resource reqTagsOnSub_policyAssignments1 'Microsoft.Authorization/policyAssignments@2020-09-01' = [for name in tagNames: {
+  name: 'reqTag-${name}-OnSub'
   properties: {
     policyDefinitionId: reqTagSub_PolicyDef.id
-    displayName: 'Require tag "environment" on Subscription'
+    displayName: 'Require tag "${name}" on Subscription'
     parameters: {
       tagName: {
         value: '${name}'
       }
     }
   }
-}
-]
+}]
 
 resource reqTagSub_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
   name: 'required-tag-on-subscription'
