@@ -49,7 +49,7 @@ resource reqTagSub_PolicyDef 'Microsoft.Authorization/policyDefinitions@2020-09-
     displayName: 'Require tag on subscription'
     policyType: 'Custom'
     mode: 'All'
-    description: 'Requires the specified tag when any resource group is created or updated.'
+    description: 'Requires the specified tag on subscription level.'
     parameters: {
       tagName: {
         type: 'String'
