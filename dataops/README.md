@@ -79,7 +79,7 @@ Project room is an isolated environment with a one, two or three AD-Group owners
 
 Possible to make data sources brought into the project room read-only, in that case the ownership is the "second AD-group"
 
-Possible to make a integration connection between project rooms, in that case the ownership is the "third AD-group".In case
+Possible to make a integration connection between project rooms, in that case the ownership is the "third AD-group".
 
 The process of bringing Data into the project room is one (or more) of the following:
 
@@ -119,7 +119,7 @@ Tools to create fake data within a Python environment.
 - [Gretel](https://synthetics.docs.gretel.ai/en/stable/#)
 
 ### Anonymization ###
-Anonymization is used when you are able to *scramble* a production dataset and bring to the project room.
+Anonymization is used when you can *scramble* a production dataset and bring to the project room.
 Anonymous data is data that has been changed so that re-identification of the individual is impossible.
 
 The scrambling can be done in many ways, using different technics like noise addition, substitution, and aggregation.
@@ -131,7 +131,7 @@ other production datasets.
 *Data Factory data flows* can be used for this, with the extension of [Microsoft Presidio](https://microsoft.github.io/presidio/)
 
 ### Pseudonymization ###
-Pseudonymization is bascially the same process as Anonymization, but with one big difference.
+Pseudonymization is basically the same process as Anonymization, but with one big difference.
 Pseudonymous data is data that has been **de-identified** from the data’s subject but can be **re-identified** as needed.
 
 Tokenization and hash functions can be used to pseudonymize data.
@@ -146,16 +146,16 @@ be able to use the key. This key could be held in an *Azure KeyVault*.
 
 ### *“No relations”* datasets ###
 
-In this approach you create data that is containing "real" at a column level, so i.e. if you have a postal-code column then the postal-codes would be real, as well if you in same record have a street name, that would also be real street names.
+In this approach you create data that is containing "real" at a column level, so i.e., if you have a postal-code column then the postal-codes would be real, as well if you in same record have a street name, that would also be real street names.
 
 The *"no relations"* approach comes in to play when I see at the row level. In the above case the street name value and the postal-code value would make sense in real life. That being that address would not exist shown in the record would not exist in real life (physically).
 
-So an approach could be to build a set of different datasets representing items that is person related from open source datasets - having all street names in Denmark in one dataset, all postal codes in another dataset, the 20 most common first names in a third dataset, the 20 most used last names in a fourth datasets and so on.
+So, an approach could be to build a set of different datasets representing items that is person related from open source datasets - having all street names in Denmark in one dataset, all postal codes in another dataset, the 20 most common first names in a third dataset, the 20 most used last names in a fourth datasets and so on.
 
 And then when creating a new row randomly take values from theses datasets when creating items like "persons.
 
 *Reference to open datasets:*
 
-Danish adresses: https://dataforsyningen.dk/data/4729#data
+Danish adressess: https://dataforsyningen.dk/data/4729#data
 
 Danish names: https://www.dst.dk/da/Statistik/emner/borgere/navne/navne-i-hele-befolkningen
