@@ -71,6 +71,7 @@ resource Defender_Configure_Security_Contacts 'Microsoft.Authorization/policyDef
             ]
           }
           deployment: {
+            location: 'northeurope'
             properties: {
               mode: 'incremental'
               parameters: {
