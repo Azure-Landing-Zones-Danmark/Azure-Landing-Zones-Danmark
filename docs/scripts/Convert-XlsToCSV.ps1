@@ -1,4 +1,4 @@
-# this script saves each excal worksheet to a .csv file as Github doesnøt support rendering .xls
+# this script saves each excel worksheet to a .csv file as Github doesn't support rendering .xls
 
 param(
     [string] $File = 'Danmark-azure-security-benchmark-v3.0.xlsx',
@@ -10,7 +10,7 @@ $xls = Get-Item $File
 $Excel = New-Object -ComObject Excel.Application
 $wb = $Excel.Workbooks.Open($xls)
 
-pushd
+Push-Location
 Set-Location  $LocationToSave
 $path = (Get-Location).Path
 
@@ -20,4 +20,4 @@ foreach ($ws in $wb.Worksheets) {
 }
 
 $Excel.Quit()
-popd
+pop-location

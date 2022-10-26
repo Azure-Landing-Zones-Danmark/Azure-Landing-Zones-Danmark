@@ -45,3 +45,19 @@ Det nuværende repository gør brug af *Microsoft Bicep* i forhold til IaC (Infr
 Der er en special secktion for hvorledes data kan håndteres indenfor rammerne af **Danmark ALZ**.
 
 Yderligere information kan findes i folderen *dataops* [DataOps Guidelines](dataops/Readme.da-dk.md)
+
+## Brug af denne løsning
+
+For flere detaljer om brugen af denne løsning, og for at forstår præcis hvad der bliver rullet ud, venligst se:
+
+- [Management Groups](./modules/management-groups/README.md)
+
+- [Management Resources](./modules/management/README.md)
+
+- [Policies, Initiatives and Assignments](./modules/policies/README.md)
+
+- [Custom Policies](./docs/Policies.md)
+
+- [Custom Initiatives](./docs/Initiatives.md)
+
+- [Assignments](./docs/Assignments.md)

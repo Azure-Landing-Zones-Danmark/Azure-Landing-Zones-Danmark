@@ -8,7 +8,7 @@ TODO: Automate policy import using a GitHub Action.
 
 All definitions and initiatives are deployed to the root management group.
 
-All definitions, initiatives, and assignments are built using atomic management group level templates written i *bicep*.
+All definitions, initiatives, and assignments are built using atomic management group level templates written in *bicep*.
 
 ## Definitions/Initiatives/Assignments
 
@@ -54,3 +54,27 @@ Set-Clipboard
 ## Out of scope
 
 Automatic deletion of definitions, initiatives, and assignments which exist in Azure but not in the code.
+
+## Remove Policies, Initatives and Assignments
+
+To remove a policy:
+
+```powershell
+Remove-AzPolicyDefinition -Name 'PolicyName' -ManagementGroupName 'managementGroupName' -Force
+```
+
+To remove an initiative:
+
+```powershell
+Remove-AzPolicySetDefinition -Name 'InitiativeName' -ManagementGroupName 'managementGroupName' -Force
+```
+
+To remove an assignment:
+
+```powershell
+Remove-AzPolicyAssignment -Name 'assignmentName' -Scope 'managementGroupResourceID'
+```
+
+To remove all custom policies, initiatives and assignments, see ['Remove-Policy.ps1'](../../scripts/Remove-Policy.ps1)
+
+To rest Defender for Cloud to default settings, see ['Reset-DefenderForCloud.ps1'](../../scripts/Reset-DefenderForCloud.ps1)

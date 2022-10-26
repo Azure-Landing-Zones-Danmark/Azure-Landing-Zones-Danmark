@@ -1,4 +1,4 @@
-# This file will parse the .md files for the NIST and CIS regulatory compliance and produce outpout that can be pasted into excel
+# This file will parse the .md files for the NIST and CIS regulatory compliance and produce output that can be pasted into excel
 # It can be used to create / update the Security Mapping spreadsheet
 
 # Comment / uncomment the required URI

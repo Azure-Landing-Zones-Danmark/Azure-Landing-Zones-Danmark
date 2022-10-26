@@ -1,0 +1,73 @@
+---
+name: Deploy Governance Rules
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - none
+  schedule:
+    - cron: 0 */2 * * *
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  MODULE_NAME: policies
+
+jobs:
+  remediate_canary:
+    name: Deploy Governance Rules Canary
+    environment:
+      name: Canary
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT_SHORT_NAME: canary
+      PREFIX: lz-canary
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Remediate policies
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-GovernanceRules.ps1 -Prefix ${{ env.PREFIX }}
+          azPSVersion: latest
+
+  remediate_prod:
+    name: Deploy Governance Production
+    environment:
+      name: Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    env:
+      ENVIRONMENT_SHORT_NAME: prod
+      PREFIX: lz
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Remediate policies
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-GovernanceRules.ps1 -Prefix ${{ env.PREFIX }}
+          azPSVersion: latest
