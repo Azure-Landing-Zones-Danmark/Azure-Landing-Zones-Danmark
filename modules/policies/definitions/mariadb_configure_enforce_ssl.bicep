@@ -1,10 +1,9 @@
 targetScope = 'managementGroup'
-
-resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'MariaDB-Configure-Enforce-SSL'
+resource MariaDB_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'MariaDB-Configure-Minimum-TLS'
   properties: {
-    displayName: 'Configure Azure Database for MariaDB to enforce SSL'
-    description: 'Enforces SSL for Azure Database for MariaDB.'
+    displayName: 'Configure Azure Database for MariaDB to use the latest TLS version'
+    description: 'Upgrade to the latest TLS version.'
     policyType: 'Custom'
     mode: 'Indexed'
     metadata: {
@@ -14,15 +13,11 @@ resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinition
     parameters: {
       effect: {
         type: 'String'
-        metadata: {
-          displayName: 'Effect'
-          description: 'Enable or disable the execution of the policy'
-        }
+        defaultValue: 'Append'
         allowedValues: [
-          'Modify'
+          'Append'
           'Disabled'
         ]
-        defaultValue: 'Modify'
       }
     }
     policyRule: {
@@ -48,19 +43,12 @@ resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinition
       }
       then: {
         effect: '[parameters(\'effect\')]'
-        details: {
-          roleDefinitionIds: [
-            '/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c'
-          ]
-          conflictEffect: 'audit'
-          operations: [
-            {
-              operation: 'addOrReplace'
-              field: 'Microsoft.DBforMariaDB/servers/sslEnforcement'
-              value: 'Enabled'
-            }
-          ]
-        }
+        details: [
+          {
+            field: 'Microsoft.DBforMariaDB/servers/sslEnforcement'
+            value: 'Enabled'
+          }
+        ]
       }
     }
   }
