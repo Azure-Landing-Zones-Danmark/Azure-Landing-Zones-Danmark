@@ -52,7 +52,7 @@ resource Deny_Subnet_Without_Nsg 'Microsoft.Authorization/policyDefinitions@2021
                   where: {
                     allOf: [
                       {
-                        exists: 'false'
+                        exists: false
                         field: 'Microsoft.Network/virtualNetworks/subnets[*].networkSecurityGroup.id'
                       }
                       {
@@ -78,7 +78,7 @@ resource Deny_Subnet_Without_Nsg 'Microsoft.Authorization/policyDefinitions@2021
               }
               {
                 field: 'Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id'
-                exists: 'false'
+                exists: false
               }
             ]
           }

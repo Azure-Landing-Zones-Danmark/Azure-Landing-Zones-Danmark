@@ -50,7 +50,7 @@ resource Deny_Subnet_Without_Udr 'Microsoft.Authorization/policyDefinitions@2021
                   where: {
                     allOf: [
                       {
-                        exists: 'false'
+                        exists: false
                         field: 'Microsoft.Network/virtualNetworks/subnets[*].routeTable.id'
                       }
                       {
@@ -76,7 +76,7 @@ resource Deny_Subnet_Without_Udr 'Microsoft.Authorization/policyDefinitions@2021
               }
               {
                 field: 'Microsoft.Network/virtualNetworks/subnets/routeTable.id'
-                exists: 'false'
+                exists: false
               }
             ]
           }

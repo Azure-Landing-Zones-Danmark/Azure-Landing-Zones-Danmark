@@ -6,7 +6,7 @@ param policyAssignmentName string
 param policyAssignmentDisplayName string = ''
 param policyAssignmentDescription string = ''
 param policyDefinitionId string
-param userAssignedManagedIdentity string = ''
+param userAssignedIdentity string = ''
 @allowed([
   'Default'
   'DoNotEnforce'
@@ -18,10 +18,10 @@ param notScopes array = []
 resource policyAssignment 'Microsoft.Authorization/policyAssignments@2021-06-01' = {
   name: policyAssignmentName
   location: location
-  identity: empty(userAssignedManagedIdentity) ? { type: 'None' } : {
+  identity: empty(userAssignedIdentity) ? { type: 'None' } : {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${userAssignedManagedIdentity}': {}
+      '${userAssignedIdentity}': {}
     }
   }
   properties: {

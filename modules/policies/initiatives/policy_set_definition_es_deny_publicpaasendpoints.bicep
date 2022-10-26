@@ -21,45 +21,6 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         ]
         defaultValue: 'Deny'
       }
-      KeyVaultPublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access should be disabled for KeyVault'
-          description: 'This policy denies creation of Key Vaults with IP Firewall exposed to all public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
-      SqlServerPublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access on Azure SQL Database should be disabled'
-          description: 'This policy denies creation of Sql servers with exposed public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
-      StoragePublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access onStorage accounts should be disabled'
-          description: 'This policy denies creation of storage accounts with IP Firewall exposed to all public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
       AKSPublicIpDenyEffect: {
         type: 'String'
         metadata: {
@@ -146,36 +107,6 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         parameters: {
           effect: {
             value: '[parameters(\'CosmosPublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
-        policyDefinitionReferenceId: 'KeyVaultDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '55615ac9-af46-4a59-874e-391cc3dfb490')
-        parameters: {
-          effect: {
-            value: '[parameters(\'KeyVaultPublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
-        policyDefinitionReferenceId: 'SqlServerDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '1b8ca024-1d5c-4dec-8995-b1a932b41780')
-        parameters: {
-          effect: {
-            value: '[parameters(\'SqlServerPublicIpDenyEffect\')]'
-          }
-        }
-        groupNames: []
-      }
-      {
-        policyDefinitionReferenceId: 'StorageDenyPaasPublicIP'
-        policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '34c877ad-507e-4c82-993e-3452a6e0ad3c')
-        parameters: {
-          effect: {
-            value: '[parameters(\'StoragePublicIpDenyEffect\')]'
           }
         }
         groupNames: []
