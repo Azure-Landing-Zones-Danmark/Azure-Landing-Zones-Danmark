@@ -389,7 +389,8 @@ Display Name: ['Deploys NSG flow logs and traffic analytics to Log Analytics'](m
 
 
 Display Name: ['Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL '](modules/policies/definitions/policy_definition_es_deploy_postgresql_sslenforcement.bicep)
-    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['SQL managed instances deploy a specific min TLS version requirement.'](modules/policies/definitions/policy_definition_es_deploy_sqlmi_mintls.bicep)
