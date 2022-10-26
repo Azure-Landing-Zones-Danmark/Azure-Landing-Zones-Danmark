@@ -29,7 +29,7 @@ resource Configure_VM_Security 'Microsoft.Authorization/policySetDefinitions@202
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', '828ba269-bf7f-4082-83dd-633417bc391d')
         parameters: {
           IncludeArcMachines: {
-            value: true
+            value: 'true'
           }
         }
         groupNames: []
