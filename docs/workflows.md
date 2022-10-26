@@ -1,6 +1,6 @@
 # GitHub Workflows
 
-The followoing Github Workflows are implemented by this solution
+The following GitHub Workflows are implemented by this solution
 
 ## Linter
 
@@ -24,7 +24,7 @@ Deploys the [Management Resources](../modules/management/README.md)
 
 [policies.yml](../.github/workflows/policies.yml)
 
-Deploys [custom policies, initiatives and assignments](..//modules/policies/README.md)
+Deploys [custom policies, initiatives and assignments](../modules/policies/README.md)
 
 ## Policy Remediation
 
