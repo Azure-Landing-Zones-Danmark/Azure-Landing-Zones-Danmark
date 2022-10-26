@@ -107,8 +107,8 @@ Display Name: ['Deny the creation of public IP'](modules/policies/definitions/po
     description: 'This policy denies creation of Public IPs under the assigned scope.'
 
 
-Display Name: ['RDP access from the Internet should be blocked'](modules/policies/definitions/policy_definition_es_deny_rdp_from_Internet.bicep)
-    description: 'This policy denies any network security rule that allows RDP access from Internet'
+Display Name: ['RDP access from the internet should be blocked'](modules/policies/definitions/policy_definition_es_deny_rdp_from_internet.bicep)
+    description: 'This policy denies any network security rule that allows RDP access from internet'
 
 
 Display Name: ['Azure Cache for Redis only secure connections should be enabled'](modules/policies/definitions/policy_definition_es_deny_redis_http.bicep)
