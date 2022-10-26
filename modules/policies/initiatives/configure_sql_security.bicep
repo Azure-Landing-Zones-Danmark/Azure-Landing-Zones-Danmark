@@ -90,12 +90,6 @@ resource Configure_SQL_Security 'Microsoft.Authorization/policySetDefinitions@20
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForMysqlToEnforceSsl'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'MySQL-Configure-Enforce-SSL')
-        parameters: {}
-        groupNames: []
-      }
-      {
         policyDefinitionReferenceId: 'ConfigureAzureDatabaseForPostgresqlToEnforceSsl'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'PostgreSQL-Configure-Enforce-SSL')
         parameters: {}
