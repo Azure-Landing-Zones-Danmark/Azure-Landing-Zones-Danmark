@@ -1,4 +1,4 @@
-# this script saves each excal worksheet to a .csv file as Github doesnøt support rendering .xls
+# this script saves each excel worksheet to a .csv file as Github doesn't support rendering .xls
 
 param(
     [string] $File = 'Danmark-azure-security-benchmark-v3.0.xlsx',

@@ -42,6 +42,22 @@ The current repository is built using *Microsoft Bicep*
 
 ## Data Operations Section
 
-Their is a special section discussing how data can be handled within the **Danmark ALZ** framework.
+There is a special section discussing how data can be handled within the **Danmark ALZ** framework.
 
 Please see the folder [DataOps](dataops/README.md)
+
+## Using this solution
+
+For more details on how to use this solution, and to understand what gets deployed, please see:
+
+- [Management Groups](./modules/management-groups/README.md)
+
+- [Management Resources](./modules/management/README.md)
+
+- [Policies, Initiatives and Assignments](./modules/policies/README.md)
+
+- [Custom Policies](./docs/Policies.md)
+
+- [Custom Initiatives](./docs/Initiatives.md)
+
+- [Assignments](./docs/Assignments.md)
