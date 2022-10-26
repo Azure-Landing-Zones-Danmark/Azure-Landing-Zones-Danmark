@@ -36,7 +36,7 @@ resource Azure_SQL_Managed_Instance_Configure_Latest_TLS_Version 'Microsoft.Auth
               }
               {
                 field: 'Microsoft.Sql/managedInstances/minimalTlsVersion'
-                notEquals: 'Disabled'
+                notEquals: '1.2'
               }
             ]
           }

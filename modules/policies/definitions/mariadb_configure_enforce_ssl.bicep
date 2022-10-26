@@ -1,9 +1,9 @@
 targetScope = 'managementGroup'
-resource MariaDB_Configure_Minimum_TLS 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
-  name: 'MariaDB-Configure-Minimum-TLS'
+resource MariaDB_Configure_Enforce_SSL 'Microsoft.Authorization/policyDefinitions@2021-06-01' = {
+  name: 'MariaDB-Configure-Enforce-SSL'
   properties: {
-    displayName: 'Configure Azure Database for MariaDB to use the latest TLS version'
-    description: 'Upgrade to the latest TLS version.'
+    displayName: 'Configure Azure Database for MariaDB to enforce SSL'
+    description: 'Enforces SSL for Azure Database for MariaDB.'
     policyType: 'Custom'
     mode: 'Indexed'
     metadata: {
