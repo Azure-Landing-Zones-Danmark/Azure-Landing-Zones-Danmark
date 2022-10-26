@@ -154,7 +154,7 @@ resource Configure_Defender_For_Cloud 'Microsoft.Authorization/policySetDefiniti
       }
       {
         policyDefinitionReferenceId: 'DeploySecurityContacts'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deploy-Security-Contacts')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Defender-Configure-Security-Contacts')
         parameters: {
           emailSecurityContact: {
             value: '[parameters(\'emailSecurityContact\')]'

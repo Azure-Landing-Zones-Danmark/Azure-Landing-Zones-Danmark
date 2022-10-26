@@ -21,45 +21,6 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         ]
         defaultValue: 'Deny'
       }
-      KeyVaultPublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access should be disabled for KeyVault'
-          description: 'This policy denies creation of Key Vaults with IP Firewall exposed to all public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
-      SqlServerPublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access on Azure SQL Database should be disabled'
-          description: 'This policy denies creation of Sql servers with exposed public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
-      StoragePublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access onStorage accounts should be disabled'
-          description: 'This policy denies creation of storage accounts with IP Firewall exposed to all public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
       AKSPublicIpDenyEffect: {
         type: 'String'
         metadata: {
@@ -104,19 +65,6 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         metadata: {
           displayName: 'Public network access should be disabled for PostgreSql Flexible Server'
           description: 'This policy denies creation of Postgre SQL Flexible DB accounts with exposed public endpoints'
-        }
-        allowedValues: [
-          'Audit'
-          'Deny'
-          'Disabled'
-        ]
-        defaultValue: 'Deny'
-      }
-      MySQLFlexPublicIpDenyEffect: {
-        type: 'String'
-        metadata: {
-          displayName: 'Public network access should be disabled for MySQL Flexible Server'
-          description: 'This policy denies creation of MySql Flexible Server DB accounts with exposed public endpoints'
         }
         allowedValues: [
           'Audit'

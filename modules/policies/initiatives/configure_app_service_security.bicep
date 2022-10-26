@@ -85,7 +85,7 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'ConfigureAppServiceAppsToTurnOffRemoteDebugging'
+        policyDefinitionReferenceId: 'ConfigureAppServiceAppSlotsToTurnOffRemoteDebugging'
         policyDefinitionId: tenantResourceId('Microsoft.Authorization/policyDefinitions', 'cca5adfe-626b-4cc6-8522-f5b6ed2391bd')
         parameters: {}
         groupNames: []
