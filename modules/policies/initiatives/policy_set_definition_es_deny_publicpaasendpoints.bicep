@@ -73,6 +73,19 @@ resource Deny_PublicPaaSEndpoints 'Microsoft.Authorization/policySetDefinitions@
         ]
         defaultValue: 'Deny'
       }
+      MySQLFlexPublicIpDenyEffect: {
+        type: 'String'
+        metadata: {
+          displayName: 'Public network access should be disabled for MySQL Flexible Server'
+          description: 'This policy denies creation of MySql Flexible Server DB accounts with exposed public endpoints'
+        }
+        allowedValues: [
+          'Audit'
+          'Deny'
+          'Disabled'
+        ]
+        defaultValue: 'Deny'
+      }
       BatchPublicIpDenyEffect: {
         type: 'String'
         metadata: {
