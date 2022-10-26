@@ -127,12 +127,6 @@ resource Configure_SQL_Security 'Microsoft.Authorization/policySetDefinitions@20
         groupNames: []
       }
       {
-        policyDefinitionReferenceId: 'ConfigureAzureDatabaseForPostgresqlToDisablePublicNetworkAccess'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'PostgreSQL-Configure-Disable-Public-Network-Access')
-        parameters: {}
-        groupNames: []
-      }
-      {
         policyDefinitionReferenceId: 'ConfigureAzureDatabaseForPostgresqlFlexibleServerToDisablePublicNetworkAccess'
         policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'PostgreSQL-Flex-Configure-Disable-Public-Network-Access')
         parameters: {}
