@@ -13,7 +13,7 @@ module Defender_For_Cloud '../../shared/policy-assignment.bicep' = {
   params: {
     location: location
     policyAssignmentName: 'Defender-For-Cloud'
-    policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Deny-PublicIP')
+    policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Defender-For-Cloud')
     userAssignedIdentity: userAssignedIdentity
     parameters: {
       emailSecurityContact: {
