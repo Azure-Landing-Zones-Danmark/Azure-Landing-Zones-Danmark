@@ -12,11 +12,13 @@ Display Name: ['AppService append sites with minimum TLS version to enforce.'](m
 
 
 Display Name: ['Azure Cache for Redis Append and the enforcement that enableNonSslPort is disabled.'](modules/policies/definitions/policy_definition_es_append_redis_disablenonsslport.bicep)
-    description: 'Azure Cache for Redis Append and the enforcement that enableNonSslPort is disabled. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Azure Cache for Redis Append and the enforcement that enableNonSslPort is disabled. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Azure Cache for Redis Append a specific min TLS version requirement and enforce TLS.'](modules/policies/definitions/policy_definition_es_append_redis_sslenforcement.bicep)
-    description: 'Append a specific min TLS version requirement and enforce SSL on Azure Cache for Redis. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Append a specific min TLS version requirement and enforce SSL on Azure Cache for Redis. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Control private endpoint connections to Azure Machine Learning'](modules/policies/definitions/policy_definition_es_audit_machinelearning_privateendpointid.bicep)
@@ -88,11 +90,13 @@ Display Name: ['Azure Machine Learning should have disabled public network acces
 
 
 Display Name: ['MySQL database servers enforce SSL connections.'](modules/policies/definitions/policy_definition_es_deny_mysql_http.bicep)
-    description: 'Azure Database for MySQL supports connecting your Azure Database for MySQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Azure Database for MySQL supports connecting your Azure Database for MySQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['PostgreSQL database servers enforce SSL connection.'](modules/policies/definitions/policy_definition_es_deny_postgresql_http.bicep)
-    description: 'Azure Database for PostgreSQL supports connecting your Azure Database for PostgreSQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Azure Database for PostgreSQL supports connecting your Azure Database for PostgreSQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+     This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Deny the creation of private DNS'](modules/policies/definitions/policy_definition_es_deny_private_dns_zones.bicep)
@@ -372,7 +376,8 @@ Display Name: ['Deploy Azure Firewall Manager policy in the subscription'](modul
 
 
 Display Name: ['Azure Database for MySQL server deploy a specific min TLS version and enforce SSL.'](modules/policies/definitions/policy_definition_es_deploy_mysql_sslenforcement.bicep)
-    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Database for MySQL server. Enforce the Server to client applications using minimum version of Tls to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Database for MySQL server. Enforce the Server to client applications using minimum version of Tls to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Deploys NSG flow logs and traffic analytics'](modules/policies/definitions/policy_definition_es_deploy_nsg_flowlogs.bicep)
@@ -388,7 +393,8 @@ Display Name: ['Azure Database for PostgreSQL server deploy a specific min TLS v
 
 
 Display Name: ['SQL managed instances deploy a specific min TLS version requirement.'](modules/policies/definitions/policy_definition_es_deploy_sqlmi_mintls.bicep)
-    description: 'Deploy a specific min TLS version requirement and enforce SSL on SQL managed instances. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Deploy a specific min TLS version requirement and enforce SSL on SQL managed instances. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Deploy SQL database auditing settings'](modules/policies/definitions/policy_definition_es_deploy_sql_auditingsettings.bicep)
@@ -396,7 +402,8 @@ Display Name: ['Deploy SQL database auditing settings'](modules/policies/definit
 
 
 Display Name: ['SQL servers deploys a specific min TLS version requirement.'](modules/policies/definitions/policy_definition_es_deploy_sql_mintls.bicep)
-    description: 'Deploys a specific min TLS version requirement and enforce SSL on SQL servers. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.'
+    description: 'Deploys a specific min TLS version requirement and enforce SSL on SQL servers. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your database server.'
 
 
 Display Name: ['Deploy SQL Database security Alert Policies configuration with email admin accounts'](modules/policies/definitions/policy_definition_es_deploy_sql_securityalertpolicies.bicep)
@@ -412,7 +419,8 @@ Display Name: ['Deploy SQL Database vulnerability Assessments'](modules/policies
 
 
 Display Name: ['Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS '](modules/policies/definitions/policy_definition_es_deploy_storage_sslenforcement.bicep)
-    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Storage. Enables secure server to client by enforce minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your Azure Storage.'
+    description: 'Deploy a specific min TLS version requirement and enforce SSL on Azure Storage. Enables secure server to client by enforce minimal Tls Version to secure the connection between your database server and your client applications helps protect against \'man in the middle\' attacks by encrypting the data stream between the server and your application.
+    This configuration enforces that SSL is always enabled for accessing your Azure Storage.'
 
 
 Display Name: ['Deploy Virtual Network with peering to the hub'](modules/policies/definitions/policy_definition_es_deploy_vnet_hubspoke.bicep)
