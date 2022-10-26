@@ -10,7 +10,7 @@ $xls = Get-Item $File
 $Excel = New-Object -ComObject Excel.Application
 $wb = $Excel.Workbooks.Open($xls)
 
-pushd
+Push-Location
 Set-Location  $LocationToSave
 $path = (Get-Location).Path
 
@@ -20,4 +20,4 @@ foreach ($ws in $wb.Worksheets) {
 }
 
 $Excel.Quit()
-popd
+pop-location
