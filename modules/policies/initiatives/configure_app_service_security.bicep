@@ -122,7 +122,7 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
       }
       {
         policyDefinitionReferenceId: 'ConfigureAppServiceAppsToDisableFtpAndFtps'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App_Service_Apps_Configure_Disable_FTPS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'App-Service-Apps-Configure-Disable-FTPS')
         parameters: {}
         groupNames: []
       }
@@ -140,7 +140,7 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
       }
       {
         policyDefinitionReferenceId: 'ConfigureFunctionAppSlotsToDisableFtpAndFtps'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function_App-Slots-Configure-Disable-FTPS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-App-Slots-Configure-Disable-FTPS')
         parameters: {}
         groupNames: []
       }
@@ -158,7 +158,7 @@ resource Configure_App_Service_Security 'Microsoft.Authorization/policySetDefini
       }
       {
         policyDefinitionReferenceId: 'ConfigureFunctionAppsToDisableFtpAndFtps'
-        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function_Apps_Configure_Disable_FTPS')
+        policyDefinitionId: extensionResourceId(managementGroup().id, 'Microsoft.Authorization/policyDefinitions', 'Function-Apps-Configure-Disable-FTPS')
         parameters: {}
         groupNames: []
       }
