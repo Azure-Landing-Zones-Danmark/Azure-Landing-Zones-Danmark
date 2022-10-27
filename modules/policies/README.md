@@ -10,19 +10,19 @@ All definitions and initiatives are deployed to the root management group.
 
 All definitions, initiatives, and assignments are built using atomic management group level templates written in *bicep*.
 
-## Definitions
+## Policy Definitions
 
-Definitions are stored in original JSON format and not converted to Bicep.
+Policy definitions are stored in original JSON format and not converted to Bicep.
 
 They can be individually deployed and tested using `New-AzPolicyDefinition`.
 
 ## Initiatives
 
-Definitions are stored in original JSON format and not converted to Bicep.
+Initiatives are stored in original JSON format and not converted to Bicep.
 
 They can be individually deployed and tested using `New-AzPolicySetDefinition`.
 
-## Assignments
+## Policy Assignments
 
 Policy assignments are built as atomic Bicep templates.
 

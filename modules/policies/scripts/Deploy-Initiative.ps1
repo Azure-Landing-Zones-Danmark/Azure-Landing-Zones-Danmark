@@ -49,6 +49,6 @@ resource initiativeResources 'Microsoft.Authorization/policySetDefinitions@2021-
 }
 
 $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
+Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template | Set-Content -Path $template -WhatIf:$false
 
 New-AzManagementGroupDeployment -Name $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters

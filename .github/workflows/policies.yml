@@ -68,7 +68,7 @@ jobs:
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
           azPSVersion: latest
 
-      - name: What if deploy policy set definitions (initiatives)
+      - name: What if deploy initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
@@ -123,7 +123,7 @@ jobs:
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
           azPSVersion: latest
 
-      - name: What if deploy policy set definitions (initiatives)
+      - name: What if deploy initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
@@ -168,7 +168,7 @@ jobs:
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
           azPSVersion: latest
 
-      - name: Deploy policy set definitions (initiatives)
+      - name: Deploy initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
@@ -213,7 +213,7 @@ jobs:
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
           azPSVersion: latest
 
-      - name: Deploy policy set definitions (initiatives)
+      - name: Deploy initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
