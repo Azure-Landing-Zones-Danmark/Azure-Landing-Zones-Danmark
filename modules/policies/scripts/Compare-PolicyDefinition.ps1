@@ -39,5 +39,5 @@ function Compare-Item ($Source, $Cloud, $Label, $ManagementGroupId) {
 $cloud = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupId -Custom |
 Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$ManagementGroupId/" |
 Select-Object -ExpandProperty Name
-$source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "definitions")
+$source = Get-ResourceNameFromTemplate -Path $Path
 Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $ManagementGroupId

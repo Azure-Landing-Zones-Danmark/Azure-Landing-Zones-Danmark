@@ -9,7 +9,7 @@ param (
     $ManagementGroupId
 )
 
-function Write-Compare ([Parameter(Mandatory = $true)][String]$Label, $Object, $SideIndicator, $Prefix) {
+function Write-Compare ($Label, $Object, $SideIndicator, $Prefix) {
     $compare = $Object | Where-Object SideIndicator -eq $SideIndicator | ForEach-Object { "$Prefix $($PSItem.InputObject)" }
     if ($compare) {
         Write-Output $Label
@@ -39,5 +39,5 @@ function Compare-Item ($Source, $Cloud, $Label, $ManagementGroupId) {
 $cloud = Get-AzPolicySetDefinition -ManagementGroupName $ManagementGroupId -Custom |
     Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$ManagementGroupId/" |
     Select-Object -ExpandProperty Name
-$source = Get-ResourceNameFromTemplate -Path (Join-Path -Path $Path -ChildPath "initiatives") -Pattern "resource .+ 'Microsoft.Authorization/policySetDefinitions@.+' = \{\s+name: '(.+)'"
+$source = Get-ResourceNameFromTemplate -Path $Path -Pattern "resource .+ 'Microsoft.Authorization/policySetDefinitions@.+' = \{\s+name: '(.+)'"
 Compare-Item -Source $source -Cloud $cloud -Label "Initiatives" -ManagementGroupId $ManagementGroupId

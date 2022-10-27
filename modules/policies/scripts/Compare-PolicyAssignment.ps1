@@ -9,7 +9,7 @@ param (
     $Prefix
 )
 
-function Write-Compare ([Parameter(Mandatory = $true)][String]$Label, $Object, $SideIndicator, $Prefix) {
+function Write-Compare ($Label, $Object, $SideIndicator, $Prefix) {
     $compare = $Object | Where-Object SideIndicator -eq $SideIndicator | ForEach-Object { "$Prefix $($PSItem.InputObject)" }
     if ($compare) {
         Write-Output $Label
@@ -48,8 +48,8 @@ function Get-AssignmentGroup {
         $Prefix
     )
 
-    $assignments = Get-ChildItem -Path "$Path/assignments" -Directory -Recurse | Sort-Object -Property FullName
-    $root = Get-Item -Path "$Path/assignments"
+    $assignments = Get-ChildItem -Path $Path -Directory -Recurse | Sort-Object -Property FullName
+    $root = Get-Item -Path $Path
     $assignments = $assignments += $root
     $assignments | Sort-Object FullName | ForEach-Object {
         @{
