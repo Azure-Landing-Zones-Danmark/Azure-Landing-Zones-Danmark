@@ -1,6 +1,6 @@
 # Governance Rules
 
-This module deploys Azure Defender for cloud [Governance Rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules) into all subscription that have the 'owner' tag defined as a valid email address.
+This module deploys Azure Defender for cloud [Governance Rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules) into all subscriptions that have the 'owner' tag defined as a valid email address.
 
 Governance Rules are a preview feature (as of 27/10/2022), therefore the [GitHub action](../../.github/workflows/governance-rules.yml) that deploys them is set to disabled.  To enable, uncomment the schedule:
 
