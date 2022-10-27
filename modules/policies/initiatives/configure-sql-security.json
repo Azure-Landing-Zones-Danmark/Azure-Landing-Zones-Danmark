@@ -82,67 +82,67 @@
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForPostgresqlToDisablePublicNetworkAccess",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Disable-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Disable-Public-Network-Access",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForPostgresqlToEnforceSsl",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Enforce-SSL",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Enforce-SSL",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForPostgresqlToUseTheLatestTlsVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Minimum-TLS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Configure-Minimum-TLS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMariadbToEnforceSsl",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Enforce-SSL",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Enforce-SSL",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMariadbToUseTheLatestTlsVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Minimum-TLS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Minimum-TLS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMysqlToEnforceSsl",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Enforce-SSL",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Enforce-SSL",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMysqlToUseTheLatestTlsVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Minimum-TLS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Minimum-TLS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForPostgresqlFlexibleServerToDisablePublicNetworkAccess",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Flex-Configure-Disable-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/PostgreSQL-Flex-Configure-Disable-Public-Network-Access",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMariadbToDisablePublicNetworkAccess",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Disable-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MariaDB-Configure-Disable-Public-Network-Access",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMysqlToDisablePublicNetworkAccess",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Disable-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MySQL-Configure-Disable-Public-Network-Access",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureDatabaseForMysqlFlexibleServerToDisablePublicNetworkAccess",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/MySQL-Flex-Configure-Disable-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/MySQL-Flex-Configure-Disable-Public-Network-Access",
         "parameters": {},
         "groupNames": []
       },
@@ -154,7 +154,7 @@
       },
       {
         "policyDefinitionReferenceId": "ConfigureAzureSqlManagedInstanceToUseTheLatestTlsVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Azure-SQL-Managed-Instance-Configure-Latest-TLS-Version",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Azure-SQL-Managed-Instance-Configure-Latest-TLS-Version",
         "parameters": {},
         "groupNames": []
       },

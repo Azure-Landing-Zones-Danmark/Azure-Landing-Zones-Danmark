@@ -101,73 +101,73 @@
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppSlotsToDisableFtpAndFtps",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Disable-FTPS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Disable-FTPS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppSlotsToUseTheLatestHttpVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Latest-HTTP-Version",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Latest-HTTP-Version",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppSlotsToUseTheLatestTlsVersionForScmSites",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppsToDisableFtpAndFtps",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Disable-FTPS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Disable-FTPS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppsToUseTheLatestHttpVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Latest-HTTP-Version",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Latest-HTTP-Version",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureAppServiceAppsToUseTheLatestTlsVersionForScmSites",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Latest-TLS-Version-For-SCM-Sites",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/App-Service-Apps-Configure-Latest-TLS-Version-For-SCM-Sites",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppSlotsToDisableFtpAndFtps",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Disable-FTPS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Disable-FTPS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppSlotsToUseTheLatestHttpVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Latest-HTTP-Version",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Latest-HTTP-Version",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppSlotsToUseTheLatestTlsVersionForScmSites",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-App-Slots-Configure-Latest-TLS-Version-For-SCM-Sites",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppsToDisableFtpAndFtps",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Disable-FTPS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Disable-FTPS",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppsToUseTheLatestHttpVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Latest-HTTP-Version",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Latest-HTTP-Version",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureFunctionAppsToUseTheLatestTlsVersionForScmSites",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Latest-TLS-Version-For-SCM-Sites",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Function-Apps-Configure-Latest-TLS-Version-For-SCM-Sites",
         "parameters": {},
         "groupNames": []
       }

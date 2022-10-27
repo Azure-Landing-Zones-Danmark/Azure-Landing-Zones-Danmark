@@ -151,7 +151,7 @@
       },
       {
         "policyDefinitionReferenceId": "DeploySecurityContacts",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Defender-Configure-Security-Contacts",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Defender-Configure-Security-Contacts",
         "parameters": {
           "emailSecurityContact": {
             "value": "[parameters('emailSecurityContact')]"

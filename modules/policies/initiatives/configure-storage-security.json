@@ -35,7 +35,7 @@
       },
       {
         "policyDefinitionReferenceId": "ConfigureStorageAccountsToUseTheLatestTlsVersion",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Storage-Configure-Minimum-TLS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Storage-Configure-Minimum-TLS",
         "parameters": {},
         "groupNames": []
       }

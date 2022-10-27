@@ -17,19 +17,19 @@
       },
       {
         "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnablePurgeProtection",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Purge-Protection",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Purge-Protection",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableSoftDelete",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Soft-Delete",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Soft-Delete",
         "parameters": {},
         "groupNames": []
       },
       {
         "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableRbacAuthorization",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-RBAC-Authorization",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/<prefix>/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-RBAC-Authorization",
         "parameters": {},
         "groupNames": []
       }
