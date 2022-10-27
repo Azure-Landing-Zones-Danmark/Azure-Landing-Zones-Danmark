@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "displayName": "Configure Azure Database for MariaDB to use the latest TLS version",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Upgrade to the latest TLS version.",
+  "metadata": {
+   "version": "1.0",
+   "category": "SQL"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "allowedValues": [
+     "Append",
+     "Disabled"
+    ],
+    "defaultValue": "Append"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.DBforMariaDB/servers"
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.DBforMariaDB/servers/minimalTlsVersion",
+        "exists": false
+       },
+       {
+        "field": "Microsoft.DBforMariaDB/servers/minimalTlsVersion",
+        "notEquals": "TLS1_2"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": [
+     {
+      "field": "Microsoft.DBforMariaDB/servers/minimalTlsVersion",
+      "value": "TLS1_2"
+     }
+    ]
+   }
+  }
+ },
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "MariaDB-Configure-Minimum-TLS"
+}

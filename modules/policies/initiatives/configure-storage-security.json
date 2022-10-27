@@ -1,0 +1,41 @@
+{
+ "properties": {
+  "displayName": "Configure security settings for Storage",
+  "policyType": "Custom",
+  "description": "This policy initiative is a group of policies that configures security settings Storage.",
+  "metadata": {
+   "version": "1.0",
+   "category": "Storage"
+  },
+  "parameters": {},
+  "policyDefinitions": [
+   {
+    "policyDefinitionReferenceId": "ConfigureSecureTransferOfDataOnAStorageAccount",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f81e3117-0093-4b17-8a60-82363134f0eb",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "ConfigureYourStorageAccountPublicAccessToBeDisallowed",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/13502221-8df0-4414-9937-de9c5c4e396b",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "ConfigureStorageAccountsToDisablePublicNetworkAccess",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a06d0189-92e8-4dba-b0c4-08d7669fce7d",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "DeployAdvancedThreatProtectionOnStorageAccounts",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/361c2074-3595-4e5d-8cab-4f21dffc835c",
+    "parameters": {},
+    "groupNames": []
+   }
+  ],
+  "policyDefinitionGroups": []
+ },
+ "type": "Microsoft.Authorization/policySetDefinitions",
+ "name": "Configure-Storage-Security"
+}

@@ -61,11 +61,25 @@ jobs:
           exit 1
         if: steps.compare-policies.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
 
+      - name: What if deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy policy set definitions (initiatives)
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   validate_prod:
@@ -102,11 +116,25 @@ jobs:
           exit 1
         if: steps.compare-policies.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
 
+      - name: What if deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy policy set definitions (initiatives)
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
       - name: What if deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   deploy_canary:
@@ -133,11 +161,25 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
+      - name: Deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy policy set definitions (initiatives)
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }}} -Verbose
+          azPSVersion: latest
+
       - name: Deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
 
   deploy_prod:
@@ -164,9 +206,23 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
+      - name: Deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy policy set definitions (initiatives)
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
       - name: Deploy policies, initiatives, and assignments
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest

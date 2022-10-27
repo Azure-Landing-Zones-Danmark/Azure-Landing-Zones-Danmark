@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "displayName": "Configure Azure Database for MariaDB to enforce SSL",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Enforces SSL for Azure Database for MariaDB.",
+  "metadata": {
+   "version": "1.0",
+   "category": "SQL"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "allowedValues": [
+     "Append",
+     "Disabled"
+    ],
+    "defaultValue": "Append"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.DBforMariaDB/servers"
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.DBforMariaDB/servers/sslEnforcement",
+        "exists": false
+       },
+       {
+        "field": "Microsoft.DBforMariaDB/servers/sslEnforcement",
+        "notEquals": "Enabled"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": [
+     {
+      "field": "Microsoft.DBforMariaDB/servers/sslEnforcement",
+      "value": "Enabled"
+     }
+    ]
+   }
+  }
+ },
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "MariaDB-Configure-Enforce-SSL"
+}
