@@ -23,9 +23,9 @@ Denne sektion vil indeholde følgende:
 
 1. **GDPR** regler/principper skal tilgodeses
 
-1. Data kan kun bruges til det formål som de indsamlet til
+1. Data kan kun bruges til det formål som de er indsamlet til
 
-1. Udvikling **kan ikk** foregå på produktions data
+1. Udvikling **kan ikke** foregå på produktions data
 
 
 
@@ -67,12 +67,12 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 
 |Miljø/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
-|Data-owner|Audit|Required|Required|Required|*navn på data-ejer*|
-|Environment|Required|Required|Required|Required|Sandbox, Non-Prod, Prod, Conf|
-|Environment-type|Audit|Required|Required|Required|Sandbox/ NonProd: Dev,Test,QA / Prod: PreProd,Prod/ Confidential|
+|DataOwner|Audit|Required|Required|Required|*navn på data-ejer*|
+|Environment|Required|Required|Required|Required|Sandbox, NonProduction, Production, Confidential|
+|EnvironmentType|Required|Required|Required|Required|Sandbox: Sandbox <br/>NonProduction: Development,Test,QualityAssurance <br/>Production: PreProduction,Production <br/>Confidential|
 
 - Audit – tagget bør være der.
-- Required – tagget skal være der. Hvis ikke **forhindres** oprettelsem
+- Required – tagget skal være der. Hvis ikke **forhindres** oprettelsen
 - N/A – Ikke anvendeligt
 
 ## Data Etablering ##

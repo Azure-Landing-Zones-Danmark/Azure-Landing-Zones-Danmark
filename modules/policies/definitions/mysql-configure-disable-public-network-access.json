@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "displayName": "Configure Azure Database for MySQL to disable public network access",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Disables the public network access for Azure Database for MySQL.",
+  "metadata": {
+   "version": "1.0",
+   "category": "SQL"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "allowedValues": [
+     "Append",
+     "Disabled"
+    ],
+    "defaultValue": "Append"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.DBforMySQL/servers"
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.DBforMySQL/servers/publicNetworkAccess",
+        "exists": false
+       },
+       {
+        "field": "Microsoft.DBforMySQL/servers/publicNetworkAccess",
+        "notEquals": "Disabled"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": [
+     {
+      "field": "Microsoft.DBforMySQL/servers/publicNetworkAccess",
+      "value": "Disabled"
+     }
+    ]
+   }
+  }
+ },
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "MySQL-Configure-Disable-Public-Network-Access"
+}

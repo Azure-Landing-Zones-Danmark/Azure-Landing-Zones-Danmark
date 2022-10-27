@@ -1,22 +1,23 @@
 Describe "Test-Initiative" {
     $path = Resolve-Path "$PSScriptRoot/../initiatives"
 
-    $testCases = Get-ChildItem -Path $path -Include *.bicep -Recurse | ForEach-Object {
+    $testCases = Get-ChildItem -Path "$path/*.json" | ForEach-Object {
         @{
             Name     = $PSItem.FullName.Replace($path, "")
             FullName = $PSItem.FullName
-            BaseName = $PSItem.BaseName -replace "policy_set_definition_es_"
+            BaseName = $PSItem.BaseName
         }
     }
 
     It "<Name> is similar to file" -TestCases $testCases {
-        $content = Get-Content -Path $FullName -Raw
+        $template = Get-Content -Path $FullName | ConvertFrom-Json
 
-        $name = $content | Select-String -Pattern "resource (.+) 'Microsoft.Authorization/policySetDefinitions@\d{4}-\d{2}-\d{2}'\s+=\s+{\s+.+\s+name: '(.+)'\s+"
+        $template.name | Should -Be $BaseName
+    }
 
-        $name.Matches.Success | Should -Be $true
+    It "<Name> is an initiative" -TestCases $testCases {
+        $template = Get-Content -Path $FullName | ConvertFrom-Json
 
-        $name.Matches[0].Groups[1].Value | Should -Be $BaseName
-        $name.Matches[0].Groups[2].Value | Should -Be ($BaseName -replace "_", "-")
+        $template.type | Should -Be "Microsoft.Authorization/policySetDefinitions"
     }
 }
