@@ -51,4 +51,4 @@ resource policyDefinitionResources 'Microsoft.Authorization/policyDefinitions@20
 $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
 Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template | Set-Content -Path $template -WhatIf:$false
 
-New-AzManagementGroupDeployment -Name "policy-definitions" $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template -TemplateParameterFile $parameters
+New-AzManagementGroupDeployment -Name "policy-definitions" $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template
