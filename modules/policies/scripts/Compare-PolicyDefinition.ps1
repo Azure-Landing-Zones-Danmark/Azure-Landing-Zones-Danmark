@@ -24,8 +24,8 @@ function Get-ResourceNameFromTemplate ($Path, $Pattern) {
     }
 }
 
-function Compare-Item ($Source, $Cloud, $Label, $ManagementGroupId) {
-    Write-Output "Comparing $($Label.ToLower()) under '$ManagementGroupId'..."
+function Compare-Item ($Source, $Cloud, $ManagementGroupId) {
+    Write-Output "Comparing definitions under '$ManagementGroupId'..."
     $compare = Compare-Object -ReferenceObject ($Cloud ?? @()) -DifferenceObject ($Source ?? @()) -IncludeEqual
     Write-Compare -Label "Policy definitions to be created:" -Object $compare -SideIndicator "=>" -Prefix "+"
     Write-Compare -Label "Policy definitions to be updated:" -Object $compare -SideIndicator "==" -Prefix "*"
@@ -40,4 +40,4 @@ $cloud = Get-AzPolicyDefinition -ManagementGroupName $ManagementGroupId -Custom 
 Where-Object ResourceId -Match "^/providers/Microsoft.Management/managementGroups/$ManagementGroupId/" |
 Select-Object -ExpandProperty Name
 $source = Get-ResourceNameFromTemplate -Path $Path
-Compare-Item -Source $source -Cloud $cloud -Label "Definitions" -ManagementGroupId $ManagementGroupId
+Compare-Item -Source $source -Cloud $cloud -ManagementGroupId $ManagementGroupId
