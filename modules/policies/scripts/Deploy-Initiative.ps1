@@ -14,6 +14,7 @@ param (
 )
 
 function Join-Template {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     [CmdletBinding()]
     [OutputType([String])]
     param (
