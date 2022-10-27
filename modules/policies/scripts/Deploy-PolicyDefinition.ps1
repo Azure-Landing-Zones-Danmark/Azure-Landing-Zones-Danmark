@@ -18,7 +18,7 @@ function Join-Template {
     [OutputType([String])]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [String[]]
+        [Object[]]
         $Path
     )
 
@@ -32,7 +32,8 @@ var policyDefinitions = [
 
     process {
         $Path | ForEach-Object {
-            "  loadJsonContent('$PSItem')"
+            $name = $PSItem.Name
+            "  loadJsonContent('$name')"
         }
     }
 
@@ -49,6 +50,6 @@ resource policyDefinitionResources 'Microsoft.Authorization/policyDefinitions@20
 }
 
 $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template | Set-Content -Path $template -WhatIf:$false
+Get-ChildItem -Path "$Path/*.json" | Join-Template | Set-Content -Path $template -WhatIf:$false
 
-New-AzManagementGroupDeployment -Name "policy-definitions" $DeploymentName -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template
+New-AzManagementGroupDeployment -Name "policy-definitions" -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template

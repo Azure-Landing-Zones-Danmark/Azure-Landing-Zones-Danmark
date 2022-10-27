@@ -32,7 +32,8 @@ var initiatives = [
 
     process {
         $Path | ForEach-Object {
-            "  loadJsonContent('$PSItem')"
+            $name = $PSItem.Name
+            "  loadJsonContent('$name')"
         }
     }
 
@@ -49,6 +50,6 @@ resource initiativeResources 'Microsoft.Authorization/policySetDefinitions@2021-
 }
 
 $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-Get-ChildItem -Path $Path/*.bicep -Exclude ".deploy.bicep" | Join-Template | Set-Content -Path $template -WhatIf:$false
+Get-ChildItem -Path "$Path/*.json" | Join-Template | Set-Content -Path $template -WhatIf:$false
 
 New-AzManagementGroupDeployment -Name "initiatives" -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template
