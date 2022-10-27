@@ -52,7 +52,7 @@ function Get-AssignmentGroup {
     $root = Get-Item -Path $Path
     $assignments += $root
     $assignments | Sort-Object FullName | ForEach-Object {
-        $managementGroupId = $PSItem.FullName.Substring($root.FullName.Length) -replace "[\\/]", "-"
+        $managementGroupId = ($PSItem.FullName.Substring($root.FullName.Length) -replace "[\\/]", " ").Trim().Replace(" ", "-")
         @{
             Path              = $PSItem.FullName
             ManagementGroupId = $managementGroupId ? "$Prefix-$managementGroupId" : $Prefix
