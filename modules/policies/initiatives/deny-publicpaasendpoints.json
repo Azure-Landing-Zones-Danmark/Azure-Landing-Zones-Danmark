@@ -66,7 +66,7 @@
     "type": "String",
     "metadata": {
      "displayName": "Public network access should be disabled for PostgreSql Flexible Server",
-     "description": "This policy denies creation of Postgre SQL Flexible DB accounts with exposed public endpoints"
+     "description": "This policy denies creation of PostgreSQL Flexible DB accounts with exposed public endpoints"
     },
     "allowedValues": [
      "Audit",
