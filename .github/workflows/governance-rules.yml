@@ -5,8 +5,8 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - none
-  schedule:
-    - cron: 0 */2 * * *
+  # schedule:
+  #  - cron: 0 0 * * sun #every sunday at 00.00
   workflow_dispatch:
 
 permissions:
@@ -14,10 +14,10 @@ permissions:
   contents: read
 
 env:
-  MODULE_NAME: policies
+  MODULE_NAME: governance-rules
 
 jobs:
-  remediate_canary:
+  deploy_canary:
     name: Deploy Governance Rules Canary
     environment:
       name: Canary
@@ -37,14 +37,14 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Remediate policies
+      - name: deploy governance rules
         uses: azure/powershell@v1
         with:
           inlineScript: |
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-GovernanceRules.ps1 -Prefix ${{ env.PREFIX }}
           azPSVersion: latest
 
-  remediate_prod:
+  deploy_prod:
     name: Deploy Governance Production
     environment:
       name: Production
@@ -65,7 +65,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Remediate policies
+      - name: deploy governance rules
         uses: azure/powershell@v1
         with:
           inlineScript: |
