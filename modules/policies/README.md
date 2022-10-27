@@ -10,19 +10,37 @@ All definitions and initiatives are deployed to the root management group.
 
 All definitions, initiatives, and assignments are built using atomic management group level templates written in *bicep*.
 
-## Definitions/Initiatives/Assignments
+## Policy Definitions
 
-All definitions, initiatives, and policy assignments are built as atomic Bicep templates.
+Policy definitions are stored in original JSON format and not converted to Bicep.
 
-They can be individually deployed and tested like so:
+They can be individually deployed and tested using `New-AzPolicyDefinition`.
+
+## Initiatives
+
+Initiatives are stored in original JSON format and not converted to Bicep.
+
+They can be individually deployed and tested using `New-AzPolicySetDefinition`.
+
+## Policy Assignments
+
+Policy assignments are built as atomic Bicep templates.
+
+They can be individually deployed and tested using:
 
 ```bash
-az deployment mg create --management-group-id lz-canary --location westeurope --template-file my-policy.bicep
+az deployment mg create --management-group-id lz-canary --location westeurope --template-file my-policy-assignment.bicep
 ```
 
+or
+
 ```powershell
-New-AzManagementGroupDeployment -ManagementGroupId lz-canary -Location westeurope -TemplateFile my-policy.bicep
+New-AzManagementGroupDeployment -ManagementGroupId lz-canary -Location westeurope -TemplateFile my-policy-assignment.bicep
 ```
+
+Policies which can be remediated must be assigned using a managed identity with the appropriate permissions.
+
+This has been simplified using a user assigned managed identity which has *owner* rights on the entire management group hierarchy.
 
 ## Phased Rollout Strategy - Continuous Deployment
 
@@ -32,7 +50,12 @@ If approved it will be deployed to the *PRODUCTION* management group structure.
 
 ## How To
 
-Prefer to use built-in policies or *steal* from <https://github.com/Azure/ALZ-Bicep/tree/main/infra-as-code/bicep/modules/policy/definitions/lib>.
+Prefer policies in this order:
+
+- [Built-in policies](https://github.com/Azure/azure-policy)
+- [Community policies](https://github.com/Azure/Community-Policy)
+- [Azure Landing Zones (ALZ) - Bicep](https://github.com/Azure/ALZ-Bicep/tree/main/infra-as-code/bicep/modules/policy/definitions/lib>)
+- Create your own with inspiration from above
 
 ### Get Aliases
 

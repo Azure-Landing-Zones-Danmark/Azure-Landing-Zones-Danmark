@@ -5,7 +5,7 @@ Describe "Test-Assignment" {
         @{
             Name     = $PSItem.FullName.Replace($path, "")
             FullName = $PSItem.FullName
-            BaseName = $PSItem.BaseName -replace "policy_assignment_es_"
+            BaseName = $PSItem.BaseName
         }
     }
 

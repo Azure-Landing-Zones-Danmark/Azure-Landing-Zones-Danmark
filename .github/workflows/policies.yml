@@ -47,25 +47,67 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Compare policies, initiatives, and assignments
-        id: compare-policies
+      - name: Compare policy definitions
+        id: compare-policy-definitions
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Prefix ${{ env.PREFIX }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -ManagementGroupId ${{ env.PREFIX }}
           azPSVersion: latest
 
       - name: Fail on delete detected if build reason is pull request
         run: |
           echo "::error::Delete detected. Manual intervention required."
           exit 1
-        if: steps.compare-policies.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
+        if: steps.compare-policy-definitions.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
 
-      - name: What if deploy policies, initiatives, and assignments
+      - name: Compare initiatives
+        id: compare-initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -ManagementGroupId ${{ env.PREFIX }}
+          azPSVersion: latest
+
+      - name: Fail on delete detected if build reason is pull request
+        run: |
+          echo "::error::Delete detected. Manual intervention required."
+          exit 1
+        if: steps.compare-initiatives.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
+
+      - name: Compare policy assignments
+        id: compare-policy-assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Prefix ${{ env.PREFIX }}
+          azPSVersion: latest
+
+      - name: Fail on delete detected if build reason is pull request
+        run: |
+          echo "::error::Delete detected. Manual intervention required."
+          exit 1
+        if: steps.compare-policy-assignments.outputs.DELETE_DETECTED && github.event_name == 'pull_request'
+
+      - name: What if deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy initiatives
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy policy assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   validate_prod:
@@ -88,25 +130,67 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Compare policies, initiatives, and assignments
-        id: compare-policies
+      - name: Compare policy definitions
+        id: compare-policy-definitions
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Prefix ${{ env.PREFIX }}
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -ManagementGroupId ${{ env.PREFIX }}
           azPSVersion: latest
 
       - name: Fail on delete detected if branch is main
         run: |
           echo "::error::Delete detected. Manual intervention required."
           exit 1
-        if: steps.compare-policies.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
+        if: steps.compare-policy-definitions.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
 
-      - name: What if deploy policies, initiatives, and assignments
+      - name: Compare initiatives
+        id: compare-initiatives
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -ManagementGroupId ${{ env.PREFIX }}
+          azPSVersion: latest
+
+      - name: Fail on delete detected if branch is main
+        run: |
+          echo "::error::Delete detected. Manual intervention required."
+          exit 1
+        if: steps.compare-initiatives.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
+
+      - name: Compare policy assignments
+        id: compare-policy-assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Compare-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Prefix ${{ env.PREFIX }}
+          azPSVersion: latest
+
+      - name: Fail on delete detected if branch is main
+        run: |
+          echo "::error::Delete detected. Manual intervention required."
+          exit 1
+        if: steps.compare-policy-assignments.outputs.DELETE_DETECTED && github.ref == 'refs/heads/main'
+
+      - name: What if deploy policy definitions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy initiatives
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose -WhatIf
+          azPSVersion: latest
+
+      - name: What if deploy policy assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose -WhatIf
           azPSVersion: latest
 
   deploy_canary:
@@ -133,11 +217,25 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Deploy policies, initiatives, and assignments
+      - name: Deploy policy definitions
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy initiatives
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy policy assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest
 
   deploy_prod:
@@ -164,9 +262,23 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Deploy policies, initiatives, and assignments
+      - name: Deploy policy definitions
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Policy.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyDefinition.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/definitions" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy initiatives
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
+          azPSVersion: latest
+
+      - name: Deploy policy assignments
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-PolicyAssignment.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/assignments" -Location ${{ env.LOCATION }} -Prefix ${{ env.PREFIX }} -Environment ${{ env.ENVIRONMENT_SHORT_NAME }} -Verbose
           azPSVersion: latest

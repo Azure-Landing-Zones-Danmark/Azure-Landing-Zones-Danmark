@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "displayName": "Configure Azure SQL Managed Instance to use the latest TLS version",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Upgrade to the latest TLS version.",
+  "metadata": {
+   "version": "1.0",
+   "category": "SQL"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "allowedValues": [
+     "Append",
+     "Disabled"
+    ],
+    "defaultValue": "Append"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Sql/managedInstances"
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.Sql/managedInstances/minimalTlsVersion",
+        "exists": false
+       },
+       {
+        "field": "Microsoft.Sql/managedInstances/minimalTlsVersion",
+        "notEquals": "1.2"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": [
+     {
+      "field": "Microsoft.Sql/managedInstances/minimalTlsVersion",
+      "value": "1.2"
+     }
+    ]
+   }
+  }
+ },
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Azure-SQL-Managed-Instance-Configure-Latest-TLS-Version"
+}
