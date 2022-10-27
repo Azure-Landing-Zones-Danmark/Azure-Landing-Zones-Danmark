@@ -228,7 +228,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }}} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Initiative.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/initiatives" -Location ${{ env.LOCATION }} -ManagementGroupId ${{ env.PREFIX }} -Verbose
           azPSVersion: latest
 
       - name: Deploy policy assignments
