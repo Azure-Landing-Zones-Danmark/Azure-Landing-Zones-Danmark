@@ -18,7 +18,7 @@ function Join-Template {
     [OutputType([String])]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [String[]]
+        [Object[]]
         $Path
     )
 
