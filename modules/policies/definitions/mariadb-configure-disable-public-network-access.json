@@ -1,55 +1,55 @@
 {
- "properties": {
-  "displayName": "Configure Azure Database for MariaDB to disable public network access",
-  "policyType": "Custom",
-  "mode": "Indexed",
-  "description": "Disables the public network access for Azure Database for MariaDB.",
-  "metadata": {
-   "version": "1.0",
-   "category": "SQL"
+  "properties": {
+    "displayName": "Configure Azure Database for MariaDB to disable public network access",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Disables the public network access for Azure Database for MariaDB.",
+    "metadata": {
+      "version": "1.0",
+      "category": "SQL"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "allowedValues": [
+          "Append",
+          "Disabled"
+        ],
+        "defaultValue": "Append"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.DBforMariaDB/servers"
+          },
+          {
+            "anyOf": [
+              {
+                "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
+                "exists": false
+              },
+              {
+                "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
+                "notEquals": "Disabled"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": [
+          {
+            "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
+            "value": "Disabled"
+          }
+        ]
+      }
+    }
   },
-  "parameters": {
-   "effect": {
-    "type": "String",
-    "allowedValues": [
-     "Append",
-     "Disabled"
-    ],
-    "defaultValue": "Append"
-   }
-  },
-  "policyRule": {
-   "if": {
-    "allOf": [
-     {
-      "field": "type",
-      "equals": "Microsoft.DBforMariaDB/servers"
-     },
-     {
-      "anyOf": [
-       {
-        "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
-        "exists": false
-       },
-       {
-        "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
-        "notEquals": "Disabled"
-       }
-      ]
-     }
-    ]
-   },
-   "then": {
-    "effect": "[parameters('effect')]",
-    "details": [
-     {
-      "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
-      "value": "Disabled"
-     }
-    ]
-   }
-  }
- },
- "type": "Microsoft.Authorization/policyDefinitions",
- "name": "MariaDB-Configure-Disable-Public-Network-Access"
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "MariaDB-Configure-Disable-Public-Network-Access"
 }

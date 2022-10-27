@@ -1,35 +1,35 @@
 {
- "properties": {
-  "displayName": "Configure Cosmos DB security",
-  "policyType": "Custom",
-  "description": "This policy initiative is a group of policies that configures Cosmos DB security.",
-  "metadata": {
-   "version": "1.0",
-   "category": "Cosmos DB"
+  "properties": {
+    "displayName": "Configure Cosmos DB security",
+    "policyType": "Custom",
+    "description": "This policy initiative is a group of policies that configures Cosmos DB security.",
+    "metadata": {
+      "version": "1.0",
+      "category": "Cosmos DB"
+    },
+    "parameters": {},
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "ConfigureCosmosDbDatabaseAccountsToDisableLocalAuthentication",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/dc2d41d1-4ab1-4666-a3e1-3d51c43e0049",
+        "parameters": {},
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "ConfigureCosmosdbAccountsToDisablePublicNetworkAccess",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/da69ba51-aaf1-41e5-8651-607cd0b37088",
+        "parameters": {},
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DeployAdvancedThreatProtectionForCosmosDbAccounts",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b5f04e03-92a3-4b09-9410-2cc5e5047656",
+        "parameters": {},
+        "groupNames": []
+      }
+    ],
+    "policyDefinitionGroups": []
   },
-  "parameters": {},
-  "policyDefinitions": [
-   {
-    "policyDefinitionReferenceId": "ConfigureCosmosDbDatabaseAccountsToDisableLocalAuthentication",
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/dc2d41d1-4ab1-4666-a3e1-3d51c43e0049",
-    "parameters": {},
-    "groupNames": []
-   },
-   {
-    "policyDefinitionReferenceId": "ConfigureCosmosdbAccountsToDisablePublicNetworkAccess",
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/da69ba51-aaf1-41e5-8651-607cd0b37088",
-    "parameters": {},
-    "groupNames": []
-   },
-   {
-    "policyDefinitionReferenceId": "DeployAdvancedThreatProtectionForCosmosDbAccounts",
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b5f04e03-92a3-4b09-9410-2cc5e5047656",
-    "parameters": {},
-    "groupNames": []
-   }
-  ],
-  "policyDefinitionGroups": []
- },
- "type": "Microsoft.Authorization/policySetDefinitions",
- "name": "Configure-CosmosDB-Security"
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "name": "Configure-CosmosDB-Security"
 }

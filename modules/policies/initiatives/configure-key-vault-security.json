@@ -1,41 +1,41 @@
 {
- "properties": {
-  "displayName": "Configure security settings for Key Vaults",
-  "policyType": "Custom",
-  "description": "This policy initiative is a group of policies that configures security settings Key Vaults.",
-  "metadata": {
-   "version": "1.0",
-   "category": "Key Vault"
+  "properties": {
+    "displayName": "Configure security settings for Key Vaults",
+    "policyType": "Custom",
+    "description": "This policy initiative is a group of policies that configures security settings Key Vaults.",
+    "metadata": {
+      "version": "1.0",
+      "category": "Key Vault"
+    },
+    "parameters": {},
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableFirewall",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ac673a9a-f77d-4846-b2d8-a57f8e1c01dc",
+        "parameters": {},
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnablePurgeProtection",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Purge-Protection",
+        "parameters": {},
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableSoftDelete",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Soft-Delete",
+        "parameters": {},
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableRbacAuthorization",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-RBAC-Authorization",
+        "parameters": {},
+        "groupNames": []
+      }
+    ],
+    "policyDefinitionGroups": []
   },
-  "parameters": {},
-  "policyDefinitions": [
-   {
-    "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableFirewall",
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ac673a9a-f77d-4846-b2d8-a57f8e1c01dc",
-    "parameters": {},
-    "groupNames": []
-   },
-   {
-    "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnablePurgeProtection",
-    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Purge-Protection",
-    "parameters": {},
-    "groupNames": []
-   },
-   {
-    "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableSoftDelete",
-    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-Soft-Delete",
-    "parameters": {},
-    "groupNames": []
-   },
-   {
-    "policyDefinitionReferenceId": "ConfigureKeyVaultsToEnableRbacAuthorization",
-    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/lz-canary/providers/Microsoft.Authorization/policyDefinitions/Key-Vault-Configure-RBAC-Authorization",
-    "parameters": {},
-    "groupNames": []
-   }
-  ],
-  "policyDefinitionGroups": []
- },
- "type": "Microsoft.Authorization/policySetDefinitions",
- "name": "Configure-Key-Vault-Security"
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "name": "Configure-Key-Vault-Security"
 }
