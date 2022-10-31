@@ -14,12 +14,17 @@ param (
 )
 
 function Join-Template {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification = "False positive")]
     [CmdletBinding()]
     [OutputType([String])]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [Object[]]
-        $Path
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [String]
+        $ManagementGroupId
     )
 
     begin {
@@ -32,6 +37,7 @@ var initiatives = [
 
     process {
         $Path | ForEach-Object {
+            (Get-Content -Path $Path -Raw) -replace "<prefix>", $ManagementGroupId | Set-Content -Path $Path
             $name = $PSItem.Name
             "  loadJsonContent('$name')"
         }
@@ -50,6 +56,6 @@ resource initiativeResources 'Microsoft.Authorization/policySetDefinitions@2021-
 }
 
 $template = Join-Path -Path (Get-Item -Path $Path) -ChildPath ".deploy.bicep"
-Get-ChildItem -Path "$Path/*.json" | Join-Template | Set-Content -Path $template -WhatIf:$false
+Get-ChildItem -Path "$Path/*.json" | Join-Template -ManagementGroupId $ManagementGroupId | Set-Content -Path $template -WhatIf:$false
 
 New-AzManagementGroupDeployment -Name "initiatives" -ManagementGroupId $ManagementGroupId -Location $Location -TemplateFile $template

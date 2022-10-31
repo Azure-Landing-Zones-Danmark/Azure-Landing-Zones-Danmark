@@ -20,4 +20,16 @@ Describe "Test-Initiative" {
 
         $template.type | Should -Be "Microsoft.Authorization/policySetDefinitions"
     }
+
+    It "<Name> refers to custom policies by prefix" -TestCases $testCases {
+        $template = Get-Content -Path $FullName | ConvertFrom-Json
+
+        $managementGroupIds = $template.properties.policyDefinitions.policyDefinitionId | Select-String -Pattern "^/providers/Microsoft.Management/managementGroups/(.+)/providers/Microsoft.Authorization/policyDefinitions/.+$"
+
+        if ($managementGroupIds.Matches) {
+            $managementGroupIds.Matches | ForEach-Object {
+                $PSItem.Groups[1].Value | Should -Be "<prefix>"
+            }
+        }
+    }
 }
