@@ -23,7 +23,7 @@
         "type": "Array",
         "metadata": {
           "displayName": "Tag Value",
-          "description": "Value of the tag,allowed values Sandbox, Development, Test, QA, PreProd, Prod, Confidential "
+          "description": "Value of the tag, allowed values Sandbox, Development, Test, QA, PreProd, Prod, Confidential "
         },
         "allowedValues" : ["Sandbox",
             "Development",
