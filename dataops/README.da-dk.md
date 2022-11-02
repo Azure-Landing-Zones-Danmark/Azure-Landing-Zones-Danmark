@@ -42,14 +42,14 @@ I dette dokument arbejder vi med følgende 4 miljøer (vi har her benyttet engel
 - Production – miljøer til brug for pre-prod og prod scenarier
 - Confidential – disse miljøer benyttes til processering af data der kræver et yderligere højt sikkerheds niveau.
 
-### Data klassification opslags “database”
+### Data klassifikation opslags “database”
 
 En “database” hvor vi kan finde information om hvilke data elementer som kræver en speciel håndtering.
 Yderligere oplysninger kan findes i kapitlet *Data Etablering*.
 
 ## Miljøer og politikker
 
-I de forskellige miljøer er der poltikker omkring kryptering, som bør/skal etableres.
+I de forskellige miljøer er der politikker omkring kryptering, som bør/skal etableres.
 
 |Miljø/Politik|Sandbox|Non-Production|Production|Confidential|
 |---|---|---|---|---|
@@ -58,12 +58,12 @@ I de forskellige miljøer er der poltikker omkring kryptering, som bør/skal eta
 |Encryption in Processing|N/A|N/A|N/A|Required|
 
 - Audit – der skal være en politik der kan dokumentere hvorvidt kryptering er tilstede, selvom dette ikke er påkrævet. Dette kan benyttes til en risiko vurdering.
-- Required – den politik vil **forhindre** oprettelsen af et storage lag uden krypterting.
+- Required – den politik vil **forhindre** oprettelsen af et storage lag uden kryptering.
 - N/A – Ikke anvendeligt
 
 ## Miljøer og Tags ##
 
-I den forskellige miljøer opsættes tags for lettere at kunne indetificere typen af miljøet.
+I den forskellige miljøer opsættes tags for lettere at kunne identificere typen af miljøet.
 
 |Miljø/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
@@ -77,7 +77,7 @@ I den forskellige miljøer opsættes tags for lettere at kunne indetificere type
 
 ## Data Etablering ##
 
-Et **Projekt rum** er et isoleret miljø - typisk en resourcegruppe - hvor ejerskabet alene er en, to eller tre AD-grupper.
+Et **Projekt rum** er et isoleret miljø - typisk en resource gruppe - hvor ejerskabet alene er en, to eller tre AD-grupper.
 Følgende viser et eksempel på hvorledes et projekt rum kunne findes i data warehouse miljø.
 
 ![ProjectRoom](../docs/images/projectroom.jpg)
@@ -102,7 +102,7 @@ Den eller de processer der skal benyttes afhænger af klassifikationen af de enk
 I denne sektion ser vi på hvilke mulige teknikker der kan bruges til at etablere et eller flere datasæt i et projekt rum.
 Man vil typisk bruge en kombination af disse.
 
-**Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovginingen**
+**Note: Pseudomiserede data og anonymiserede data behandles forskelligt i GDPR lovgivningen**
 
 Reference [EU-dokument](https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf)
 
@@ -112,11 +112,11 @@ I denne proces kopieres et subset af produktions data til et projekt rum. Disse 
 
 ### Generering af fake data ###
 
-I denne proces dannes der *snyde(fake)* data ud fra de oplysninger man har om hvilken datatype, lændge, mønster disse passe til.
-Der er **vigtig** at disse data er *reele* fake data og ikke data der gøres *fake* ved hjælp af produktions datasæt.
+I denne proces dannes der *snyde(fake)* data ud fra de oplysninger man har om hvilken datatype, længde, mønster disse passe til.
+Der er **vigtig** at disse data er *reelle* fake data og ikke data der gøres *fake* ved hjælp af produktions datasæt.
 
 Oprettelse af fake datasæt er som oftest en vanskelig opgave, derfor giver det god mening at bruge tid på at denne proces har nogle om ikke alle
-af disse egenskaber: kan genrbuges, er automatisk, kan skaleres og kan kaldes via parametre.
+af disse egenskaber: kan genbruges, er automatisk, kan skaleres og kan kaldes via parametre.
 
 Eksempler på Python værktøjer der kan bruges til dette:
 - [Faker](https://github.com/joke2k/faker)
@@ -137,11 +137,11 @@ til de oprindelige data. Ej heller må disse data kunne bruges til at "koble" si
 
 ### Pseudomisering ###
 
-Pseudomisering er en proces lig anonymisring, men med en væsentlig forskel.
+Pseudomisering er en proces lig anonymisering, men med en væsentlig forskel.
 Pseudomiserede data er data da har været *udsat* for en **de-identificerings** proces som har den egenskab at,
 de - om nødvendigt - kan blive **gen-identificeret**.
 
-Tokenization og hash funktioner kan bruges til a pseudomisere data.
+Tokenization og hash funktioner kan bruges til at pseudomisere data.
 
 *Data Factory data flows* kan bruges til dette..
 
@@ -153,11 +153,11 @@ Denne nøgle opbevares typisk i en *Azure KeyVault*.
 
 ### *“Ingen sammenhæng”* datasæt ###
 
-I denne tilgang opretter man data, der indeholder "rigtige" værdi på kolonneniveau. Så hvis man har en postnummerkolonne, så ville postnumrene være rigtige, og hvis man i samme *record* har et gadenavn, ville det også være rigtige vejnavne.
+I denne tilgang opretter man data, der indeholder "rigtige" værdi på kolonne niveau. Så hvis man har en postnummer kolonne, så ville postnumrene være rigtige, og hvis man i samme *record* har et gadenavn, ville det også være rigtige vejnavne.
 
-*"Ingen sammenhæng"* tilgangen kommer i spil, når man ser på data på rækkeniveau. I ovenstående tilfælde vil gadenavnet og postnummeret give mening i det virkelige liv hver for sig. Men den givne adresse (kombinationen af gadenavn og postnummer) vil ikke eksistere i det virkelige liv (fysisk).
+*"Ingen sammenhæng"* tilgangen kommer i spil, når man ser på data på række niveau. I ovenstående tilfælde vil gadenavnet og postnummeret give mening i det virkelige liv hver for sig. Men den givne adresse (kombinationen af gadenavn og postnummer) vil ikke eksistere i det virkelige liv (fysisk).
 
-Metoden går derfor ud på at bygge et sæt af forskellige datasæt, der repræsenterer elementer, der er for eksempel er personrelaterede fra open source-datasæt - med alle vejnavne i Danmark i ét datasæt, alle postnumre i et andet datasæt, de 20 mest almindelige fornavne i et tredje datasæt , de 20 mest brugte efternavne i et fjerde datasæt og så videre.
+Metoden går derfor ud på at bygge et sæt af forskellige datasæt, der repræsenterer elementer, der er for eksempel er person relaterede fra open source-datasæt - med alle vejnavne i Danmark i ét datasæt, alle postnumre i et andet datasæt, de 20 mest almindelige fornavne i et tredje datasæt , de 20 mest brugte efternavne i et fjerde datasæt og så videre.
 
 Og når man så opretter en ny række, skal man tilfældigt tage værdier fra disse datasæt, når man opretter et element som en "person.
 
