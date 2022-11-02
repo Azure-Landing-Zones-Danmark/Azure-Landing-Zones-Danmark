@@ -33,13 +33,13 @@ Denne sektion vil indeholde følgende:
 
 ### Miljø beskrivelse
 
-For at kunne kontrollere de enkelte poltikker og deres implementering, har vi behov for at kunne vide hvilket miljø vi er.
+For at kunne kontrollere de enkelte politikker og deres implementering, har vi behov for at kunne vide hvilket miljø vi er.
 I dette dokument arbejder vi med følgende 4 miljøer (vi har her benyttet engelske navne):
 
 - Sandbox – miljø som bruges til at undersøge hvor vidt funktionaliteten af en given services opfylder et givent behov.
-  Disse miljøer indeholer *IKKE* forretningsdata af nogen art.
+  Disse miljøer indeholder *IKKE* forretnings-data af nogen art.
 - Non-Production – indeholder miljøer til udvikling, qa og test scenarier. Disse miljøer bygger på et koncept vi kalder *projekt rum* (se nedenfor)
-- Production – mijløer til brug for pre-prod og prod scenarier
+- Production – miljøer til brug for pre-prod og prod scenarier
 - Confidential – disse miljøer benyttes til processering af data der kræver et yderligere højt sikkerheds niveau.
 
 ### Data klassification opslags “database”
