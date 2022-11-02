@@ -26,7 +26,6 @@ This part of the project will provide:
 
 1. Development **can not** be done on production data
 
-
 ## Requirements
 
 ### Environment description
@@ -63,8 +62,7 @@ In the different environments different tags are used to identify the nature of 
 |Environment/Tag|Sandbox|Non-Production|Production|Confidential|Values|
 |---|---|---|---|---|---|
 |DataOwner|Audit|Required|Required|Required|*name of owner*|
-|Environment|Required|Required|Required|Required|Sandbox, NonProduction, Production, Confidential|
-|EnvironmentType|Required|Required|Required|Required|Sandbox: Sandbox <br/>NonProduction: Development,Test,QualityAssurance <br/>Production: PreProduction,Production <br/>Confidential|
+|Environment|Required|Required|Required|Required|For Sandbox: Sandbox<br/>For NonProduction: Development,Test,QualityAssurance <br/>For Production: PreProduction,Production <br/>For Confidential: Confidential|
 
 - Audit – *tag* should be in place.
 - Required – *tag* must be present, if not the deployment will be denied.
@@ -75,7 +73,6 @@ In the different environments different tags are used to identify the nature of 
 Project room is an isolated environment with a one, two or three AD-Group ownership. The following figure shows an example of a project room in a dataplatform environment.
 
 ![ProjectRoom](../docs/images/projectroom.jpg)
-
 
 Possible to make data sources brought into the project room read-only, in that case the ownership is the "second AD-group"
 
@@ -156,6 +153,6 @@ And then when creating a new row randomly take values from theses datasets when 
 
 *Reference to open datasets:*
 
-Danish adressess: https://dataforsyningen.dk/data/4729#data
+Danish addresses: https://dataforsyningen.dk/data/4729#data
 
 Danish names: https://www.dst.dk/da/Statistik/emner/borgere/navne/navne-i-hele-befolkningen

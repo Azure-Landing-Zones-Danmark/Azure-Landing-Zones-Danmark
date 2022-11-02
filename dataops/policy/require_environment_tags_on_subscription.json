@@ -1,0 +1,70 @@
+
+{
+  "properties": {
+    "displayName": "Require tag with value on subscriptions",
+    "policyType": "BuiltIn",
+    "mode": "All",
+    "description": "Other.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Tags"
+    },
+    "parameters": {
+      "tagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Tag Name",
+          "description": "Name of the tag, allowed values : Environment, DataOwner"
+        },
+        "allowedValues" : ["Environment",
+            "DataOwner"]
+      },
+      "tagValue": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Tag Value",
+          "description": "Value of the tag,allowed values Sandbox, Development, Test, QA, PreProd, Prod, Confidential "
+        },
+        "allowedValues" : ["Sandbox",
+            "Development",
+            "Test",
+            "QuailtyAssurance",
+            "PreProduction",
+            "Production",
+            "Confidential"
+        ]
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions"
+          },
+          {
+            "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "notIn": "[parameters('tagValue')]"
+          }
+        ]
+      },
+      "then": {
+        "effect": "audit",
+        "details": {
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/4a9ae827-6dc8-4573-8ac7-8239d42aa03f"
+          ],
+          "operations": [
+            {
+              "operation": "addOrReplace",
+              "field": "[concat('tags[', parameters('tagName'), ']')]",
+              "value": "[parameters('tagValue')]"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "RequireTagWithValueOnSubscriptions"
+}
