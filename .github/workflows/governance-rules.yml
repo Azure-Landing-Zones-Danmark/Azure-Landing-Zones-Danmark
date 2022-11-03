@@ -18,7 +18,7 @@ env:
 
 jobs:
   install-dependencies:
-    name: Install dependencies
+    name: Install-dependencies
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
