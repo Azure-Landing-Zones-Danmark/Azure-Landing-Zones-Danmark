@@ -1,12 +1,12 @@
 {
   "properties": {
-    "displayName": "Configure Azure Database for MySQL to enforce SSL",
+    "displayName": "Configure Storage Accounts to use the latest TLS version",
     "policyType": "Custom",
     "mode": "Indexed",
-    "description": "Enforces SSL for Azure Database for MySQL.",
+    "description": "Upgrade to the latest TLS version.",
     "metadata": {
       "version": "1.0",
-      "category": "SQL"
+      "category": "Cache"
     },
     "parameters": {
       "effect": {
@@ -27,17 +27,17 @@
         "allOf": [
           {
             "field": "type",
-            "equals": "Microsoft.DBforMySQL/servers"
+            "equals": "Microsoft.Storage/storageAccounts"
           },
           {
             "anyOf": [
               {
-                "field": "Microsoft.DBforMySQL/servers/sslEnforcement",
+                "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
                 "exists": false
               },
               {
-                "field": "Microsoft.DBforMySQL/servers/sslEnforcement",
-                "notEquals": "Enabled"
+                "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
+                "notEquals": "TLS1_2"
               }
             ]
           }
@@ -47,14 +47,14 @@
         "effect": "[parameters('effect')]",
         "details": {
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab"
           ],
           "conflictEffect": "audit",
           "operations": [
             {
               "operation": "addOrReplace",
-              "field": "Microsoft.DBforMySQL/servers/sslEnforcement",
-              "value": "Enabled"
+              "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
+              "value": "TLS1_2"
             }
           ]
         }
@@ -62,5 +62,5 @@
     }
   },
   "type": "Microsoft.Authorization/policyDefinitions",
-  "name": "MySQL-Configure-Enforce-SSL"
+  "name": "Storage-Configure-Minimum-TLS"
 }

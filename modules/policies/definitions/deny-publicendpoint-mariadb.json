@@ -1,46 +1,46 @@
 {
- "properties": {
-  "displayName": "Public network access should be disabled for MariaDB",
-  "policyType": "Custom",
-  "mode": "Indexed",
-  "description": "This policy denies the creation of Maria DB accounts with exposed public endpoints",
-  "metadata": {
-   "version": "1.0.0",
-   "category": "SQL"
-  },
-  "parameters": {
-   "effect": {
-    "type": "String",
+  "properties": {
+    "displayName": "Public network access should be disabled for MariaDB",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "This policy denies the creation of Maria DB accounts with exposed public endpoints",
     "metadata": {
-     "displayName": "Effect",
-     "description": "Enable or disable the execution of the policy"
+      "version": "1.0.0",
+      "category": "SQL"
     },
-    "allowedValues": [
-     "Audit",
-     "Deny",
-     "Disabled"
-    ],
-    "defaultValue": "Deny"
-   }
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.DBforMariaDB/servers"
+          },
+          {
+            "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
+            "notequals": "Disabled"
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
   },
-  "policyRule": {
-   "if": {
-    "allOf": [
-     {
-      "field": "type",
-      "equals": "Microsoft.DBforMariaDB/servers"
-     },
-     {
-      "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
-      "notequals": "Disabled"
-     }
-    ]
-   },
-   "then": {
-    "effect": "[parameters('effect')]"
-   }
-  }
- },
- "type": "Microsoft.Authorization/policyDefinitions",
- "name": "Deny-PublicEndpoint-MariaDB"
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "Deny-PublicEndpoint-MariaDB"
 }

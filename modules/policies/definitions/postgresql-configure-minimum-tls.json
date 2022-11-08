@@ -1,55 +1,55 @@
 {
- "properties": {
-  "displayName": "Configure Azure Database for PostgreSQL to use the latest TLS version",
-  "policyType": "Custom",
-  "mode": "Indexed",
-  "description": "Upgrade to the latest TLS version.",
-  "metadata": {
-   "version": "1.0",
-   "category": "SQL"
+  "properties": {
+    "displayName": "Configure Azure Database for PostgreSQL to use the latest TLS version",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Upgrade to the latest TLS version.",
+    "metadata": {
+      "version": "1.0",
+      "category": "SQL"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "allowedValues": [
+          "Append",
+          "Disabled"
+        ],
+        "defaultValue": "Append"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.DBforPostgreSQL/servers"
+          },
+          {
+            "anyOf": [
+              {
+                "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
+                "exists": false
+              },
+              {
+                "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
+                "notEquals": "TLS1_2"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": [
+          {
+            "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
+            "value": "TLS1_2"
+          }
+        ]
+      }
+    }
   },
-  "parameters": {
-   "effect": {
-    "type": "String",
-    "allowedValues": [
-     "Append",
-     "Disabled"
-    ],
-    "defaultValue": "Append"
-   }
-  },
-  "policyRule": {
-   "if": {
-    "allOf": [
-     {
-      "field": "type",
-      "equals": "Microsoft.DBforPostgreSQL/servers"
-     },
-     {
-      "anyOf": [
-       {
-        "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
-        "exists": false
-       },
-       {
-        "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
-        "notEquals": "TLS1_2"
-       }
-      ]
-     }
-    ]
-   },
-   "then": {
-    "effect": "[parameters('effect')]",
-    "details": [
-     {
-      "field": "Microsoft.DBforPostgreSQL/servers/minimalTlsVersion",
-      "value": "TLS1_2"
-     }
-    ]
-   }
-  }
- },
- "type": "Microsoft.Authorization/policyDefinitions",
- "name": "PostgreSQL-Configure-Minimum-TLS"
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "PostgreSQL-Configure-Minimum-TLS"
 }
