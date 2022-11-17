@@ -1,5 +1,5 @@
 ---
-name: Deploy Policy Assignment Exemptions Resources
+name: Deploy Policy Assignment Exemptions
 
 on:  # yamllint disable-line rule:truthy
   push:
