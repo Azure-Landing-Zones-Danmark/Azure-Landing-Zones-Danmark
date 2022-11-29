@@ -10,7 +10,7 @@ param (
     [String]$templateFile,
 
     [Parameter(Mandatory = $true)]
-    [ValidateSet("true", "false")]
+    [ValidateSet("remove", "keep")]
     [String]$removeUnmanagedExemptions
 )
 
@@ -43,7 +43,7 @@ foreach($exemption in $exemptions){
 }
 
 #Remove Un-manged Exemptions
-If($removeUnmanagedExemptions -eq "true"){
+If($removeUnmanagedExemptions -eq "remove"){
     $deployedExemptions = Get-AzPolicyExemption | Select-Object -ExpandProperty Name
     foreach($deployedExemption in $deployedExemptions){
         if(-not($deployedExemption -match $exemptionNames)){
