@@ -1,4 +1,4 @@
-
+[CmdletBinding()]
 param (
     [String]$Path = '.\modules\Exemptions',
     [String]$Location = 'WestEurope',
