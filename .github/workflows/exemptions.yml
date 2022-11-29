@@ -23,7 +23,7 @@ permissions:
 env:
   MODULE_NAME: exemptions
   LOCATION: westeurope
-  removeUnmanagedExemptions: 'false'
+  removeUnmanagedExemptions: false
 
 jobs:
   validate_canary:
