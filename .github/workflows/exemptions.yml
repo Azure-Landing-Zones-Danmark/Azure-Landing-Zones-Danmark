@@ -23,10 +23,34 @@ permissions:
 env:
   MODULE_NAME: exemptions
   LOCATION: westeurope
-  removeUnmanagedExemptions: 0
+  removeUnmanagedExemptions: 'false'
 
 jobs:
-  validate:
+  validate_canary:
+    name: Validate Canary
+    environment:
+      name: Canary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: What if deploy policy exemptions
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
+          azPSVersion: latest
+
+  validate_prod:
     name: Validate
     environment:
       name: Production
@@ -50,8 +74,10 @@ jobs:
             ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
           azPSVersion: latest
 
-  deploy:
-    name: Deploy
+  deploy_canary:
+    name: Deploy Canary
+    environment:
+      name: Canary
     runs-on: ubuntu-latest
     needs:
       - validate
@@ -68,7 +94,34 @@ jobs:
           subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: Deploy
+      - name: Deploy Canary
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose
+          azPSVersion: latest
+
+  deploy_prod:
+    name: Deploy Production
+    environment:
+      name: Production
+    runs-on: ubuntu-latest
+    needs:
+      - validate
+    if: success() && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_MANAGEMENT_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Deploy Production
         uses: azure/powershell@v1
         with:
           inlineScript: |
