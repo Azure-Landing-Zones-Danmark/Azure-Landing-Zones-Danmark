@@ -10,7 +10,7 @@ param (
     [String]$templateFile,
 
     [Parameter(Mandatory = $true)]
-    [ValidateSet("remove", "retain")]
+    [ValidateSet("true", "false")]
     [String]$removeUnmanagedExemptions
 )
 
