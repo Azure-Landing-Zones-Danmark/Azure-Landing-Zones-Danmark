@@ -47,7 +47,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -templateFile "${{ github.workspace }}/modules/shared/policyExemptions.bicep" -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
           azPSVersion: latest
 
   validate_prod:
@@ -71,7 +71,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -templateFile "${{ github.workspace }}/modules/shared/policyExemptions.bicep" -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose -WhatIf
           azPSVersion: latest
 
   deploy_canary:
@@ -98,7 +98,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -templateFile "${{ github.workspace }}/modules/shared/policyExemptions.bicep" -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose
           azPSVersion: latest
 
   deploy_prod:
@@ -125,5 +125,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose
+            ${{ github.workspace }}/modules/${{ env.MODULE_NAME }}/scripts/Deploy-Exemptions.ps1 -Path "${{ github.workspace }}/modules/${{ env.MODULE_NAME }}" -Location ${{ env.LOCATION }} -templateFile "${{ github.workspace }}/modules/shared/policyExemptions.bicep" -$removeUnmanagedExemptions ${{ env.removeUnmanagedExemptions }} -Verbose
           azPSVersion: latest

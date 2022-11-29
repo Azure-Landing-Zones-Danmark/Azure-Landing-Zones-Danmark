@@ -1,11 +1,17 @@
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $true)]
 param (
-    [String]$Path = '.\modules\Exemptions',
-    [String]$Location = 'WestEurope',
-    [String]$templateFile  = '.\modules\shared\policyExemptions.bicep',
-    [Parameter(Mandatory)]
+    [Parameter(Mandatory = $true)]
+    [String]$Path,
+
+    [Parameter(Mandatory = $true)]
+    [String]$Location,
+
+    [Parameter(Mandatory = $true)]
+    [String]$templateFile,
+
+    [Parameter(Mandatory = $true)]
     [ValidateSet("true","false")]
-    [String]$removeUnmanagedExemptions = "false"
+    [String]$removeUnmanagedExemptions
 )
 
 # Get existing Exemptions
