@@ -3,8 +3,8 @@ param (
     [String]$Path = '.\modules\Exemptions',
     [String]$Location = 'WestEurope',
     [String]$templateFile  = '.\modules\shared\policyExemptions.bicep',
-    [Parameter(Mandatory,)]
-     [ValidateSet('true','false')]
+    [Parameter(Mandatory)]
+    [ValidateSet("true","false")]
     [String]$removeUnmanagedExemptions = "false"
 )
 
@@ -37,7 +37,7 @@ foreach($exemption in $exemptions){
 }
 
 #Remove Un-manged Exemptions
-If($removeUnmanagedExemptions -eq 'true'{
+If($removeUnmanagedExemptions -eq "true"){
     $deployedExemptions = Get-AzPolicyExemption | Select-Object -ExpandProperty Name
     foreach($deployedExemption in $deployedExemptions){
         if(-not($deployedExemption -match $exemptionNames)){
