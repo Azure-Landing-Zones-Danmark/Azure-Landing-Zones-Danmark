@@ -61,3 +61,7 @@ For flere detaljer om brugen af denne løsning, og for at forstår præcis hvad 
 - [Custom Initiatives](./docs/Initiatives.md)
 
 - [Assignments](./docs/Assignments.md)
+
+- [Governance Rule](./modules/governance-rules/README.md)
+
+- [Exemptions](./modules/Exemptions/ReadMe.md)

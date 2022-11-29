@@ -61,3 +61,7 @@ For more details on how to use this solution, and to understand what gets deploy
 - [Custom Initiatives](./docs/Initiatives.md)
 
 - [Assignments](./docs/Assignments.md)
+
+- [Governance Rule](./modules/governance-rules/README.md)
+
+- [Exemptions](./modules/Exemptions/ReadMe.md)

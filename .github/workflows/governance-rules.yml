@@ -17,6 +17,17 @@ env:
   MODULE_NAME: governance-rules
 
 jobs:
+  install-dependencies:
+    name: Install-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install from PSGallery
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Az.ResourceGraph
+
   deploy_canary:
     name: Deploy Governance Rules Canary
     environment:
