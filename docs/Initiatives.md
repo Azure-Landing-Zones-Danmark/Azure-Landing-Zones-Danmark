@@ -18,7 +18,7 @@ Display Name: ['Public network access should be disabled for PaaS services'](mod
 
 
 Display Name: ['Deploy Audit Settings to Azure Services'](modules/policies/definitions/policy_definition_es_deploy_windows_domainjoin.bicep)
- description: 'This policy set deploys the configurations of application Azure resources to forward Audit logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included '
+ description: 'This policy set deploys the configurations of application Azure resources to forward Audit logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included:
 - policyDefinitionReferenceId: 'AuditAzActivityLogAssignment'
 
 
