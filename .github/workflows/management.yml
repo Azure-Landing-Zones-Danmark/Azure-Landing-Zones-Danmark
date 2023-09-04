@@ -37,7 +37,7 @@ jobs:
       ENVIRONMENT_SHORT_NAME: canary
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login
         uses: azure/login@v1
@@ -73,7 +73,7 @@ jobs:
       ENVIRONMENT_SHORT_NAME: prod
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login
         uses: azure/login@v1
@@ -113,7 +113,7 @@ jobs:
       ENVIRONMENT_SHORT_NAME: canary
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login
         uses: azure/login@v1
@@ -144,7 +144,7 @@ jobs:
       ENVIRONMENT_SHORT_NAME: prod
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login
         uses: azure/login@v1
